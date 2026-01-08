@@ -1,6 +1,6 @@
 name: PublishApp
 env:
-  PUBLISH_DIR: bin/Release/net8.0/publish/wwwroot
+  PUBLISH_DIR: bin/Release/net10.0/publish/wwwroot
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # Controls when the action will run
 on:
@@ -25,7 +25,7 @@ jobs:
     - name: Rewrite base href
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: bin/Release/net8.0/publish/wwwroot/index.html
+        html_path: bin/Release/net10.0/publish/wwwroot/index.html
         base_href: /CV/
 
 
