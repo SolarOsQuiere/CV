@@ -75,7 +75,7 @@ https://solarosquiere.github.io/CV/
 <img align="center" style="width: fit-content"  src="https://user-images.githubusercontent.com/43806203/218275275-050dced1-3b17-4a31-9d8c-829de59b5443.png" />
 
 Check it out here!
-https://hesolar.github.io/CV/
+[https://hesolar.github.io/CV/](https://solarosquiere.github.io/CV/)
 
 Credits go for : 
 https://github.com/SteveSandersonMS/BlazorOnGitHubPages 
