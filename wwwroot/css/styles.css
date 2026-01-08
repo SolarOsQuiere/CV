@@ -11375,7 +11375,7 @@ li:last-child {
     vertical-align: bottom;
 }
 
-
+/*
 
 @media (max-aspect-ratio: 1/1) {
     li
@@ -11384,7 +11384,7 @@ li:last-child {
     height: 30vh;
 }
 
-}
+}*/
 
 // Short screens
 
