@@ -1,4 +1,7 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject NavigationManager Nav
+@inject MenuState MenuState
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +13,15 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        Nav.LocationChanged += (_, args) =>
+        {
+            var relativePath = Nav.ToBaseRelativePath(args.Location);
+            MenuState.SetRoute("/" + relativePath);
+        };
+    }
+}

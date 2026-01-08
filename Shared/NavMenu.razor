@@ -1,33 +1,85 @@
 ﻿@inject IStringLocalizer<CV.Shared.Resources.AllResourcesRes> AllResourcesResolver
 @inject NavigationManager nav
+@inject MenuState MenuState
+@rendermode RenderMode.InteractiveWebAssembly
 
+@using Microsoft.AspNetCore.Components.Routing
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
 
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <a class="navbar-brand" href="/">
         <span class="d-block d-lg-none">Héctor Solar Ruiz</span>
-        <span class="d-none d-lg-block"><img class="img-fluid img-profile" style="border:none;" src="assets/img/profile.jpg" alt="..." /></span>
-
+        <span class="d-none d-lg-block">
+            <img class="img-fluid img-profile" style="border:none;"
+                 src="assets/img/profile.jpg" alt="..." />
+        </span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_inicio"]"> @AllResourcesResolver["navbar_inicio"] </a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_intereses"]"> @AllResourcesResolver["navbar_intereses"] </a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_experiencia"]">@AllResourcesResolver["navbar_experiencia"]</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_educacion"]">@AllResourcesResolver["navbar_educacion"]</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_tecnologias"]">@AllResourcesResolver["navbar_tecnologias"]</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@AllResourcesResolver["navbar_cursos"]">@AllResourcesResolver["navbar_cursos"]</a></li>
-        </ul>
 
+            <li class="nav-item">
+                <NavLink class="nav-link"
+                         href=@AllResourcesResolver["navbar_inicio"]
+                         Match="NavLinkMatch.All">
+                    @AllResourcesResolver["navbar_inicio"]
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link" href=@AllResourcesResolver["navbar_intereses"]>
+                    @AllResourcesResolver["navbar_intereses"]
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link" href=@AllResourcesResolver["navbar_experiencia"]>
+                    @AllResourcesResolver["navbar_experiencia"]
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link" href=@AllResourcesResolver["navbar_educacion"]>
+                    @AllResourcesResolver["navbar_educacion"]
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link" href=@AllResourcesResolver["navbar_tecnologias"]>
+                    @AllResourcesResolver["navbar_tecnologias"]
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link" href=@AllResourcesResolver["navbar_cursos"]>
+                    @AllResourcesResolver["navbar_cursos"]
+                </NavLink>
+            </li>
+
+        </ul>
     </div>
 </nav>
 
 
+@code{
+    protected override void OnInitialized()
+    {
+        MenuState.OnChange += StateHasChanged;
+    }
+
+    private string IsActive(string route)
+        => MenuState.CurrentRoute == route ? "active" : "";
+
+}
+
 <style>
+
     #sideNav .navbar-nav .nav-item .nav-link {
         font-weight: 100;
         letter-spacing: 0.01rem;

@@ -127,16 +127,16 @@
     <value>Preparación para examen de Azure 204</value>
   </data>
   <data name="Az204Titulo" xml:space="preserve">
-    <value>Formacion en Azure 204</value>
+    <value>Formación en Azure 204</value>
   </data>
   <data name="contratoPracticasGnossDescripcion" xml:space="preserve">
-    <value>Prácticas obligatorias en el grado.Desarrollo Web orientado a cliente(BBVA), proyecto D4R(Data for Reputation).</value>
+    <value>Prácticas obligatorias en el grado. Desarrollo web orientado a cliente (BBVA), proyecto D4R (Data for Reputation).</value>
   </data>
   <data name="contratoPracticasGnossSubitulo" xml:space="preserve">
     <value>CONTRATO DE PRÁCTICAS</value>
   </data>
   <data name="contratoPracticasHiberus1Descripcion" xml:space="preserve">
-    <value>Desarrollo de proyecto de fin de grado en la empresa. Durante este periodo he desarrollado un microservicio para añadir funcionalidad a una aplicación existente automatizando procesos relativos a la gestión de recursos humanos.</value>
+    <value>Desarrollo de proyecto de fin de grado en la empresa. Durante este periodo desarrollé un microservicio para añadir funcionalidad a una aplicación existente, automatizando procesos relativos a la gestión de recursos humanos.</value>
   </data>
   <data name="contratoPracticasHiberus1Subitulo" xml:space="preserve">
     <value>HIBERUS · DESARROLLO TRABAJO FIN DE GRADO</value>
@@ -148,67 +148,67 @@
     <value>CONTRATO DE PRÁCTICAS</value>
   </data>
   <data name="contratoPracticasHiberus2Descripcion" xml:space="preserve">
-    <value>Desarrollo de aplicación NetCore para gestión de recursos humanos y personal.</value>
+    <value>Desarrollo de aplicación .NET Core para gestión de recursos humanos y personal.</value>
   </data>
   <data name="contratoPracticasHiberus2Subitulo" xml:space="preserve">
     <value>HIBERUS · CONTRATO DE PRÁCTICAS</value>
   </data>
   <data name="CssHtmlMVPDescripcion" xml:space="preserve">
-    <value>Desarrollo y maquetación de páginas con html y css</value>
+    <value>Desarrollo y maquetación de páginas con HTML y CSS</value>
   </data>
   <data name="CssHtmlMVPSubtitulo" xml:space="preserve">
-    <value>Formación curso de desarrollo web</value>
+    <value>Formación: curso de desarrollo web</value>
   </data>
   <data name="CssHtmlMVPTitulo" xml:space="preserve">
-    <value>Html y CSS a fondo para desarrolladores</value>
+    <value>HTML y CSS a fondo para desarrolladores</value>
   </data>
   <data name="cursosCertificaciones" xml:space="preserve">
-    <value>Cursos y Certificaciones</value>
+    <value>Cursos y certificaciones</value>
   </data>
   <data name="descripcionBachiller" xml:space="preserve">
     <value>BACHILLER CIENTÍFICO</value>
   </data>
   <data name="descripcionCloudComputing" xml:space="preserve">
-    <value>Conocimientos generales en distintas las áreas del Cloud Computing</value>
+    <value>Conocimientos generales en distintas áreas del Cloud Computing</value>
   </data>
   <data name="descripcionConservatorio" xml:space="preserve">
     <value>ESTUDIOS ELEMENTALES DE VIOLÍN</value>
   </data>
   <data name="descripcionContenedoresDocker" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
+    <value>Cursos orientados a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
   </data>
   <data name="descripcionCursoBlazor" xml:space="preserve">
-    <value>Desarrollo full stack utilizando blazor.</value>
+    <value>Desarrollo Full Stack utilizando Blazor.</value>
   </data>
   <data name="descripcionCursoMaui" xml:space="preserve">
-    <value>En este curso se estudia el nuevo Framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de NET6</value>
+    <value>En este curso se estudia el nuevo framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de .NET 6</value>
   </data>
   <data name="descripcionEso" xml:space="preserve">
     <value>EDUCACIÓN SECUNDARIA OBLIGATORIA</value>
   </data>
   <data name="descripcionIntroduccionDesarrolloWeb" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript</value>
+    <value>Cursos orientados a aprender nociones básicas del desarrollo web utilizando HTML5, CSS y JavaScript</value>
   </data>
   <data name="descripcionPersonal1" xml:space="preserve">
-    <value>Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP NET Core.</value>
+    <value>Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP.NET Core.</value>
   </data>
   <data name="descripcionPersonal2" xml:space="preserve">
-    <value>Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/ CD.</value>
+    <value>Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/CD.</value>
   </data>
   <data name="descripcionPersonal3" xml:space="preserve">
-    <value>Idiomas: Español e Inglés</value>
+    <value>Idiomas: Español e inglés</value>
   </data>
   <data name="descripcionProgramacionNET" xml:space="preserve">
-    <value>Se estudian aspectos básicos de la programación .NET desde el Front hasta Back. Usando principalmente mvc y sql server.</value>
+    <value>Se estudian aspectos básicos de la programación .NET desde el front hasta back, usando principalmente MVC y SQL Server.</value>
   </data>
   <data name="descripcionSobreMi1" xml:space="preserve">
-    <value>Sobre mi...</value>
+    <value>Sobre mí...</value>
   </data>
   <data name="descripcionSobreMi2" xml:space="preserve">
-    <value>Hola, soy Héctor! Tengo 24 años he estudiado Ingeniería Informática. Y desde pequeño siempre he tenido claro que queríadedicarme a la informática como forma de mejorar la vida de las personas y contribuir al progreso. También tengo otras aficiones como la música,los juegos de mesa, viajar, practicar deporte o simplemente leer un buen libro o una serie😃</value>
+    <value>Hola, soy Héctor. Tengo 24 años y he estudiado Ingeniería Informática. Desde pequeño tuve claro que quería dedicarme a la informática como forma de mejorar la vida de las personas y contribuir al progreso. También tengo otras aficiones como la música, los juegos de mesa, viajar, practicar deporte o simplemente leer un buen libro o ver una serie.</value>
   </data>
   <data name="descripcionSobreMi3" xml:space="preserve">
-    <value>Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo</value>
+    <value>Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo.</value>
   </data>
   <data name="descripcionUniversidad" xml:space="preserve">
     <value>GRADO EN INGENIERÍA INFORMÁTICA E INGENIERÍA DE SOFTWARE</value>
@@ -217,7 +217,7 @@
     <value>ID de la credencial:</value>
   </data>
   <data name="lenguagesProgramacion" xml:space="preserve">
-    <value>Lenguajes de Programación</value>
+    <value>Lenguajes de programación</value>
   </data>
   <data name="mes" xml:space="preserve">
     <value>mes</value>
@@ -244,16 +244,16 @@
     <value>SobreMi</value>
   </data>
   <data name="navbar_tecnologias" xml:space="preserve">
-    <value>Tecnologías</value>
+    <value>Tecnologias</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion1" xml:space="preserve">
-    <value>Mi trabajo en gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
+    <value>Mi trabajo en Gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion2" xml:space="preserve">
-    <value>El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD. He podido colaborar con el proceso de CI/CD dentro de la organización a través de herramientas como Jenkins,o implementar análisis de código estático automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización con las necesidades que van surgiendo.</value>
+    <value>El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD. He colaborado con el proceso de CI/CD dentro de la organización a través de herramientas como Jenkins, e implementado análisis de código estático automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización.</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion3" xml:space="preserve">
-    <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área. Los productos elaborados que se mantienen principalmente con tecnologías .NET Framework (principalmente WebForms)</value>
+    <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área. Los productos se mantienen principalmente con tecnologías .NET Framework (principalmente WebForms).</value>
   </data>
   <data name="programadorWebJuniorHiberusSubTitulo" xml:space="preserve">
     <value>PROGRAMADOR WEB PARA GOBIERNO DE NAVARRA</value>
@@ -262,13 +262,13 @@
     <value>PROGRAMADOR WEB</value>
   </data>
   <data name="subtituloPersonal" xml:space="preserve">
-    <value>Graduado en la Universidad de la Rioja en Ingeniería informática y mención en ingeniería de Software.</value>
+    <value>Graduado en la Universidad de La Rioja en Ingeniería Informática y mención en Ingeniería de Software.</value>
   </data>
   <data name="subtituloProfesional" xml:space="preserve">
     <value>DESARROLLADOR &amp; INGENIERO DE SOFTWARE</value>
   </data>
   <data name="svcs" xml:space="preserve">
-    <value>Sistemas de Control de versiones (SVC)</value>
+    <value>Sistemas de control de versiones (SVC)</value>
   </data>
   <data name="tituloaz900" xml:space="preserve">
     <value>Azure Fundamentals</value>
@@ -280,7 +280,7 @@
     <value>Curso de Blazor</value>
   </data>
   <data name="tituloCursoMaui" xml:space="preserve">
-    <value>Curso de NET MAUI y NET6</value>
+    <value>Curso de .NET MAUI y .NET 6</value>
   </data>
   <data name="tituloIntroduccionDesarrolloWeb" xml:space="preserve">
     <value>INTRODUCCIÓN AL DESARROLLO WEB I Y II</value>
@@ -296,6 +296,132 @@
   </data>
   <data name="verificacionDocumentos" xml:space="preserve">
     <value>Verificación de documentos electrónicos:</value>
+  </data>
+  <data name="actualidad1" xml:space="preserve">
+    <value>actualidad</value>
+  </data>
+  <data name="contratoPracticasGnossDescripcion1" xml:space="preserve">
+    <value>Prácticas obligatorias en el grado. Desarrollo web orientado a cliente (BBVA), proyecto D4R (Data for Reputation).</value>
+  </data>
+  <data name="contratoPracticasGnossSubitulo1" xml:space="preserve">
+    <value>CONTRATO DE PRÁCTICAS</value>
+  </data>
+  <data name="contratoPracticasHiberus1Descripcion1" xml:space="preserve">
+    <value>Desarrollo de proyecto de fin de grado en la empresa. Durante este periodo desarrollé un microservicio para añadir funcionalidad a una aplicación existente, automatizando procesos relativos a la gestión de recursos humanos.</value>
+  </data>
+  <data name="contratoPracticasHiberus1Subitulo1" xml:space="preserve">
+    <value>HIBERUS · DESARROLLO TRABAJO FIN DE GRADO</value>
+  </data>
+  <data name="contratoPracticasHiberus1Titulo1" xml:space="preserve">
+    <value>CONTRATO DE PRÁCTICAS</value>
+  </data>
+  <data name="contratoPracticasHiberus2Descripcion1" xml:space="preserve">
+    <value>Desarrollo de aplicación .NET Core para gestión de recursos humanos y personal.</value>
+  </data>
+  <data name="contratoPracticasHiberus2Subitulo1" xml:space="preserve">
+    <value>HIBERUS · CONTRATO DE PRÁCTICAS</value>
+  </data>
+  <data name="contratoPracticasHiberus21Titulo1" xml:space="preserve">
+    <value>CONTRATO DE PRÁCTICAS</value>
+  </data>
+  <data name="cursosCertificaciones1" xml:space="preserve">
+    <value>Cursos y certificaciones</value>
+  </data>
+  <data name="descripcionBachiller1" xml:space="preserve">
+    <value>BACHILLER CIENTÍFICO</value>
+  </data>
+  <data name="descripcionCloudComputing1" xml:space="preserve">
+    <value>Conocimientos generales en distintas áreas del Cloud Computing</value>
+  </data>
+  <data name="descripcionConservatorio1" xml:space="preserve">
+    <value>ESTUDIOS ELEMENTALES DE VIOLÍN</value>
+  </data>
+  <data name="descripcionContenedoresDocker1" xml:space="preserve">
+    <value>Cursos orientados a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
+  </data>
+  <data name="descripcionCursoBlazor1" xml:space="preserve">
+    <value>Desarrollo Full Stack utilizando Blazor.</value>
+  </data>
+  <data name="descripcionCursoMaui1" xml:space="preserve">
+    <value>En este curso se estudia el nuevo framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de .NET 6</value>
+  </data>
+  <data name="descripcionEso1" xml:space="preserve">
+    <value>EDUCACIÓN SECUNDARIA OBLIGATORIA</value>
+  </data>
+  <data name="descripcionIntroduccionDesarrolloWeb1" xml:space="preserve">
+    <value>Cursos orientados a aprender nociones básicas del desarrollo web utilizando HTML5, CSS y JavaScript</value>
+  </data>
+  <data name="descripcionPersonal11" xml:space="preserve">
+    <value>Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP.NET Core.</value>
+  </data>
+  <data name="descripcionPersonal21" xml:space="preserve">
+    <value>Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/CD.</value>
+  </data>
+  <data name="descripcionPersonal31" xml:space="preserve">
+    <value>Idiomas: Español e inglés</value>
+  </data>
+  <data name="descripcionProgramacionNET1" xml:space="preserve">
+    <value>Se estudian aspectos básicos de la programación .NET desde el front hasta back, usando principalmente MVC y SQL Server.</value>
+  </data>
+  <data name="descripcionSobreMi11" xml:space="preserve">
+    <value>Sobre mí...</value>
+  </data>
+  <data name="descripcionSobreMi21" xml:space="preserve">
+    <value>Hola, soy Héctor. Tengo 24 años y he estudiado Ingeniería Informática. Desde pequeño tuve claro que quería dedicarme a la informática como forma de mejorar la vida de las personas y contribuir al progreso. También tengo otras aficiones como la música, los juegos de mesa, viajar, practicar deporte o simplemente leer un buen libro o ver una serie.</value>
+  </data>
+  <data name="descripcionSobreMi31" xml:space="preserve">
+    <value>Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo.</value>
+  </data>
+  <data name="descripcionUniversidad1" xml:space="preserve">
+    <value>GRADO EN INGENIERÍA INFORMÁTICA E INGENIERÍA DE SOFTWARE</value>
+  </data>
+  <data name="idCredencial1" xml:space="preserve">
+    <value>ID de la credencial:</value>
+  </data>
+  <data name="lenguagesProgramacion1" xml:space="preserve">
+    <value>Lenguajes de programación</value>
+  </data>
+  <data name="metodologias1" xml:space="preserve">
+    <value>Metodologías y principios</value>
+  </data>
+  <data name="navbar_cursos1" xml:space="preserve">
+    <value>Cursos</value>
+  </data>
+  <data name="navbar_interesesHREF" xml:space="preserve">
+    <value>SobreMi</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion11" xml:space="preserve">
+    <value>Mi trabajo en Gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion21" xml:space="preserve">
+    <value>El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD. He colaborado con el proceso de CI/CD dentro de la organización a través de herramientas como Jenkins, e implementado análisis de código estático automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización.</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion31" xml:space="preserve">
+    <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área. Los productos se mantienen principalmente con tecnologías .NET Framework (principalmente WebForms).</value>
+  </data>
+  <data name="programadorWebJuniorHiberusSubTitulo1" xml:space="preserve">
+    <value>PROGRAMADOR WEB JUNIOR PARA GOBIERNO DE NAVARRA</value>
+  </data>
+  <data name="programadorWebJuniorHiberusTitulo1" xml:space="preserve">
+    <value>PROGRAMADOR WEB</value>
+  </data>
+  <data name="subtituloPersonal1" xml:space="preserve">
+    <value>Graduado en la Universidad de La Rioja en Ingeniería Informática y mención en Ingeniería de Software.</value>
+  </data>
+  <data name="subtituloProfesional1" xml:space="preserve">
+    <value>DESARROLLADOR &amp; INGENIERO DE SOFTWARE</value>
+  </data>
+  <data name="svcs1" xml:space="preserve">
+    <value>Sistemas de control de versiones (SVC)</value>
+  </data>
+  <data name="tituloaz9001" xml:space="preserve">
+    <value>Azure Fundamentals</value>
+  </data>
+  <data name="tituloContenedoresDocker1" xml:space="preserve">
+    <value>Curso de contenedores Docker</value>
+  </data>
+  <data name="tituloCursoBlazor1" xml:space="preserve">
+    <value>Curso de Blazor</value>
   </data>
   <data name="year" xml:space="preserve">
     <value>año</value>

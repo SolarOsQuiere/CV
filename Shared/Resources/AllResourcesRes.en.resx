@@ -118,337 +118,310 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="actualidad" xml:space="preserve">
-    <value>actualidad</value>
-  </data>
-  <data name="actualidad1" xml:space="preserve">
-    <value>actualidad</value>
+    <value>news</value>
   </data>
   <data name="Az204Descripcion" xml:space="preserve">
-    <value>Desarrollo de aplicaciones en la nube y gestión de infraestructura</value>
+    <value>Cloud application development and infrastructure management</value>
   </data>
   <data name="Az204Subtitulo" xml:space="preserve">
-    <value>Preparación para examen de Azure 204</value>
+    <value>Preparation for the Azure 204 exam</value>
   </data>
   <data name="Az204Titulo" xml:space="preserve">
-    <value>Curso de preparación para Azure 204</value>
+    <value>Azure 204 preparation course</value>
   </data>
   <data name="contratoPracticasGnossDescripcion" xml:space="preserve">
-    <value>Prácticas obligatorias en el grado.Desarrollo Web orientado a cliente(BBVA), proyecto D4R(Data for Reputation).</value>
-  </data>
-  <data name="contratoPracticasGnossDescripcion1" xml:space="preserve">
-    <value>Prácticas obligatorias en el grado.Desarrollo Web orientado a cliente(BBVA), proyecto D4R(Data for Reputation).</value>
+    <value>Mandatory internship during the degree. Client-side web development (BBVA), D4R project (Data for Reputation).</value>
   </data>
   <data name="contratoPracticasGnossSubitulo" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
-  </data>
-  <data name="contratoPracticasGnossSubitulo1" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
+    <value>INTERNSHIP AGREEMENT</value>
   </data>
   <data name="contratoPracticasHiberus1Descripcion" xml:space="preserve">
-    <value>Desarrollo de proyecto de fin de grado en la empresa. Durante este periodo he desarrollado un microservicio para añadir funcionalidad a una aplicación existente automaticzando procesos relativos a la gestión de recursos humanos.</value>
-  </data>
-  <data name="contratoPracticasHiberus1Descripcion1" xml:space="preserve">
-    <value>Desarrollo de proyecto de fin de grado en la empresa. Durante este periodo he desarrollado un microservicio para añadir funcionalidad a una aplicación existente automaticzando procesos relativos a la gestión de recursos humanos.</value>
+    <value>Development of my final degree project within the company. During this period I developed a microservice to add functionality to an existing application, automating processes related to human resources management.</value>
   </data>
   <data name="contratoPracticasHiberus1Subitulo" xml:space="preserve">
-    <value>HIBERUS · DESARROLLO TRABAJO FIN DE GRADO</value>
-  </data>
-  <data name="contratoPracticasHiberus1Subitulo1" xml:space="preserve">
-    <value>HIBERUS · DESARROLLO TRABAJO FIN DE GRADO</value>
+    <value>HIBERUS · FINAL DEGREE PROJECT DEVELOPMENT</value>
   </data>
   <data name="contratoPracticasHiberus1Titulo" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
-  </data>
-  <data name="contratoPracticasHiberus1Titulo1" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
+    <value>INTERNSHIP AGREEMENT</value>
   </data>
   <data name="contratoPracticasHiberus21Titulo" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
-  </data>
-  <data name="contratoPracticasHiberus21Titulo1" xml:space="preserve">
-    <value>CONTRATO DE PRÁCTICAS</value>
+    <value>INTERNSHIP AGREEMENT</value>
   </data>
   <data name="contratoPracticasHiberus2Descripcion" xml:space="preserve">
-    <value>Desarrollo de aplicación NetCore para gestión de recursos humanos y personal.</value>
-  </data>
-  <data name="contratoPracticasHiberus2Descripcion1" xml:space="preserve">
-    <value>Desarrollo de aplicación NetCore para gestión de recursos humanos y personal.</value>
+    <value>Development of a .NET Core application for human resources and personnel management.</value>
   </data>
   <data name="contratoPracticasHiberus2Subitulo" xml:space="preserve">
-    <value>HIBERUS · CONTRATO DE PRÁCTICAS</value>
-  </data>
-  <data name="contratoPracticasHiberus2Subitulo1" xml:space="preserve">
-    <value>HIBERUS · CONTRATO DE PRÁCTICAS</value>
+    <value>HIBERUS · INTERNSHIP AGREEMENT</value>
   </data>
   <data name="CssHtmlMVPDescripcion" xml:space="preserve">
-    <value>Desarrollo y maquetación de páginas con html y css</value>
+    <value>Development and layout of pages using HTML and CSS</value>
   </data>
   <data name="CssHtmlMVPSubtitulo" xml:space="preserve">
-    <value>Formación curso de desarrollo web</value>
+    <value>Training: web development course</value>
   </data>
   <data name="CssHtmlMVPTitulo" xml:space="preserve">
-    <value>Html y CSS a fondo para desarrolladores</value>
+    <value>HTML and CSS in depth for developers</value>
   </data>
   <data name="cursosCertificaciones" xml:space="preserve">
-    <value>Cursos y Certificaciones</value>
-  </data>
-  <data name="cursosCertificaciones1" xml:space="preserve">
-    <value>Cursos y Certificaciones</value>
+    <value>Courses and certifications</value>
   </data>
   <data name="descripcionBachiller" xml:space="preserve">
-    <value>BACHILLER CIENTÍFICO</value>
-  </data>
-  <data name="descripcionBachiller1" xml:space="preserve">
-    <value>BACHILLER CIENTÍFICO</value>
+    <value>SCIENTIFIC BACCALAUREATE</value>
   </data>
   <data name="descripcionCloudComputing" xml:space="preserve">
-    <value>Conocimientos generales en distintas las áreas del Cloud Computing</value>
-  </data>
-  <data name="descripcionCloudComputing1" xml:space="preserve">
-    <value>Conocimientos generales en distintas las áreas del Cloud Computing</value>
+    <value>General knowledge across different areas of Cloud Computing</value>
   </data>
   <data name="descripcionConservatorio" xml:space="preserve">
-    <value>ESTUDIOS ELEMENTALES DE VIOLÍN</value>
-  </data>
-  <data name="descripcionConservatorio1" xml:space="preserve">
-    <value>ESTUDIOS ELEMENTALES DE VIOLÍN</value>
+    <value>ELEMENTARY VIOLIN STUDIES</value>
   </data>
   <data name="descripcionContenedoresDocker" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
-  </data>
-  <data name="descripcionContenedoresDocker1" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
+    <value>Courses aimed at learning the basics of container usage and their application in software projects.</value>
   </data>
   <data name="descripcionCursoBlazor" xml:space="preserve">
-    <value>Desarrollo full stack utilizando blazor.</value>
-  </data>
-  <data name="descripcionCursoBlazor1" xml:space="preserve">
-    <value>Desarrollo full stack utilizando blazor.</value>
+    <value>Full stack development using Blazor.</value>
   </data>
   <data name="descripcionCursoMaui" xml:space="preserve">
-    <value>En este curso se estudia el nuevo Framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de NET6</value>
-  </data>
-  <data name="descripcionCursoMaui1" xml:space="preserve">
-    <value>En este curso se estudia el nuevo Framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de NET6</value>
+    <value>This course covers the new cross-platform application development framework with a single codebase and basic .NET 6 concepts.</value>
   </data>
   <data name="descripcionEso" xml:space="preserve">
-    <value>EDUCACIÓN SECUNDARIA OBLIGATORIA</value>
-  </data>
-  <data name="descripcionEso1" xml:space="preserve">
-    <value>EDUCACIÓN SECUNDARIA OBLIGATORIA</value>
+    <value>COMPULSORY SECONDARY EDUCATION</value>
   </data>
   <data name="descripcionIntroduccionDesarrolloWeb" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript</value>
-  </data>
-  <data name="descripcionIntroduccionDesarrolloWeb1" xml:space="preserve">
-    <value>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript</value>
+    <value>Courses aimed at learning basic web development concepts using HTML5, CSS and JavaScript</value>
   </data>
   <data name="descripcionPersonal1" xml:space="preserve">
-    <value>Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP NET Core.</value>
-  </data>
-  <data name="descripcionPersonal11" xml:space="preserve">
-    <value>Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP NET Core.</value>
+    <value>The technologies I specialize in are mainly the ASP.NET Core technology stack.</value>
   </data>
   <data name="descripcionPersonal2" xml:space="preserve">
-    <value>Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/ CD.</value>
-  </data>
-  <data name="descripcionPersonal21" xml:space="preserve">
-    <value>Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/ CD.</value>
+    <value>My preferences are application development and CI/CD processes.</value>
   </data>
   <data name="descripcionPersonal3" xml:space="preserve">
-    <value>Idiomas: Español e Inglés</value>
-  </data>
-  <data name="descripcionPersonal31" xml:space="preserve">
-    <value>Idiomas: Español e Inglés</value>
+    <value>Languages: Spanish and English</value>
   </data>
   <data name="descripcionProgramacionNET" xml:space="preserve">
-    <value>Se estudian aspectos básicos de la programación .NET desde el Front hasta Back. Usando principalmente mvc y sql server.</value>
-  </data>
-  <data name="descripcionProgramacionNET1" xml:space="preserve">
-    <value>Se estudian aspectos básicos de la programación .NET desde el Front hasta Back. Usando principalmente mvc y sql server.</value>
+    <value>Basic aspects of .NET programming are studied from front to back, mainly using MVC and SQL Server.</value>
   </data>
   <data name="descripcionSobreMi1" xml:space="preserve">
-    <value>Sobre mi...</value>
-  </data>
-  <data name="descripcionSobreMi11" xml:space="preserve">
-    <value>Sobre mi...</value>
+    <value>About me...</value>
   </data>
   <data name="descripcionSobreMi2" xml:space="preserve">
-    <value>Desde pequeño he querido estudiar informática como forma de mejorar la vida de las personas y contribuir al progreso, aunque también tengo otras aficiones como la música,viajar, deportes o simplemente leer un buen libro o una serie😃</value>
-  </data>
-  <data name="descripcionSobreMi21" xml:space="preserve">
-    <value>Desde pequeño he querido estudiar informática como forma de mejorar la vida de las personas y contribuir al progreso, aunque también tengo otras aficiones como la música,viajar, deportes o simplemente leer un buen libro o una serie😃</value>
+    <value>Since I was a child I wanted to study computer science as a way to improve people's lives and contribute to progress. I also enjoy music, traveling, sports or simply reading a good book or watching a series.</value>
   </data>
   <data name="descripcionSobreMi3" xml:space="preserve">
-    <value>Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo</value>
-  </data>
-  <data name="descripcionSobreMi31" xml:space="preserve">
-    <value>Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo</value>
+    <value>I consider myself a consistent and hard-working person and believe that my main skill is teamwork.</value>
   </data>
   <data name="descripcionUniversidad" xml:space="preserve">
-    <value>GRADO EN INGENIERÍA INFORMÁTICA E INGENIERÍA DE SOFTWARE</value>
-  </data>
-  <data name="descripcionUniversidad1" xml:space="preserve">
-    <value>GRADO EN INGENIERÍA INFORMÁTICA E INGENIERÍA DE SOFTWARE</value>
+    <value>DEGREE IN COMPUTER ENGINEERING AND SOFTWARE ENGINEERING</value>
   </data>
   <data name="idCredencial" xml:space="preserve">
-    <value>ID de la credencial:</value>
-  </data>
-  <data name="idCredencial1" xml:space="preserve">
-    <value>ID de la credencial:</value>
+    <value>Credential ID:</value>
   </data>
   <data name="lenguagesProgramacion" xml:space="preserve">
-    <value>Lenguajes de Programación</value>
-  </data>
-  <data name="lenguagesProgramacion1" xml:space="preserve">
-    <value>Lenguajes de Programación</value>
+    <value>Programming languages</value>
   </data>
   <data name="mes" xml:space="preserve">
-    <value>mes</value>
+    <value>month</value>
   </data>
   <data name="meses" xml:space="preserve">
-    <value>meses</value>
+    <value>months</value>
   </data>
   <data name="metodologias" xml:space="preserve">
-    <value>Metodologías y principios</value>
-  </data>
-  <data name="metodologias1" xml:space="preserve">
-    <value>Metodologías y principios</value>
+    <value>Methodologies and principles</value>
   </data>
   <data name="navbar_cursos" xml:space="preserve">
-    <value>CURSOS</value>
-  </data>
-  <data name="navbar_cursos1" xml:space="preserve">
-    <value>Cursos</value>
+    <value>COURSES</value>
   </data>
   <data name="navbar_educacion" xml:space="preserve">
-    <value>EDUCACIÓN</value>
-  </data>
-  <data name="navbar_educacion1" xml:space="preserve">
-    <value>Educacion</value>
+    <value>EDUCATION</value>
   </data>
   <data name="navbar_experiencia" xml:space="preserve">
-    <value>EXPERIENCIA</value>
-  </data>
-  <data name="navbar_experiencia1" xml:space="preserve">
-    <value>Experiencia</value>
+    <value>EXPERIENCE</value>
   </data>
   <data name="navbar_inicio" xml:space="preserve">
-    <value>INICIO</value>
-  </data>
-  <data name="navbar_inicio1" xml:space="preserve">
-    <value>Inicio</value>
+    <value>HOME</value>
   </data>
   <data name="navbar_intereses" xml:space="preserve">
-    <value>SOBRE MI</value>
-  </data>
-  <data name="navbar_intereses1" xml:space="preserve">
-    <value>SobreMi</value>
+    <value>ABOUT ME</value>
   </data>
   <data name="navbar_tecnologias" xml:space="preserve">
-    <value>TECNOLOGÍAS</value>
-  </data>
-  <data name="navbar_tecnologias1" xml:space="preserve">
-    <value>Tecnologías</value>
+    <value>TECHNOLOGIES</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion1" xml:space="preserve">
-    <value>Mi trabajo en gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
-  </data>
-  <data name="programadorWebJuniorHiberusDescripcion11" xml:space="preserve">
-    <value>Mi trabajo en gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
+    <value>My work at the Government of Navarra can be divided into two areas: GAD and Housing.</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion2" xml:space="preserve">
-    <value>El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD. He podido colaborar con el proceso de CI/CD dentro de la organización a través de Jenkins, y mejorar la calidad del código a través de procesos de QA automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización con las necesidades que van surgiendo.</value>
-  </data>
-  <data name="programadorWebJuniorHiberusDescripcion21" xml:space="preserve">
-    <value>El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD. He podido colaborar con el proceso de CI/CD dentro de la organización a través de Jenkins, y mejorar la calidad del código a través de procesos de QA automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización con las necesidades que van surgiendo.</value>
+    <value>The GAD team (Development Architecture Group) is a transversal team whose main role is to support developers in aspects related to development and integration of their products in the CI/CD process. I have collaborated on CI/CD using tools like Jenkins and improved code quality through automated QA processes with SonarQube, as well as researching and proposing new technologies to meet organizational needs.</value>
   </data>
   <data name="programadorWebJuniorHiberusDescripcion3" xml:space="preserve">
-    <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área, utilizando principalmente la metodología SCRUM. Los productos elaborados se desarrollan principalmente con tecnologías .NET Framework (principalmente WebForms)</value>
-  </data>
-  <data name="programadorWebJuniorHiberusDescripcion31" xml:space="preserve">
-    <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área, utilizando principalmente la metodología SCRUM. Los productos elaborados se desarrollan principalmente con tecnologías .NET Framework (principalmente WebForms)</value>
+    <value>In the housing area, my responsibilities include maintenance and improvement tasks for the different products in this area. These products are mainly maintained with .NET Framework technologies (primarily WebForms).</value>
   </data>
   <data name="programadorWebJuniorHiberusSubTitulo" xml:space="preserve">
-    <value>PROGRAMADOR WEB JUNIOR PARA GOBIERNO DE NAVARRA</value>
-  </data>
-  <data name="programadorWebJuniorHiberusSubTitulo1" xml:space="preserve">
-    <value>PROGRAMADOR WEB JUNIOR PARA GOBIERNO DE NAVARRA</value>
+    <value>JUNIOR WEB DEVELOPER FOR THE GOVERNMENT OF NAVARRA</value>
   </data>
   <data name="programadorWebJuniorHiberusTitulo" xml:space="preserve">
-    <value>PROGRAMADOR WEB JUNIOR</value>
-  </data>
-  <data name="programadorWebJuniorHiberusTitulo1" xml:space="preserve">
-    <value>PROGRAMADOR WEB JUNIOR</value>
+    <value>JUNIOR WEB DEVELOPER</value>
   </data>
   <data name="subtituloPersonal" xml:space="preserve">
-    <value>Graduado en la Universidad de la Rioja en Ingeniería informática y mención en ingeniería de Software.</value>
-  </data>
-  <data name="subtituloPersonal1" xml:space="preserve">
-    <value>Graduado en la Universidad de la Rioja en Ingeniería informática y mención en ingeniería de Software.</value>
+    <value>Graduate from the University of La Rioja in Computer Engineering with a specialization in Software Engineering.</value>
   </data>
   <data name="subtituloProfesional" xml:space="preserve">
-    <value>DESARROLLADOR &amp; INGENIERO DE SOFTWARE</value>
-  </data>
-  <data name="subtituloProfesional1" xml:space="preserve">
-    <value>DESARROLLADOR &amp; INGENIERO DE SOFTWARE</value>
+    <value>DEVELOPER &amp; SOFTWARE ENGINEER</value>
   </data>
   <data name="svcs" xml:space="preserve">
-    <value>Sistemas de Control de versiones (SVC)</value>
-  </data>
-  <data name="svcs1" xml:space="preserve">
-    <value>Sistemas de Control de versiones (SVC)</value>
+    <value>Version control systems (VCS)</value>
   </data>
   <data name="tituloaz900" xml:space="preserve">
     <value>Azure Fundamentals</value>
   </data>
+  <data name="tituloContenedoresDocker" xml:space="preserve">
+    <value>Docker containers course</value>
+  </data>
+  <data name="tituloCursoBlazor" xml:space="preserve">
+    <value>Blazor course</value>
+  </data>
+  <data name="tituloCursoMaui" xml:space="preserve">
+    <value>.NET MAUI and .NET 6 course</value>
+  </data>
+  <data name="tituloIntroduccionDesarrolloWeb" xml:space="preserve">
+    <value>INTRODUCTION TO WEB DEVELOPMENT I &amp; II</value>
+  </data>
+  <data name="tituloProgramacionNET" xml:space="preserve">
+    <value>.NET Programming</value>
+  </data>
+  <data name="tituloReact" xml:space="preserve">
+    <value>React course</value>
+  </data>
+  <data name="verificacionCertificados" xml:space="preserve">
+    <value>Certificate verification:</value>
+  </data>
+  <data name="verificacionDocumentos" xml:space="preserve">
+    <value>Electronic document verification:</value>
+  </data>
+  <data name="actualidad1" xml:space="preserve">
+    <value>news</value>
+  </data>
+  <data name="contratoPracticasGnossDescripcion1" xml:space="preserve">
+    <value>Mandatory internship during the degree. Client-side web development (BBVA), D4R project (Data for Reputation).</value>
+  </data>
+  <data name="contratoPracticasGnossSubitulo1" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus1Descripcion1" xml:space="preserve">
+    <value>Development of my final degree project within the company. During this period I developed a microservice to add functionality to an existing application, automating processes related to human resources management.</value>
+  </data>
+  <data name="contratoPracticasHiberus1Subitulo1" xml:space="preserve">
+    <value>HIBERUS · FINAL DEGREE PROJECT DEVELOPMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus1Titulo1" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus2Descripcion1" xml:space="preserve">
+    <value>Development of a .NET Core application for human resources and personnel management.</value>
+  </data>
+  <data name="contratoPracticasHiberus2Subitulo1" xml:space="preserve">
+    <value>HIBERUS · INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus21Titulo1" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="cursosCertificaciones1" xml:space="preserve">
+    <value>Courses and certifications</value>
+  </data>
+  <data name="descripcionBachiller1" xml:space="preserve">
+    <value>SCIENTIFIC BACCALAUREATE</value>
+  </data>
+  <data name="descripcionCloudComputing1" xml:space="preserve">
+    <value>General knowledge across different areas of Cloud Computing</value>
+  </data>
+  <data name="descripcionConservatorio1" xml:space="preserve">
+    <value>ELEMENTARY VIOLIN STUDIES</value>
+  </data>
+  <data name="descripcionContenedoresDocker1" xml:space="preserve">
+    <value>Courses aimed at learning the basics of container usage and their application in software projects.</value>
+  </data>
+  <data name="descripcionCursoBlazor1" xml:space="preserve">
+    <value>Full stack development using Blazor.</value>
+  </data>
+  <data name="descripcionCursoMaui1" xml:space="preserve">
+    <value>This course covers the new cross-platform application development framework with a single codebase and basic .NET 6 concepts.</value>
+  </data>
+  <data name="descripcionEso1" xml:space="preserve">
+    <value>COMPULSORY SECONDARY EDUCATION</value>
+  </data>
+  <data name="descripcionIntroduccionDesarrolloWeb1" xml:space="preserve">
+    <value>Courses aimed at learning basic web development concepts using HTML5, CSS and JavaScript</value>
+  </data>
+  <data name="descripcionPersonal11" xml:space="preserve">
+    <value>The technologies I specialize in are mainly the ASP.NET Core technology stack.</value>
+  </data>
+  <data name="descripcionPersonal21" xml:space="preserve">
+    <value>My preferences are application development and CI/CD processes.</value>
+  </data>
+  <data name="descripcionPersonal31" xml:space="preserve">
+    <value>Languages: Spanish and English</value>
+  </data>
+  <data name="descripcionProgramacionNET1" xml:space="preserve">
+    <value>Basic aspects of .NET programming are studied from front to back, mainly using MVC and SQL Server.</value>
+  </data>
+  <data name="descripcionSobreMi11" xml:space="preserve">
+    <value>About me...</value>
+  </data>
+  <data name="descripcionSobreMi21" xml:space="preserve">
+    <value>Since I was a child I wanted to study computer science as a way to improve people's lives and contribute to progress. I also enjoy music, traveling, sports or simply reading a good book or watching a series.</value>
+  </data>
+  <data name="descripcionSobreMi31" xml:space="preserve">
+    <value>I consider myself a consistent and hard-working person and believe that my main skill is teamwork.</value>
+  </data>
+  <data name="descripcionUniversidad1" xml:space="preserve">
+    <value>DEGREE IN COMPUTER ENGINEERING AND SOFTWARE ENGINEERING</value>
+  </data>
+  <data name="idCredencial1" xml:space="preserve">
+    <value>Credential ID:</value>
+  </data>
+  <data name="lenguagesProgramacion1" xml:space="preserve">
+    <value>Programming languages</value>
+  </data>
+  <data name="metodologias1" xml:space="preserve">
+    <value>Methodologies and principles</value>
+  </data>
+  <data name="navbar_cursos1" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="navbar_interesesHREF" xml:space="preserve">
+    <value>AboutMe</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion11" xml:space="preserve">
+    <value>My work at the Government of Navarra can be divided into two areas: GAD and Housing.</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion21" xml:space="preserve">
+    <value>The GAD team (Development Architecture Group) is a transversal team whose main role is to support developers in aspects related to development and integration of their products in the CI/CD process. I have collaborated on CI/CD using tools like Jenkins and improved code quality through automated QA processes with SonarQube, as well as researching and proposing new technologies to meet organizational needs.</value>
+  </data>
+  <data name="programadorWebJuniorHiberusDescripcion31" xml:space="preserve">
+    <value>In the housing area, my responsibilities include maintenance and improvement tasks for the different products in this area. These products are mainly maintained with .NET Framework technologies (primarily WebForms).</value>
+  </data>
+  <data name="programadorWebJuniorHiberusSubTitulo1" xml:space="preserve">
+    <value>JUNIOR WEB DEVELOPER FOR THE GOVERNMENT OF NAVARRA</value>
+  </data>
+  <data name="programadorWebJuniorHiberusTitulo1" xml:space="preserve">
+    <value>JUNIOR WEB DEVELOPER</value>
+  </data>
+  <data name="subtituloPersonal1" xml:space="preserve">
+    <value>Graduate from the University of La Rioja in Computer Engineering with a specialization in Software Engineering.</value>
+  </data>
+  <data name="subtituloProfesional1" xml:space="preserve">
+    <value>DEVELOPER &amp; SOFTWARE ENGINEER</value>
+  </data>
+  <data name="svcs1" xml:space="preserve">
+    <value>Version control systems (VCS)</value>
+  </data>
   <data name="tituloaz9001" xml:space="preserve">
     <value>Azure Fundamentals</value>
   </data>
-  <data name="tituloContenedoresDocker" xml:space="preserve">
-    <value>Curso de contenedores Docker</value>
-  </data>
   <data name="tituloContenedoresDocker1" xml:space="preserve">
-    <value>Curso de contenedores Docker</value>
-  </data>
-  <data name="tituloCursoBlazor" xml:space="preserve">
-    <value>Curso de Blazor</value>
+    <value>Docker containers course</value>
   </data>
   <data name="tituloCursoBlazor1" xml:space="preserve">
-    <value>Curso de Blazor</value>
-  </data>
-  <data name="tituloCursoMaui" xml:space="preserve">
-    <value>Curso de NET MAUI y NET6</value>
-  </data>
-  <data name="tituloCursoMaui1" xml:space="preserve">
-    <value>Curso de NET MAUI y NET6</value>
-  </data>
-  <data name="tituloIntroduccionDesarrolloWeb" xml:space="preserve">
-    <value>INTRODUCCIÓN AL DESARROLLO WEB I Y II</value>
-  </data>
-  <data name="tituloIntroduccionDesarrolloWeb1" xml:space="preserve">
-    <value>INTRODUCCIÓN AL DESARROLLO WEB I Y II</value>
-  </data>
-  <data name="tituloProgramacionNET" xml:space="preserve">
-    <value>Programación .NET</value>
-  </data>
-  <data name="tituloProgramacionNET1" xml:space="preserve">
-    <value>Programación .NET</value>
-  </data>
-  <data name="tituloReact" xml:space="preserve">
-    <value>React Course</value>
-  </data>
-  <data name="verificacionCertificados" xml:space="preserve">
-    <value>Verificación de certificados:</value>
-  </data>
-  <data name="verificacionCertificados1" xml:space="preserve">
-    <value>Verificación de certificados:</value>
-  </data>
-  <data name="verificacionDocumentos" xml:space="preserve">
-    <value>Verificación de documentos electrónicos:</value>
-  </data>
-  <data name="verificacionDocumentos1" xml:space="preserve">
-    <value>Verificación de documentos electrónicos:</value>
+    <value>Blazor course</value>
   </data>
   <data name="year" xml:space="preserve">
     <value>year</value>
