@@ -2,6 +2,6 @@
 2. Actualizar routes con notfound
 3. Crear el menu con estado compartido (reactivar headder)
 4. Revisar vistas en movil se ven mal
-
+5. Mejorar enlaces dinamicamente utilizano recursos ddinamicos
 
 
