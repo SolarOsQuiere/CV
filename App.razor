@@ -1,7 +1,10 @@
 ﻿@inject NavigationManager Nav
 @inject MenuState MenuState
 
-<Router AppAssembly="@typeof(App).Assembly">
+
+@* todo n10*@
+@* <Router AppAssembly="@typeof(App).Assembly" NotFoundPage="typeof(Pages.NotFound)"> *@
+<Router AppAssembly="@typeof(App).Assembly" > 
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -13,6 +16,10 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+
+
+
 
 @code {
     
