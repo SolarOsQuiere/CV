@@ -429,4 +429,20 @@
   <data name="years" xml:space="preserve">
     <value>years</value>
   </data>
+  <data name="EntityFrameworkMvpSubtitulo" xml:space="preserve">
+    <value>EF Core course</value>
+  </data>
+  <data name="EntityFrameworkMvpTtitulo" xml:space="preserve">
+    <value>Entity Framework </value>
+  </data>
+  <data name="gadGatViviendaDescripcion1" xml:space="preserve">
+    <value>My work within the Technical Architecture group focuses on developing the base architecture for new products being onboarded into the service. This architecture is built on a new platform based on .NET 8 and Domain-Driven Design (DDD) principles. Additionally, I contribute to the development of cross-cutting components that provide shared functionality across products, such as report generation, centralized exception handling, and other common concerns.
+I also provide support to development teams by reviewing and resolving technical issues, all within an agile Scrum framework.</value>
+  </data>
+  <data name="gadGatViviendaDescripcion2" xml:space="preserve">
+    <value>I am part of the GAD team (Development Architecture Group), a cross-functional team whose main purpose is to support developers in aspects related to product development and integration within the CI/CD process. I have contributed to the definition and improvement of these processes using tools such as Jenkins and by implementing automated static code analysis with SonarQube. I also take part in researching and proposing new technologies that add value to the organization.</value>
+  </data>
+  <data name="gadGatViviendaDescripcion3" xml:space="preserve">
+    <value>Previously, I worked in the Housing area, where I carried out maintenance and enhancement tasks for various products. These systems were primarily developed using .NET Framework technologies, with a strong focus on WebForms-based applications.</value>
+  </data>
 </root>

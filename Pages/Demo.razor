@@ -1,0 +1,24 @@
+﻿@page "/demo"
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@AllResourcesResolver["actualidad"]
+<select @onchange="ChangeCulture">
+    <option value="en-US">English</option>
+    <option value="en">English</option>
+    <option value="es">sp</option>
+
+</select>
+
+@code {
+    private async Task ChangeCulture(ChangeEventArgs e)
+    {
+        var culture = e.Value?.ToString();
+
+        await JS.InvokeVoidAsync(
+            "localStorage.setItem", "culture", culture);
+
+        // Force full reload
+        Nav.NavigateTo(Nav.Uri, forceLoad: true);
+    }
+}
