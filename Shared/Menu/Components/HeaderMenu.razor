@@ -1,0 +1,35 @@
+﻿@using CV.Shared.Menu.Services
+@using CV.Shared.Resources
+@rendermode RenderMode.InteractiveWebAssembly   
+@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@inject NavigationManager nav
+@inject MenuService MenuService
+
+<nav class="menu-top">
+    <RadzenTabs RenderMode="TabRenderMode.Client" Style="background-image:conic-gradient()">
+        <Tabs>
+            @foreach (var item in MenuService.MenuItems)
+            {
+                <RadzenTabsItem Text=@item.Text @onclick=@(() => Navegar(item)) Selected=item.IsActive/>
+            }
+        </Tabs>
+    </RadzenTabs>
+</nav>
+
+@code {
+    protected override void OnInitialized()
+    {
+        MenuService.OnChange += StateHasChanged;
+    }
+
+    void Navegar(MenuNavLink item)
+    {
+        MenuService.CambiarPagina(item);
+        nav.NavigateTo(item.Href);
+    }
+
+    public void Dispose()
+    {
+        MenuService.OnChange -= StateHasChanged;
+    }
+}

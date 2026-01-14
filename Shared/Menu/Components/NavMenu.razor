@@ -1,0 +1,168 @@
+﻿@inject NavigationManager Nav
+@inject MenuService MenuService
+@rendermode RenderMode.InteractiveWebAssembly 
+@using CV.Shared.Menu.Services
+@using Microsoft.AspNetCore.Components.Routing
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+
+    <a class="navbar-brand" href="/">
+        <span class="d-block d-lg-none">Héctor Solar Ruiz</span>
+        <span class="d-none d-lg-block">
+            <img class="img-fluid img-profile" style="border:none;"
+                 src="assets/img/profile.jpg" alt="..." />
+        </span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            @foreach (var item in MenuService.MenuItems)
+            {
+                <li class="nav-item">
+                    <NavLink class=@($"nav-link {(item.IsActive ? "active" : "")}")
+                             href="@item.Href"
+                             @onclick="() => OnClick(item)"
+                        
+                        >
+                        @item.Text
+                    </NavLink>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        MenuService.OnChange += StateHasChanged;
+    }
+
+    private void OnClick(MenuNavLink item)
+    {
+        MenuService.CambiarPagina(item);
+        Nav.NavigateTo(item.Href);
+    }
+
+    public void Dispose()
+    {
+        MenuService.OnChange -= StateHasChanged;
+    }
+
+}
+
+<style>
+
+    .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    #sideNav .navbar-nav .nav-item .nav-link {
+        font-weight: 100;
+        letter-spacing: 0.01rem;
+        text-transform: capitalize;
+        font-family: Fantasy, Papyrus, serif;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: white;
+    }
+
+
+
+    .nav-item:hover {
+        background-color: lightslategrey;
+    }
+
+    .navbar-light .navbar-brand {
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+        .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: rgba(0, 0, 0, 0.55);
+    }
+
+        .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-light .navbar-nav .nav-link.disabled {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+    .navbar-light .navbar-toggler {
+        color: rgba(0, 0, 0, 0.55);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-light .navbar-text {
+        color: rgba(0, 0, 0, 0.55);
+    }
+
+        .navbar-light .navbar-text a,
+        .navbar-light .navbar-text a:hover,
+        .navbar-light .navbar-text a:focus {
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+    .navbar-dark .navbar-brand {
+        color: #fff;
+    }
+
+        .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+            color: #fff;
+        }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: white;
+    }
+
+        .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .navbar-dark .navbar-nav .nav-link.disabled {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .navbar-dark .navbar-nav .show > .nav-link,
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: #fff;
+        }
+
+    .navbar-dark .navbar-toggler {
+        color: rgba(255, 255, 255, 0.55);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-dark .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-dark .navbar-text {
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+        .navbar-dark .navbar-text a,
+        .navbar-dark .navbar-text a:hover,
+        .navbar-dark .navbar-text a:focus {
+            color: #fff;
+        }
+
+</style>

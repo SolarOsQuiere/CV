@@ -19,7 +19,7 @@ namespace CV.Shared.Resources {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AllResourcesRes {
@@ -583,6 +583,51 @@ namespace CV.Shared.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Curso de entity framework .
+        /// </summary>
+        public static string EntityFrameworkMvpSubtitulo {
+            get {
+                return ResourceManager.GetString("EntityFrameworkMvpSubtitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Entity Framework .
+        /// </summary>
+        public static string EntityFrameworkMvpTtitulo {
+            get {
+                return ResourceManager.GetString("EntityFrameworkMvpTtitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mi trabajo dentro del grupo de Arquitectura Técnica consiste en desarrollar la arquitectura base de los nuevos productos que se dan de alta en el servicio. Esta arquitectura se apoya en una nueva plataforma basada en .NET 8 y en principios de Domain-Driven Design (DDD). De forma complementaria, participo en el desarrollo de componentes transversales que permiten la creación de funcionalidades comunes, como la generación de reportes, la gestión centralizada de excepciones y otros aspectos compartidos entre l [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        public static string gadGatViviendaDescripcion1 {
+            get {
+                return ResourceManager.GetString("gadGatViviendaDescripcion1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Formo parte del equipo GAD (Grupo de Arquitectura de Desarrollo), un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo y la integración de sus productos dentro del proceso de CI/CD. He colaborado en la definición y mejora de estos procesos mediante el uso de herramientas como Jenkins y la implementación de análisis de código estático automatizados con SonarQube. Además, participo en la investigación y propuesta de nuevas tecnologías que apor [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        public static string gadGatViviendaDescripcion2 {
+            get {
+                return ResourceManager.GetString("gadGatViviendaDescripcion2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Anteriormente, he trabajado en el área de Vivienda, donde realicé tareas de mantenimiento y mejora de distintos productos. Estos sistemas estaban desarrollados principalmente con tecnologías .NET Framework, destacando aplicaciones basadas en WebForms..
+        /// </summary>
+        public static string gadGatViviendaDescripcion3 {
+            get {
+                return ResourceManager.GetString("gadGatViviendaDescripcion3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ID de la credencial:.
         /// </summary>
         public static string idCredencial {
@@ -664,15 +709,6 @@ namespace CV.Shared.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Cursos.
-        /// </summary>
-        public static string navbar_cursos1 {
-            get {
-                return ResourceManager.GetString("navbar_cursos1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Educacion.
         /// </summary>
         public static string navbar_educacion {
@@ -705,15 +741,6 @@ namespace CV.Shared.Resources {
         public static string navbar_intereses {
             get {
                 return ResourceManager.GetString("navbar_intereses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a SobreMi.
-        /// </summary>
-        public static string navbar_interesesHREF {
-            get {
-                return ResourceManager.GetString("navbar_interesesHREF", resourceCulture);
             }
         }
         
@@ -781,7 +808,7 @@ namespace CV.Shared.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a PROGRAMADOR WEB PARA GOBIERNO DE NAVARRA.
+        ///   Busca una cadena traducida similar a Participación en grupos de arquitectura transversales.
         /// </summary>
         public static string programadorWebJuniorHiberusSubTitulo {
             get {
@@ -790,7 +817,7 @@ namespace CV.Shared.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a PROGRAMADOR WEB JUNIOR PARA GOBIERNO DE NAVARRA.
+        ///   Busca una cadena traducida similar a PROGRAMADOR WEB PARA GOBIERNO DE NAVARRA.
         /// </summary>
         public static string programadorWebJuniorHiberusSubTitulo1 {
             get {
@@ -799,7 +826,7 @@ namespace CV.Shared.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a PROGRAMADOR WEB.
+        ///   Busca una cadena traducida similar a Ingeniero de Software – Grupo Arquitectura.
         /// </summary>
         public static string programadorWebJuniorHiberusTitulo {
             get {

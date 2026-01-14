@@ -1,11 +1,13 @@
-﻿@using CV.Pages
-@using CV.Shared
-@using CV.Shared.Resources
+﻿@using CV.Shared.Menu.Components
 @inherits LayoutComponentBase
 
 <main>
+
     <NavMenu/>
-    @* <Header /> *@
+    <HeaderMenu/>
+    <div class="top-row px-4">
+        <CultureSelector />
+    </div>
 
     @Body
 </main>

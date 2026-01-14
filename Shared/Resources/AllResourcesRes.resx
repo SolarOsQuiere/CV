@@ -256,10 +256,10 @@
     <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área. Los productos se mantienen principalmente con tecnologías .NET Framework (principalmente WebForms).</value>
   </data>
   <data name="programadorWebJuniorHiberusSubTitulo" xml:space="preserve">
-    <value>PROGRAMADOR WEB PARA GOBIERNO DE NAVARRA</value>
+    <value>Participación en grupos de arquitectura transversales</value>
   </data>
   <data name="programadorWebJuniorHiberusTitulo" xml:space="preserve">
-    <value>PROGRAMADOR WEB</value>
+    <value>Ingeniero de Software – Grupo Arquitectura</value>
   </data>
   <data name="subtituloPersonal" xml:space="preserve">
     <value>Graduado en la Universidad de La Rioja en Ingeniería Informática y mención en Ingeniería de Software.</value>
@@ -384,12 +384,6 @@
   <data name="metodologias1" xml:space="preserve">
     <value>Metodologías y principios</value>
   </data>
-  <data name="navbar_cursos1" xml:space="preserve">
-    <value>Cursos</value>
-  </data>
-  <data name="navbar_interesesHREF" xml:space="preserve">
-    <value>SobreMi</value>
-  </data>
   <data name="programadorWebJuniorHiberusDescripcion11" xml:space="preserve">
     <value>Mi trabajo en Gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.</value>
   </data>
@@ -400,7 +394,7 @@
     <value>En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área. Los productos se mantienen principalmente con tecnologías .NET Framework (principalmente WebForms).</value>
   </data>
   <data name="programadorWebJuniorHiberusSubTitulo1" xml:space="preserve">
-    <value>PROGRAMADOR WEB JUNIOR PARA GOBIERNO DE NAVARRA</value>
+    <value>PROGRAMADOR WEB PARA GOBIERNO DE NAVARRA</value>
   </data>
   <data name="programadorWebJuniorHiberusTitulo1" xml:space="preserve">
     <value>PROGRAMADOR WEB</value>
@@ -428,5 +422,20 @@
   </data>
   <data name="years" xml:space="preserve">
     <value>años</value>
+  </data>
+  <data name="EntityFrameworkMvpSubtitulo" xml:space="preserve">
+    <value>Curso de entity framework </value>
+  </data>
+  <data name="EntityFrameworkMvpTtitulo" xml:space="preserve">
+    <value>Entity Framework </value>
+  </data>
+  <data name="gadGatViviendaDescripcion1" xml:space="preserve">
+    <value>Mi trabajo dentro del grupo de Arquitectura Técnica consiste en desarrollar la arquitectura base de los nuevos productos que se dan de alta en el servicio. Esta arquitectura se apoya en una nueva plataforma basada en .NET 8 y en principios de Domain-Driven Design (DDD). De forma complementaria, participo en el desarrollo de componentes transversales que permiten la creación de funcionalidades comunes, como la generación de reportes, la gestión centralizada de excepciones y otros aspectos compartidos entre los distintos productos.Asimismo, doy soporte a los equipos de desarrollo, revisando y resolviendo incidencias técnicas que puedan surgir, todo ello dentro de un marco de trabajo ágil Scrum.                                                           </value>
+  </data>
+  <data name="gadGatViviendaDescripcion2" xml:space="preserve">
+    <value>Formo parte del equipo GAD (Grupo de Arquitectura de Desarrollo), un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo y la integración de sus productos dentro del proceso de CI/CD. He colaborado en la definición y mejora de estos procesos mediante el uso de herramientas como Jenkins y la implementación de análisis de código estático automatizados con SonarQube. Además, participo en la investigación y propuesta de nuevas tecnologías que aporten valor a la organización.     </value>
+  </data>
+  <data name="gadGatViviendaDescripcion3" xml:space="preserve">
+    <value>Anteriormente, he trabajado en el área de Vivienda, donde realicé tareas de mantenimiento y mejora de distintos productos. Estos sistemas estaban desarrollados principalmente con tecnologías .NET Framework, destacando aplicaciones basadas en WebForms.</value>
   </data>
 </root>
