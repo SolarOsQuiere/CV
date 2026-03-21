@@ -429,6 +429,24 @@
   <data name="EntityFrameworkMvpTtitulo" xml:space="preserve">
     <value>Entity Framework </value>
   </data>
+  <data name="Docker2025Titulo" xml:space="preserve">
+    <value>Docker: Architecture and Tools</value>
+  </data>
+  <data name="Docker2025Subtitulo" xml:space="preserve">
+    <value>Training: Docker architecture and tools</value>
+  </data>
+  <data name="Docker2025Descripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Docker concept&lt;/li&gt;&lt;li&gt;Docker Engine&lt;/li&gt;&lt;li&gt;Image management&lt;/li&gt;&lt;li&gt;Layer management in an image&lt;/li&gt;&lt;li&gt;Networks, resources and Dockerisation&lt;/li&gt;&lt;li&gt;Docker Compose&lt;/li&gt;&lt;li&gt;Security&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="AccesibilidadTitulo" xml:space="preserve">
+    <value>Web Accessibility for Technical Layout Profiles</value>
+  </data>
+  <data name="AccesibilidadSubtitulo" xml:space="preserve">
+    <value>Training: 30 hours · Virtual modality · Jan.–Feb. 2026</value>
+  </data>
+  <data name="AccesibilidadDescripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Web accessibility vs usability and how people with disabilities access the web&lt;/li&gt;&lt;li&gt;Legislation and standards: WCAG 2.2, EN 301 549&lt;/li&gt;&lt;li&gt;Principles, guidelines and conformance criteria (levels A, AA, AAA)&lt;/li&gt;&lt;li&gt;Evaluation methodology and validation tools&lt;/li&gt;&lt;li&gt;Criteria related to colour, images and multimedia content&lt;/li&gt;&lt;li&gt;Criteria related to texts, links and forms&lt;/li&gt;&lt;li&gt;Keyboard operability, focus and voice command criteria&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
   <data name="gadGatViviendaDescripcion1" xml:space="preserve">
     <value>My work within the Technical Architecture group focuses on developing the base architecture for new products being onboarded into the service. This architecture is built on a new platform based on .NET 8 and Domain-Driven Design (DDD) principles. Additionally, I contribute to the development of cross-cutting components that provide shared functionality across products, such as report generation, centralized exception handling, and other common concerns.
 I also provide support to development teams by reviewing and resolving technical issues, all within an agile Scrum framework.</value>

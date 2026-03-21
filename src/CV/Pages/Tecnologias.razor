@@ -6,13 +6,11 @@
 @using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
-<section class="resume-section py-4">
-    <div class="container">
+<section class="resume-section" id="tecnologias">
+    <div class="resume-section-content">
 
         <!-- Título -->
-        <h2 class="text-center text-primary mb-5">
-            @AllResourcesResolver["navbar_tecnologias"]
-        </h2>
+        <PageTitleCentered Title=@(@AllResourcesResolver["navbar_tecnologias"]) />
 
         <div class="row g-4">
 

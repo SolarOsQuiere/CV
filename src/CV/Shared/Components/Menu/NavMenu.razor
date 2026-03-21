@@ -165,9 +165,19 @@
             color: #fff;
         }
         .img-profile {
-    max-width: 150px;   /* móvil */
+    max-width: 150px;
     border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 4px rgba(16, 134, 197, 0.45), 0 8px 28px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+    .img-profile:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 0 5px rgba(16, 134, 197, 0.7), 0 12px 36px rgba(0, 0, 0, 0.45);
+    }
 
 @@media (min-width: 768px) {
     .img-profile {

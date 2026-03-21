@@ -429,6 +429,24 @@
   <data name="EntityFrameworkMvpTtitulo" xml:space="preserve">
     <value>Entity Framework </value>
   </data>
+  <data name="Docker2025Titulo" xml:space="preserve">
+    <value>Docker: arquitectura y herramientas</value>
+  </data>
+  <data name="Docker2025Subtitulo" xml:space="preserve">
+    <value>Formación: arquitectura y herramientas Docker</value>
+  </data>
+  <data name="Docker2025Descripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Concepto Docker&lt;/li&gt;&lt;li&gt;Docker Engine&lt;/li&gt;&lt;li&gt;Gestión de imágenes&lt;/li&gt;&lt;li&gt;Gestión de capas en una imagen&lt;/li&gt;&lt;li&gt;Redes, recursos y dockerización&lt;/li&gt;&lt;li&gt;Docker Compose&lt;/li&gt;&lt;li&gt;Seguridad&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="AccesibilidadTitulo" xml:space="preserve">
+    <value>Accesibilidad web para perfiles técnicos maquetadores</value>
+  </data>
+  <data name="AccesibilidadSubtitulo" xml:space="preserve">
+    <value>Formación: 30 horas · Modalidad virtual · ene.–feb. 2026</value>
+  </data>
+  <data name="AccesibilidadDescripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Accesibilidad web vs usabilidad y cómo acceden las personas con discapacidad a la web&lt;/li&gt;&lt;li&gt;Legislación y normativa: WCAG 2.2, Norma EN 301 549&lt;/li&gt;&lt;li&gt;Principios, pautas y criterios de conformidad (niveles A, AA, AAA)&lt;/li&gt;&lt;li&gt;Metodología de evaluación y herramientas de validación&lt;/li&gt;&lt;li&gt;Criterios relacionados con color, imágenes y contenido multimedia&lt;/li&gt;&lt;li&gt;Criterios relacionados con textos, enlaces y formularios&lt;/li&gt;&lt;li&gt;Criterios de operabilidad de teclado, foco y comandos de voz&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
   <data name="gadGatViviendaDescripcion1" xml:space="preserve">
     <value>Mi trabajo dentro del grupo de Arquitectura Técnica consiste en desarrollar la arquitectura base de los nuevos productos que se dan de alta en el servicio. Esta arquitectura se apoya en una nueva plataforma basada en .NET 8 y en principios de Domain-Driven Design (DDD). De forma complementaria, participo en el desarrollo de componentes transversales que permiten la creación de funcionalidades comunes, como la generación de reportes, la gestión centralizada de excepciones y otros aspectos compartidos entre los distintos productos.Asimismo, doy soporte a los equipos de desarrollo, revisando y resolviendo incidencias técnicas que puedan surgir, todo ello dentro de un marco de trabajo ágil Scrum.                                                           </value>
   </data>

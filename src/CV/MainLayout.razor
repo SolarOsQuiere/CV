@@ -7,3 +7,15 @@
 
     @Body
 </main>
+
+<style>
+    ::deep .container {
+        border-top: 25px solid black; /* móvil por defecto */
+    }
+
+    ::deep . @@media (min-width: 769px) {
+        .container {
+            border-top: 25px solid black;
+        }
+    }
+</style>

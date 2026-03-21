@@ -10,9 +10,22 @@
 <section class="resume-section" id="cursos">
     <div class="resume-section-content">
 
-        <h2 class="mb-5">
-            <span class="text-primary"> @AllResourcesResolver["cursosCertificaciones"] </span>
-        </h2>
+        <PageTitleCentered Title=@(AllResourcesResolver["cursosCertificaciones"]) />
+
+        <SharedSection AltImagen="Hiberus"
+                       Description=@CreateFromString(@$"<div>{AllResourcesResolver["AccesibilidadDescripcion"]}</div>")
+                       Subtitulo=@AllResourcesResolver["AccesibilidadSubtitulo"]
+                       SrcImagen="assets/img/logoHiberus.png"
+                       Titulo=@AllResourcesResolver["AccesibilidadTitulo"]
+                       TiempoTrabajo="feb. 2026" />
+
+        <SharedSection AltImagen="Docker"
+                       Description=@CreateFromString(@$"<div>{AllResourcesResolver["Docker2025Descripcion"]}</div>")
+                       Subtitulo=@AllResourcesResolver["Docker2025Subtitulo"]
+                       SrcImagen="assets/icons/docker.png"
+                       Titulo=@AllResourcesResolver["Docker2025Titulo"]
+                       TiempoTrabajo="dc. 2025" />
+
         <SharedSection AltImagen="Campus mvp"
                        Description=@CreateFromString(@$"<div>{AllResourcesResolver["EntityFrameworkMvpTitulo"]}</p></div>")
                        Subtitulo=@AllResourcesResolver["EntityFrameworkMvpSubtitulo"]
