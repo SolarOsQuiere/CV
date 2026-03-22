@@ -1,0 +1,21 @@
+﻿@using CV.Shared.Resources;
+
+<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+    <img height="200" width="200" src="@SrcImagen" alt=@AltImagen>
+    <div class="flex-grow-1" style="margin-left: 20px;">
+        <h3 class="mb-0">@Titulo</h3>
+        <div class="subheading mb-3"> @Subtitulo</div>
+
+        @Description
+    </div>
+    <div class="flex-shrink-0"><span class="text-primary">@TiempoTrabajo</span></div>
+
+</div>
+@code {
+    [Parameter] public String SrcImagen { get; set; }
+    [Parameter] public String AltImagen { get; set; }
+    [Parameter] public RenderFragment Description { get; set; }
+    [Parameter] public String TiempoTrabajo { get; set; }
+    [Parameter] public String Subtitulo { get; set; }
+    [Parameter] public String Titulo { get; set; }
+}

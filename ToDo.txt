@@ -1,3 +1,0 @@
-﻿1. Revisar css isolation
-2. Revisar vistas en movil se ven mal
-3. Contador de visitas

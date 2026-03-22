@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitattributes" />
+    <File Path=".github/workflows/main.yml" />
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+    <File Path="ToDo.txt" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CV/CV.csproj" />
+  </Folder>
+</Solution>

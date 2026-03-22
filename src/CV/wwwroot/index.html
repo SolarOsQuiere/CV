@@ -11,6 +11,7 @@
     <title>Héctor Solar Ruiz</title>
     <base href="/" />
 
+    <link rel="preload" id="webassembly" />
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="BlazorApp_empty1.styles.css" rel="stylesheet" /> -->
 
@@ -31,9 +32,11 @@
 
 <body>
     <div id="app">
-        <div class="container">
-            <div id="preRenderComponent"> </div>
-        </div>
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
     </div>
 
     <div id="blazor-error-ui">
@@ -62,6 +65,7 @@
             set: (value) => localStorage['BlazorCulture'] = value
         };
     </script>
+    <script>navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });</script>
 
 </body>
 

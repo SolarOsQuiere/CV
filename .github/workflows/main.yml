@@ -1,7 +1,7 @@
-name: PublishApp
+name: PublishApp 
 
 env:
-  PUBLISH_DIR: bin/Release/net10.0/publish/wwwroot
+  PUBLISH_DIR: bin/Release/net10.0/publish/src/CV/wwwroot
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
@@ -22,13 +22,13 @@ jobs:
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
-          html_path: bin/Release/net10.0/publish/wwwroot/index.html
+          html_path: ${{ env.PUBLISH_DIR }}/index.html
           base_href: /CV/
 
       - name: Create 404.html from index.html
         run: |
-          cp bin/Release/net10.0/publish/wwwroot/index.html \
-             bin/Release/net10.0/publish/wwwroot/404.html
+          cp ${{ env.PUBLISH_DIR }}/index.html \
+             ${{ env.PUBLISH_DIR }}/404.html
 
       - name: Deploy to GitHub Pages
         if: success()
