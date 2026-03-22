@@ -14,24 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '10.0.x'
-
-      - name: Install wasm tools
-        run: dotnet workload install wasm-tools
-
-      - name: Restore dependencies
-        run: dotnet restore src/CV/CV.csproj
+        uses: actions/checkout@v2
 
       - name: Publish app
-        run: dotnet publish src/CV/CV.csproj -c Release
-
-      - name: Verify publish folder
-        run: ls -R src/CV/bin/Release/net10.0/publish
+        run: dotnet publish -c Release
 
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
@@ -40,10 +26,15 @@ jobs:
           base_href: /CV/
 
       - name: Create 404.html from index.html
-        run: cp ${{ env.PUBLISH_DIR }}/index.html ${{ env.PUBLISH_DIR }}/404.html
+        run: |
+          cp ${{ env.PUBLISH_DIR }}/index.html \
+             ${{ env.PUBLISH_DIR }}/404.html
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1.5.1
         with:
-          github_token: ${{ env.GITHUB_TOKEN }}
-          publish_dir: ${{ env.PUBLISH_DIR }}
+          target_branch: gh-pages
+          build_dir: ${{ env.PUBLISH_DIR }}
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
