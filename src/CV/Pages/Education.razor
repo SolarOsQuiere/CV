@@ -1,60 +1,57 @@
 ﻿@page "/Education"
 @page "/Educacion"
-
 @page "/CV/Education"
 @page "/CV/Educacion"
-
 
 @using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
-
 <section class="resume-section" id="educacion">
     <div class="resume-section-content">
 
-        <h2 class="mb-0">
-            <span class="text-primary"> @AllResourcesResolver["navbar_educacion"]</span>
+        <h2 class="text-primary mb-5 text-center">
+            @AllResourcesResolver["navbar_educacion"]
         </h2>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <img width="200" height="200" src="assets/img/logoUniversidad.png" alt="Universidad de La Rioja">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Universidad de La Rioja</h3>
-                <div class="subheading mb-3">@AllResourcesResolver["descripcionUniversidad"]</div>
-                <div></div>
-            </div>
-            <div class="flex-shrink-0"><span class="text-primary">Sep. 2017 - Jul. 2022</span></div>
-        </div>
+        <!-- Universidad -->
+        <SharedSection
+            Titulo="Universidad de La Rioja"
+            Subtitulo="@AllResourcesResolver["descripcionUniversidad"]"
+            TiempoTrabajo="Sep. 2017 - Jul. 2022"
+            SrcImagen="assets/img/logoUniversidad.png"
+            AltImagen="Universidad de La Rioja">
 
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <img width="200" height="200" src="assets/img/logoInstituto.png" alt="IES Valle del OJA">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">IES Valle del Oja</h3>
-                <div class="subheading mb-3">@AllResourcesResolver["descripcionBachiller"]</div>
-                <div></div>
-            </div>
-            <div class="flex-shrink-0"><span class="text-primary">Sep. 2015 - Jul 2017</span></div>
-        </div>
+        </SharedSection>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between">
-            <img width="200" height="200" src="assets/img/logoConservatorio.png" alt="Conservatorio de Haro">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Conservatorio de Haro</h3>
-                <div class="subheading mb-3">@AllResourcesResolver["descripcionConservatorio"]</div>
-                <p></p>
-            </div>
-            <div class="flex-shrink-0"><span class="text-primary">Aug. 2012 - May 2016</span></div>
-        </div>
+        <!-- Bachiller -->
+        <SharedSection
+            Titulo="IES Valle del Oja"
+            Subtitulo="@AllResourcesResolver["descripcionBachiller"]"
+            TiempoTrabajo="Sep. 2015 - Jul. 2017"
+            SrcImagen="assets/img/logoInstituto.png"
+            AltImagen="IES Valle del OJA">
 
-        <div class="d-flex flex-column flex-md-row justify-content-between">
-            <img width="200" height="200" src="assets/img/logoInstituto.png" alt="IES Valle del OJA">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">IES Valle del Oja</h3>
-                <div class="subheading mb-3">@AllResourcesResolver["descripcionEso"]  </div>
-                <p></p>
-            </div>
-            <div class="flex-shrink-0"><span class="text-primary">Sep. 2011 - Jul. 2015</span></div>
-        </div>
+        </SharedSection>
+
+        <!-- Conservatorio -->
+        <SharedSection
+            Titulo="Conservatorio de Haro"
+            Subtitulo="@AllResourcesResolver["descripcionConservatorio"]"
+            TiempoTrabajo="Aug. 2012 - May 2016"
+            SrcImagen="assets/img/logoConservatorio.png"
+            AltImagen="Conservatorio de Haro">
+
+        </SharedSection>
+
+        <!-- ESO -->
+        <SharedSection
+            Titulo="IES Valle del Oja"
+            Subtitulo="@AllResourcesResolver["descripcionEso"]"
+            TiempoTrabajo="Sep. 2011 - Jul. 2015"
+            SrcImagen="assets/img/logoInstituto.png"
+            AltImagen="IES Valle del OJA">
+
+        </SharedSection>
 
     </div>
 </section>

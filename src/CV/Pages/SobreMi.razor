@@ -6,54 +6,225 @@
 @using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
-<section class="resume-section" id="intereses">
+<section class="resume-section about-section">
     <div class="resume-section-content">
-        <h2 class="mb-0">
-            <span class="text-primary">@AllResourcesResolver["navbar_intereses"] </span>
+
+        <h2 class="text-primary mb-4 text-center">
+            @AllResourcesResolver["navbar_intereses"]
         </h2>
-        <p class="mb-0">@AllResourcesResolver["descripcionSobreMi1"]</p>
-        <p>
-            @AllResourcesResolver["descripcionSobreMi2"]
-        </p>
-        <p class="mb-5">
-            @AllResourcesResolver["descripcionSobreMi3"]
-        </p>
 
-        <div class="container">
-            <!-- heading text -->
-            <ul class="image-gallery" style="display: flex;  flex-wrap: wrap;">
-                <li class="liimagen">
-                    <img src="assets/img/personales/d.jpeg" width="200" height="250" class="imgGaleria" />
-                </li>
+        <p>@AllResourcesResolver["descripcionSobreMi1"]</p>
+        <p>@AllResourcesResolver["descripcionSobreMi2"]</p>
+        <p class="mb-4">@AllResourcesResolver["descripcionSobreMi3"]</p>
 
-                <li class="liimagen">
-                    <img src="assets/img/personales/c.png" width="250" height="250" class="imgGaleria" />
-                </li>
-                <li class="liimagen">
-                    <img src="assets/img/personales/a.jpeg" width="250" height="250" class="imgGaleria" />
-                </li>
-                <li class="liimagen">
-                    <img src="assets/img/personales/b.png" width="250" height="250" class="imgGaleria" />
-                </li
-
-                <li class="liimagen">
-                    <img src="assets/img/personales/e.jpeg" width="200" height="250" class="imgGaleria" />
-                </li>
-                <li class="liimagen">
-                    <img src="assets/img/personales/f.jpeg" width="200" height="250" class="imgGaleria" />
-                </li>
-                <li class="liimagen">
-                    <img src="assets/img/personales/g.jpeg" width="200" height="250" class="imgGaleria" />
-                </li>
-                <li class="liimagen">
-                    <img src="assets/img/personales/h.jpeg" width="200" height="250" class="imgGaleria" />
-                </li>
-                @* <li class="liimagen">
-                    <img src="assets/img/personales/e.jpeg" width="250" height="250" class="imgGaleria" />
-                </li> *@
-
-            </ul>
+        <div class="gallery">
+            @foreach (var img in Images)
+            {
+                <div class="gallery-item" @onclick="() => OpenImage(img)">
+                    <img src="@img" />
+                </div>
+            }
         </div>
-    </div>
 
+        @if (!string.IsNullOrEmpty(selectedImage))
+        {
+            <div class="lightbox" @onclick="CloseImage">
+                <img src="@selectedImage" />
+            </div>
+        }
+
+    </div>
 </section>
+
+@code {
+    List<string> Images = new()
+    {
+        "assets/img/personales/d.jpeg",
+        "assets/img/personales/c.png",
+        "assets/img/personales/a.jpeg",
+        "assets/img/personales/b.png",
+        "assets/img/personales/e.jpeg",
+        "assets/img/personales/f.jpeg",
+        "assets/img/personales/g.jpeg",
+        "assets/img/personales/h.jpeg"
+    };
+
+    string selectedImage;
+
+    void OpenImage(string img)
+    {
+        selectedImage = img;
+    }
+
+    void CloseImage()
+    {
+        selectedImage = null;
+    }
+}
+
+<style>
+    /* =========================
+       SECCIÓN GENERAL
+    ========================= */
+
+    .about-section {
+        padding: 20px 0;
+    }
+
+    /* =========================
+       GALERÍA (COLUMNAS PARES)
+    ========================= */
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* SIEMPRE PAR */
+        gap: 15px;
+    }
+
+    /* Tablet / Desktop */
+    @@media (min-width: 768px) {
+        .gallery {
+            grid-template-columns: repeat(4, 1fr); /* SIEMPRE PAR */
+        }
+    }
+
+    /* =========================
+       ITEMS DE GALERÍA
+    ========================= */
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        /* Animación entrada */
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+        /* Animación escalonada */
+        .gallery-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .gallery-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .gallery-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .gallery-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .gallery-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .gallery-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .gallery-item:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .gallery-item:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        /* =========================
+       IMÁGENES
+    ========================= */
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        /* Hover */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        /* Overlay suave */
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(0,0,0,0.15);
+        }
+
+    /* =========================
+       LIGHTBOX
+    ========================= */
+
+    .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        cursor: pointer;
+        animation: fadeIn 0.3s ease;
+    }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            animation: zoomIn 0.3s ease;
+        }
+
+    /* =========================
+       ANIMACIONES
+    ========================= */
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes zoomIn {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+</style>

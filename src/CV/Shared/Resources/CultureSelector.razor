@@ -1,18 +1,13 @@
 ﻿@using System.Globalization
-<select class="form-control" @bind="Culture" style="width:300px; margin-left:10px;">
-    @foreach (var culture in cultures)
-    {
-        <option value="@culture">@culture.DisplayName</option>
-    }
-</select>
+
+<button class="culture-button" @onclick="ToggleCulture">
+    <span class="flag">@GetFlag()</span>
+</button>
 
 @code {
 
-    [Inject]
-    public NavigationManager NavManager { get; set; }
-
-    [Inject]
-    public IJSRuntime JSRuntime { get; set; }
+    [Inject] public NavigationManager NavManager { get; set; }
+    [Inject] public IJSRuntime JSRuntime { get; set; }
 
     CultureInfo[] cultures = new[]
     {
@@ -20,19 +15,66 @@
         new CultureInfo("es")
     };
 
-    CultureInfo Culture
-    {
-        get => CultureInfo.CurrentCulture;
-        set
-        {
-            if (CultureInfo.CurrentCulture != value)
-            {
-                var js = (IJSInProcessRuntime)JSRuntime;
-                js.InvokeVoid("blazorCulture.set", value.Name);
+    CultureInfo CurrentCulture => CultureInfo.CurrentCulture;
 
-                NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
-            }
-        }
+    void ToggleCulture()
+    {
+        var newCulture = CurrentCulture.Name == "es"
+            ? new CultureInfo("en")
+            : new CultureInfo("es");
+
+        var js = (IJSInProcessRuntime)JSRuntime;
+        js.InvokeVoid("blazorCulture.set", newCulture.Name);
+
+        NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
     }
 
+    string GetFlag()
+    {
+        return CurrentCulture.Name switch
+        {
+            "es" => "🇪🇸",
+            _ => "🇬🇧"
+        };
+    }
 }
+
+<style>
+
+    .culture-button {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        transition: all 0.2s ease;
+    }
+
+        /* Hover */
+        .culture-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Click */
+        .culture-button:active {
+            transform: scale(0.95);
+        }
+
+    /* Animación al cambiar */
+    .flag {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .culture-button:hover .flag {
+        transform: rotate(10deg) scale(1.1);
+    }
+
+</style>

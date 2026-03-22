@@ -2,100 +2,176 @@
 @page "/CV/Technologies"
 @page "/Tecnologias"
 @page "/Technologies"
+
 @using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
+<section class="resume-section py-4">
+    <div class="container">
 
-<section class="resume-section" id="tecnologias">
-    <div class="resume-section-content">
-        <h2 class="mb-0">
-            <span class="text-primary"> @AllResourcesResolver["navbar_tecnologias"]</span>
+        <!-- Título -->
+        <h2 class="text-center text-primary mb-5">
+            @AllResourcesResolver["navbar_tecnologias"]
         </h2>
 
+        <div class="row g-4">
 
+            <!-- Lenguajes -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
+                    <h4 class="mb-3">
+                        @AllResourcesResolver["lenguagesProgramacion"]
+                    </h4>
 
-        <br>
-        <div class="subheading mb-3"> @AllResourcesResolver["lenguagesProgramacion"]    </div>
-        <ul class="fa-ul mb-0">
+                    <ul class="mb-3">
+                        <li>HTML, CSS, Javascript, C#, SQL</li>
+                    </ul>
 
-            <li>
-                <span class="fa-li"><i class="fas fa-check"></i></span>
-                HTML, CSS, Javascript, C#, SQL
-            </li>
-        </ul>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://html.spec.whatwg.org/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/htmlcssjs.jfif" alt="HTML CSS JS" />
+                        </a>
 
-        <ul class="list-inline dev-icons">
+                        <a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/csharp.png" alt="C#" />
+                        </a>
 
-            <li class="list-inline-item"><img height="60" width="150" src="assets/icons/htmlcssjs.jfif" alt="HTML , CSS, JS"></li>
-            <li class="list-inline-item"><img height="60" width="60" src="assets/icons/csharp.png" alt="c#"></li>
-            <li class="list-inline-item"><img height="60" width="60" src="assets/icons/sql.png" alt="sql"></li>
+                        <a href="https://www.microsoft.com/sql-server" target="_blank">
+                            <img class="tech-icon" src="assets/icons/sql.png" alt="SQL" />
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
 
+            <!-- Frameworks -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
+                    <h4 class="mb-3">Frameworks</h4>
 
-        </ul>
+                    <ul class="mb-3">
+                        <li>.NET Core, .NET Framework, Blazor, MVC, EF, Swagger</li>
+                    </ul>
 
-        <br>
-        <div class="subheading mb-3">Frameworks</div>
-        <ul class="fa-ul mb-0">
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://dotnet.microsoft.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/dotnet.png" />
+                        </a>
 
-            <li>
-                <span class="fa-li"><i class="fas fa-check"></i></span>
-                .NET Core, .NET Framework, Blazor, MVC, EF, Swagger
-            </li>
-        </ul>
+                        <a href="https://dotnet.microsoft.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/dotnetframework.png" />
+                        </a>
 
-        <ul class="list-inline dev-icons">
-            <li class="list-inline-item"><img height="60" width="60" src="assets/icons/dotnet.png" alt="dotnet"></li>
-            <li class="list-inline-item"><img height="60" width="120" src="assets/icons/dotnetframework.png" alt="dotnet"></li>
+                        <a href="https://learn.microsoft.com/aspnet/core/blazor/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/blazor.png" />
+                        </a>
 
-            <li class="list-inline-item"><img height="60" width="60" src="assets/icons/blazor.png" alt="blazor"></li>
-            <li class="list-inline-item"><img height="60" width="60" src="assets/icons/mvc.png" alt="mvc"></li>
+                        <a href="https://learn.microsoft.com/aspnet/core/mvc/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/mvc.png" />
+                        </a>
 
-            <li class="list-inline-item"><img height="60" width="90" src="assets/icons/efcore.png" alt="efcore"></li>
-            <li class="list-inline-item"><img height="60" width="90" src="assets/icons/swaggeropenapi.png" alt="GIT"></li>
-        </ul>
+                        <a href="https://learn.microsoft.com/ef/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/efcore.png" />
+                        </a>
 
-        <br>
-        <div class="subheading mb-3">@AllResourcesResolver["svcs"]</div>
+                        <a href="https://swagger.io/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/swaggeropenapi.png" />
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
 
-        <ul class="fa-ul mb-0">
+            <!-- DevOps / Herramientas -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
+                    <h4 class="mb-3">@AllResourcesResolver["svcs"]</h4>
 
-            <li>
-                <span class="fa-li"><i class="fas fa-check"></i></span>
-                GIT, Github,Gitlab
-            </li>
-        </ul>
+                    <ul class="mb-3">
+                        <li>GIT, GitHub, GitLab</li>
+                    </ul>
 
-        <li class="list-inline-item"><img height="40" width="80" src="assets/icons/git.png" alt="GIT"></li>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/github.png" alt="github"></li>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/gitlab.png" alt="github"></li>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://git-scm.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/git.png" />
+                        </a>
 
-        <br><br>
-        <div class="subheading mb-3">QA , CI , CD</div>
-        <ul class="fa-ul mb-0">
+                        <a href="https://github.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/github.png" />
+                        </a>
 
-            <li>
-                <span class="fa-li"><i class="fas fa-check"></i></span>
-                Jenkins, Docker, SonarQube, Podman
-            </li>
-        </ul>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/jenkins.png" alt="Jenkins"></li>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/docker.png" alt="docker"></li>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/sonarqube.png" alt="sonarqube"></li>
-        <li class="list-inline-item"><img height="60" width="90" src="assets/icons/podman.png" alt="sonarqube"></li>
+                        <a href="https://gitlab.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/gitlab.png" />
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
 
-        <br>
-        <br>
-        <div class="subheading mb-3">  @AllResourcesResolver["metodologias"]</div>
-        <ul class="fa-ul mb-0">
+            <!-- CI/CD -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
+                    <h4 class="mb-3">QA, CI / CD</h4>
 
-            <li>
-                <span class="fa-li"><i class="fas fa-check"></i></span>
-                Agile, Scrum, DDD & Clean Architecture, SOLID
-            </li>
+                    <ul class="mb-3">
+                        <li>Jenkins, Docker, SonarQube, Podman</li>
+                    </ul>
 
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://www.jenkins.io/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/jenkins.png" />
+                        </a>
 
-        </ul>
+                        <a href="https://www.docker.com/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/docker.png" />
+                        </a>
+
+                        <a href="https://www.sonarsource.com/products/sonarqube/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/sonarqube.png" />
+                        </a>
+
+                        <a href="https://podman.io/" target="_blank">
+                            <img class="tech-icon" src="assets/icons/podman.png" />
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
+
+            <!-- Metodologías -->
+            <div class="col-12">
+                <RadzenCard Variant="Variant.Outlined" Class="tech-card">
+                    <h4 class="mb-3">
+                        @AllResourcesResolver["metodologias"]
+                    </h4>
+
+                    <ul class="mb-0">
+                        <li>Agile, Scrum</li>
+                        <li>DDD & Clean Architecture</li>
+                        <li>SOLID</li>
+                    </ul>
+                </RadzenCard>
+            </div>
+
+        </div>
     </div>
 </section>
+
 <hr class="m-0" />
 
+<style>
+    .tech-card {
+        transition: all 0.25s ease;
+    }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+    .tech-icon {
+        height: 50px;
+        object-fit: contain;
+        transition: transform 0.2s;
+    }
+
+        .tech-icon:hover {
+            transform: scale(1.1);
+        }
+</style>
