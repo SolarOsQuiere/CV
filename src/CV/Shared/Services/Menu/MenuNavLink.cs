@@ -1,4 +1,4 @@
-﻿namespace CV.Shared.Menu.Services;
+﻿namespace CV.Shared.Services.Menu;
 /// <summary>
 /// Representar items de menu
 /// </summary>

@@ -1,15 +1,15 @@
 ﻿@inject NavigationManager Nav
 @inject MenuService MenuService
 @rendermode RenderMode.InteractiveWebAssembly 
-@using CV.Shared.Menu.Services
+@using CV.Shared.Services.Menu
 @using Microsoft.AspNetCore.Components.Routing
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
 
     <a class="navbar-brand" href="/">
         <span class="d-block d-lg-none">Héctor Solar Ruiz</span>
-        <span class="d-none d-lg-block">
-            <img class="img-fluid img-profile" style="border:none;"
+        <span class="d-block text-center">
+            <img class="img-fluid img-profile"
                  src="assets/img/profile.jpg" alt="..." />
         </span>
     </a>
@@ -164,5 +164,22 @@
         .navbar-dark .navbar-text a:focus {
             color: #fff;
         }
+        .img-profile {
+    max-width: 150px;   /* móvil */
+    border-radius: 50%;
+}
+
+@@media (min-width: 768px) {
+    .img-profile {
+        max-width: 200px;
+    }
+}
+
+@@media (min-width: 992px) {
+    .img-profile {
+        max-width: 250px;
+    }
+}
+
 
 </style>

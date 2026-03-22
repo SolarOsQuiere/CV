@@ -1,8 +1,7 @@
-﻿using CV.Shared.Menu.Services;
-using CV.Shared.Resources;
+﻿using CV.Shared.Resources;
 using Microsoft.Extensions.Localization;
 
-namespace CV.Shared.Menu;
+namespace CV.Shared.Services.Menu;
 /// <summary>
 /// Servicio para manejar el estado global del menu de la app
 /// </summary>
