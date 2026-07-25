@@ -6,6 +6,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!-- Permitir la localization de toda la app -->
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+		<!-- Nombres de assets estables (sin hash): evita 404 por caché al redeployar en GitHub Pages -->
+		<WasmFingerprintAssets>false</WasmFingerprintAssets>
 	</PropertyGroup>
 
 	<ItemGroup>
