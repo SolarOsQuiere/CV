@@ -21,6 +21,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\SolarBlazorDocs\Fuentes\SolarBlazorDocs.Browser\SolarBlazorDocs.Browser.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Update="Shared\Resources\AllResourcesRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
