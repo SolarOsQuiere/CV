@@ -3,7 +3,7 @@
 @inject NavigationManager Nav
 
 @* Boton flotante que imprime / guarda como PDF el CV completo usando SolarBlazorDocs.Browser. *@
-<button class="cv-print-fab" @onclick="ImprimirCv" disabled="@_busy" title="Descargar CV en PDF">
+<button type="button" class="cv-print-fab" @onclick="ImprimirCv" disabled="@_busy" title="Descargar CV en PDF">
     @if (_busy)
     {
         <i class="fas fa-spinner fa-spin"></i>
