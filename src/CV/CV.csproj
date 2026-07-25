@@ -18,10 +18,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.5" />
 		<PackageReference Include="Radzen.Blazor" Version="10.0.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\SolarBlazorDocs\Fuentes\SolarBlazorDocs.Browser\SolarBlazorDocs.Browser.csproj" />
+		<PackageReference Include="SolarBlazorDocs.Browser" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
