@@ -456,4 +456,16 @@
   <data name="gadGatViviendaDescripcion3" xml:space="preserve">
     <value>Anteriormente, he trabajado en el área de Vivienda, donde realicé tareas de mantenimiento y mejora de distintos productos. Estos sistemas estaban desarrollados principalmente con tecnologías .NET Framework, destacando aplicaciones basadas en WebForms.</value>
   </data>
+  <data name="navbar_proyectos" xml:space="preserve">
+    <value>Proyectos</value>
+  </data>
+  <data name="proyectosIntro" xml:space="preserve">
+    <value>Proyectos personales que he desarrollado en mi tiempo libre.</value>
+  </data>
+  <data name="solarBlazorDocsDesc" xml:space="preserve">
+    <value>Suite de paquetes NuGet que convierte cualquier componente Blazor en documentos PDF y Excel, con motores de conversión intercambiables (patrón Strategy), internacionalización y soporte para Blazor WebAssembly.</value>
+  </data>
+  <data name="passwordManagerDesc" xml:space="preserve">
+    <value>Aplicación web para la gestión sencilla y segura de contraseñas, desarrollada con .NET y Blazor WebAssembly y publicada en GitHub Pages.</value>
+  </data>
 </root>

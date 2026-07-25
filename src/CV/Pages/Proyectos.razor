@@ -1,0 +1,100 @@
+@page "/Proyectos"
+@page "/Projects"
+@page "/CV/Proyectos"
+@page "/CV/Projects"
+
+@using CV.Shared.Resources;
+@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+
+<section class="resume-section" id="proyectos">
+    <div class="resume-section-content">
+
+        <PageTitleCentered Title=@(@AllResourcesResolver["navbar_proyectos"]) />
+
+        <p class="lead text-center mb-5">@AllResourcesResolver["proyectosIntro"]</p>
+
+        <div class="row g-4">
+
+            <!-- SolarBlazorDocs (paquete NuGet) -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 project-card d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-file-pdf project-icon text-primary"></i>
+                        <h3 class="mb-0 ms-3">SolarBlazorDocs</h3>
+                    </div>
+
+                    <p class="flex-grow-1">@AllResourcesResolver["solarBlazorDocsDesc"]</p>
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-secondary">Blazor</span>
+                        <span class="badge bg-secondary">.NET 10</span>
+                        <span class="badge bg-secondary">NuGet</span>
+                        <span class="badge bg-secondary">PDF</span>
+                        <span class="badge bg-secondary">Excel</span>
+                        <span class="badge bg-secondary">WebAssembly</span>
+                    </div>
+
+                    <ul class="mb-3 small">
+                        <li>SolarBlazorDocs.Abstractions</li>
+                        <li>SolarBlazorDocs.Pdf · SolarBlazorDocs.Excel</li>
+                        <li>SolarBlazorDocs.Browser</li>
+                    </ul>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-primary btn-sm" target="_blank" rel="noopener"
+                           href="https://www.nuget.org/packages?q=SolarBlazorDocs">
+                            <i class="fas fa-cube"></i> NuGet
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
+
+            <!-- PasswordManager -->
+            <div class="col-12 col-md-6">
+                <RadzenCard Variant="Variant.Outlined" Class="h-100 project-card d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-key project-icon text-primary"></i>
+                        <h3 class="mb-0 ms-3">PasswordManager</h3>
+                    </div>
+
+                    <p class="flex-grow-1">@AllResourcesResolver["passwordManagerDesc"]</p>
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-secondary">Blazor WebAssembly</span>
+                        <span class="badge bg-secondary">.NET</span>
+                        <span class="badge bg-secondary">GitHub Pages</span>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-primary btn-sm" target="_blank" rel="noopener"
+                           href="https://solarosquiere.github.io/PasswordManager/">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                        <a class="btn btn-dark btn-sm" target="_blank" rel="noopener"
+                           href="https://github.com/SolarOsQuiere/PasswordManager">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </RadzenCard>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<hr class="m-0" />
+
+<style>
+    .project-card {
+        transition: all 0.25s ease;
+    }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .project-icon {
+        font-size: 2rem;
+    }
+</style>

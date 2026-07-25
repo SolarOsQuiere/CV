@@ -18,7 +18,8 @@ public class MenuService(IStringLocalizer<AllResourcesRes> AllResourcesResolver)
              new(text: AllResourcesResolver["navbar_educacion"], href: AllResourcesResolver["navbar_educacion"]),
              new(text: AllResourcesResolver["navbar_intereses"], href: AllResourcesResolver["navbar_intereses"]),
              new(text: AllResourcesResolver["navbar_cursos"], href: AllResourcesResolver["navbar_cursos"]),
-             new(text: AllResourcesResolver["navbar_tecnologias"], href: AllResourcesResolver["navbar_tecnologias"])
+             new(text: AllResourcesResolver["navbar_tecnologias"], href: AllResourcesResolver["navbar_tecnologias"]),
+             new(text: AllResourcesResolver["navbar_proyectos"], href: AllResourcesResolver["navbar_proyectos"])
     ];
 
     public MenuNavLink GetPaginaActual()
