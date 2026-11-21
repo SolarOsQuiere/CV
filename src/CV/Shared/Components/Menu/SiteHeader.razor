@@ -1,0 +1,45 @@
+@using CV.Shared.Services.Menu
+@implements IDisposable
+@inject MenuService MenuService
+@inject IJSRuntime JS
+
+<header class="site-header no-print">
+    <div class="site-header-inner">
+        <a class="site-brand" href="#inicio" @onclick="() => Ir(MenuService.MenuItems[0])" @onclick:preventDefault>
+            <span class="site-brand-mark">HS</span>
+            <span class="site-brand-name">Héctor Solar Ruiz</span>
+        </a>
+
+        <button type="button" class="site-toggle" aria-label="Menu" aria-expanded="@_abierto" @onclick="() => _abierto = !_abierto">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav @(_abierto ? "is-open" : "")">
+            @foreach (var item in MenuService.MenuItems)
+            {
+                var actual = item;
+                <a href="#@actual.Href" class="site-link @(actual.IsActive ? "active" : "")"
+                   @onclick="() => Ir(actual)" @onclick:preventDefault>@actual.Text</a>
+            }
+        </nav>
+
+        <div class="site-tools">
+            <CultureSelector />
+        </div>
+    </div>
+</header>
+
+@code {
+    private bool _abierto;
+
+    protected override void OnInitialized() => MenuService.OnChange += StateHasChanged;
+
+    private async Task Ir(MenuNavLink item)
+    {
+        _abierto = false;
+        MenuService.CambiarPagina(item);
+        await JS.InvokeVoidAsync("cvNav.scrollTo", item.Href);
+    }
+
+    public void Dispose() => MenuService.OnChange -= StateHasChanged;
+}

@@ -468,4 +468,37 @@
   <data name="passwordManagerDesc" xml:space="preserve">
     <value>Aplicación web para la gestión sencilla y segura de contraseñas, desarrollada con .NET y Blazor WebAssembly y publicada en GitHub Pages.</value>
   </data>
+  <data name="nav_inicio" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="nav_sobremi" xml:space="preserve">
+    <value>Sobre mí</value>
+  </data>
+  <data name="nav_experiencia" xml:space="preserve">
+    <value>Experiencia</value>
+  </data>
+  <data name="nav_educacion" xml:space="preserve">
+    <value>Educación</value>
+  </data>
+  <data name="nav_cursos" xml:space="preserve">
+    <value>Cursos</value>
+  </data>
+  <data name="nav_tecnologias" xml:space="preserve">
+    <value>Tecnologías</value>
+  </data>
+  <data name="nav_proyectos" xml:space="preserve">
+    <value>Proyectos</value>
+  </data>
+  <data name="hero_pdf" xml:space="preserve">
+    <value>Descargar PDF</value>
+  </data>
+  <data name="hero_contacto" xml:space="preserve">
+    <value>Contactar</value>
+  </data>
+  <data name="hero_generando" xml:space="preserve">
+    <value>Generando…</value>
+  </data>
+  <data name="tl_actual" xml:space="preserve">
+    <value>actualidad</value>
+  </data>
 </root>

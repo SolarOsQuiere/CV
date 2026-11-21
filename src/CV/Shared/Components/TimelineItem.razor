@@ -1,0 +1,29 @@
+@* Entrada de una linea de tiempo vertical (experiencia). *@
+<article class="timeline-item @(Current ? "is-current" : "")">
+    <span class="timeline-dot" aria-hidden="true"></span>
+    <div class="timeline-card">
+        <header class="timeline-head">
+            <img class="timeline-logo" src="@SrcImagen" alt="@AltImagen" />
+            <div class="timeline-heading">
+                <p class="timeline-date">@Tiempo</p>
+                <h3>@Titulo</h3>
+                @if (!string.IsNullOrWhiteSpace(Subtitulo) && Subtitulo != Titulo)
+                {
+                    <div class="timeline-sub">@Subtitulo</div>
+                }
+            </div>
+        </header>
+        <div class="timeline-body">@Description</div>
+    </div>
+</article>
+
+@code {
+    [Parameter] public string SrcImagen { get; set; } = "";
+    [Parameter] public string AltImagen { get; set; } = "";
+    [Parameter] public string Tiempo { get; set; } = "";
+    [Parameter] public string Titulo { get; set; } = "";
+    [Parameter] public string Subtitulo { get; set; } = "";
+    [Parameter] public RenderFragment? Description { get; set; }
+    /// <summary>Puesto actual: el punto de la linea se resalta.</summary>
+    [Parameter] public bool Current { get; set; }
+}

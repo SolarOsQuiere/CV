@@ -1,0 +1,83 @@
+@page "/"
+@page "/Inicio"
+@page "/Index"
+@page "/CV"
+@page "/AboutMe"
+@page "/SobreMi"
+@page "/CV/AboutMe"
+@page "/CV/SobreMi"
+@page "/Experiencia"
+@page "/Experience"
+@page "/CV/Experiencia"
+@page "/CV/Experience"
+@page "/Education"
+@page "/Educacion"
+@page "/CV/Education"
+@page "/CV/Educacion"
+@page "/Cursos"
+@page "/Courses"
+@page "/CV/Cursos"
+@page "/CV/Courses"
+@page "/Tecnologias"
+@page "/Technologies"
+@page "/CV/Tecnologias"
+@page "/CV/Technologies"
+@page "/Proyectos"
+@page "/Projects"
+@page "/CV/Proyectos"
+@page "/CV/Projects"
+
+@implements IAsyncDisposable
+@using CV.Shared.Services.Menu
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@inject MenuService MenuService
+
+@* Pagina unica: todas las secciones del CV en scroll continuo. Las rutas antiguas
+   (/Experiencia, /Projects...) siguen funcionando y hacen scroll a su seccion. *@
+
+<Inicio ShowActions="true" />
+<SobreMi />
+<Experiencia />
+<Education />
+<Cursos />
+<Tecnologias />
+<Proyectos />
+
+@code {
+    private DotNetObjectReference<Home>? _self;
+
+    private static readonly Dictionary<string, string> Rutas = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["sobremi"] = "sobremi", ["aboutme"] = "sobremi",
+        ["experiencia"] = "experiencia", ["experience"] = "experiencia",
+        ["educacion"] = "educacion", ["education"] = "educacion",
+        ["cursos"] = "cursos", ["courses"] = "cursos",
+        ["tecnologias"] = "tecnologias", ["technologies"] = "tecnologias",
+        ["proyectos"] = "proyectos", ["projects"] = "proyectos"
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        _self = DotNetObjectReference.Create(this);
+        await JS.InvokeVoidAsync("cvNav.observe", MenuService.MenuItems.Select(i => i.Href).ToArray(), _self);
+
+        var ruta = Nav.ToBaseRelativePath(Nav.Uri).Split('?', '#')[0].TrimEnd('/');
+        var ultimo = ruta[(ruta.LastIndexOf('/') + 1)..];
+        if (Rutas.TryGetValue(ultimo, out var id))
+        {
+            await JS.InvokeVoidAsync("cvNav.scrollTo", id);
+        }
+    }
+
+    [JSInvokable]
+    public void SetActive(string id) => MenuService.CambiarPaginaPorRuta(id);
+
+    public async ValueTask DisposeAsync()
+    {
+        try { await JS.InvokeVoidAsync("cvNav.unobserve"); } catch (JSDisconnectedException) { }
+        _self?.Dispose();
+    }
+}

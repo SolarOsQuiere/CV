@@ -1,59 +1,46 @@
-﻿
-
 @using CV.Shared.Resources;
 @using Microsoft.Extensions.Localization
 @using System.Globalization
 
-@page "/"
-@page "/Inicio"
-@page "/Index"
-@page "/CV"
-
-
-
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
+<section class="resume-section hero" id="inicio">
+    <div class="resume-section-content hero-grid">
 
+        <div class="hero-text">
+            <p class="hero-eyebrow">@AllResourcesResolver["subtituloProfesional"]</p>
+            <h1>Héctor Solar Ruiz</h1>
 
+            <p class="lead mb-3">@AllResourcesResolver["subtituloPersonal"]</p>
+            <p>@AllResourcesResolver["descripcionPersonal1"]</p>
+            <p>@AllResourcesResolver["descripcionPersonal2"]</p>
+            <p>@AllResourcesResolver["descripcionPersonal3"]</p>
 
-<section class="resume-section" id="inicio">
-    <div class="resume-section-content">
-        <h1 class="mb-0">
-            Héctor Solar Ruiz
-            <!-- <span class="text-primary">Solar Ruiz</span> -->
-        </h1>
-
-        <div class="container">
-
-            <div class="row">
-                <div class="subheading mb-5">
-                    @AllResourcesResolver["subtituloProfesional"] · <a href="mailto:hectorsolar99@gmail.com">hectorsolar99@gmail.com</a>
+            @if (ShowActions)
+            {
+                <div class="hero-actions no-print">
+                    <PrintCvButton CssClass="btn-cv btn-cv-primary" Label=@AllResourcesResolver["hero_pdf"] BusyLabel=@AllResourcesResolver["hero_generando"] />
+                    <a class="btn-cv" href="mailto:hectorsolar99@gmail.com">@AllResourcesResolver["hero_contacto"]</a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
+            }
 
-
-                    <p class="lead mb-2"> @AllResourcesResolver["subtituloPersonal"] </p>
-                    <p class="mb-0">@AllResourcesResolver["descripcionPersonal1"]</p>
-                    <p class="mb-5">@AllResourcesResolver["descripcionPersonal2"]</p>
-                    <p class="mb-5">@AllResourcesResolver["descripcionPersonal3"]</p>
-
-                </div>
-                <div class="col-sm" style="width:25%">
-                    <span>
-                        <img class="img-fluid img-profile"
-                             style="border:none; max-width:70%; display:block; margin:0 auto; object-position:center 18%;"
-                             src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
-                    </span>
-                </div>
-            </div>
+            <p class="hero-mail"><a href="mailto:hectorsolar99@gmail.com">hectorsolar99@gmail.com</a></p>
 
             <div class="social-icons">
-                <a class="social-icon" href="https://www.linkedin.com/in/hesolar/"><i class="fab fa-linkedin-in"></i></a>
-                <a class="social-icon" href="https://github.com/hesolar"><i class="fab fa-github"></i></a>
-                <a class="social-icon" href="https://stackoverflow.com/users/16686166/hesolar?tab=profile"><i class="fab fa-stack-overflow"></i></a>
+                <a class="social-icon" href="https://www.linkedin.com/in/hesolar/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a class="social-icon" href="https://github.com/hesolar" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a class="social-icon" href="https://stackoverflow.com/users/16686166/hesolar?tab=profile" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
             </div>
         </div>
+
+        <div class="hero-photo">
+            <img src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+        </div>
+
     </div>
 </section>
+
+@code {
+    /// <summary>Muestra los botones de accion (PDF / contacto). Desactivado en el documento imprimible.</summary>
+    [Parameter] public bool ShowActions { get; set; }
+}

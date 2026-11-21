@@ -13,13 +13,13 @@ public class MenuService(IStringLocalizer<AllResourcesRes> AllResourcesResolver)
     public List<MenuNavLink> MenuItems { get => _menuItems; }
     public readonly List<MenuNavLink> _menuItems =
     [
-             new(text: AllResourcesResolver["navbar_inicio"], href: AllResourcesResolver["navbar_inicio"]),
-             new(text: AllResourcesResolver["navbar_experiencia"], href: AllResourcesResolver["navbar_experiencia"]),
-             new(text: AllResourcesResolver["navbar_educacion"], href: AllResourcesResolver["navbar_educacion"]),
-             new(text: AllResourcesResolver["navbar_intereses"], href: AllResourcesResolver["navbar_intereses"]),
-             new(text: AllResourcesResolver["navbar_cursos"], href: AllResourcesResolver["navbar_cursos"]),
-             new(text: AllResourcesResolver["navbar_tecnologias"], href: AllResourcesResolver["navbar_tecnologias"]),
-             new(text: AllResourcesResolver["navbar_proyectos"], href: AllResourcesResolver["navbar_proyectos"])
+             new(text: AllResourcesResolver["nav_inicio"], href: "inicio", isActive: true),
+             new(text: AllResourcesResolver["nav_sobremi"], href: "sobremi"),
+             new(text: AllResourcesResolver["nav_experiencia"], href: "experiencia"),
+             new(text: AllResourcesResolver["nav_educacion"], href: "educacion"),
+             new(text: AllResourcesResolver["nav_cursos"], href: "cursos"),
+             new(text: AllResourcesResolver["nav_tecnologias"], href: "tecnologias"),
+             new(text: AllResourcesResolver["nav_proyectos"], href: "proyectos")
     ];
 
     public MenuNavLink GetPaginaActual()

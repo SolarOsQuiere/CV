@@ -469,4 +469,37 @@ I also provide support to development teams by reviewing and resolving technical
   <data name="passwordManagerDesc" xml:space="preserve">
     <value>Web application for simple and secure password management, built with .NET and Blazor WebAssembly and published on GitHub Pages.</value>
   </data>
+  <data name="nav_inicio" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="nav_sobremi" xml:space="preserve">
+    <value>About me</value>
+  </data>
+  <data name="nav_experiencia" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="nav_educacion" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="nav_cursos" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="nav_tecnologias" xml:space="preserve">
+    <value>Technologies</value>
+  </data>
+  <data name="nav_proyectos" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="hero_pdf" xml:space="preserve">
+    <value>Download PDF</value>
+  </data>
+  <data name="hero_contacto" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="hero_generando" xml:space="preserve">
+    <value>Generating…</value>
+  </data>
+  <data name="tl_actual" xml:space="preserve">
+    <value>present</value>
+  </data>
 </root>

@@ -1,12 +1,7 @@
-﻿@page "/AboutMe"
-@page "/SobreMi"
-@page "/CV/AboutMe"
-@page "/CV/SobreMi"
-
-@using CV.Shared.Resources;
+﻿@using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
-<section class="resume-section about-section">
+<section class="resume-section about-section" id="sobremi">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@AllResourcesResolver["navbar_intereses"]) />

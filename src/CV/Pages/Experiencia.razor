@@ -1,11 +1,4 @@
-﻿@page "/Experiencia"
-@page "/Experience"
-
-@page "/CV/Experiencia"
-@page "/CV/Experience"
-
-
-@using CV.Shared.Resources;
+﻿@using CV.Shared.Resources;
 @inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
 
 <!-- Experience-->
@@ -13,38 +6,41 @@
     <div class="resume-section-content">
         <PageTitleCentered Title=@(@AllResourcesResolver["navbar_experiencia"]) />
 
-        <SharedSection SrcImagen="assets/img/logoHiberus.png"
-                       AltImagen="Hiberus Tecnología"
-                       Description=@CreateFromString($"<p>{ AllResourcesResolver["gadGatViviendaDescripcion1"]}<p>{AllResourcesResolver["gadGatViviendaDescripcion2"]}<br>{AllResourcesResolver["gadGatViviendaDescripcion3"]}</p>")
-                       TiempoTrabajo=@TotalYearsMonthsFormatted(new DateTime(2022, 5, 1), DateTime.Now)
-                       Subtitulo=@AllResourcesResolver["programadorWebJuniorHiberusSubTitulo"]
-                       Titulo=@AllResourcesResolver["programadorWebJuniorHiberusTitulo"] />
+        <div class="timeline">
 
+            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+                          AltImagen="Hiberus Tecnología"
+                          Current="true"
+                          Description=@CreateFromString($"<p>{AllResourcesResolver["gadGatViviendaDescripcion1"]}<p>{AllResourcesResolver["gadGatViviendaDescripcion2"]}<br>{AllResourcesResolver["gadGatViviendaDescripcion3"]}</p>")
+                          Tiempo=@($"may. 2022 - {AllResourcesResolver["tl_actual"]} · {TotalYearsMonthsFormatted(new DateTime(2022, 5, 1), DateTime.Now)}")
+                          Subtitulo=@AllResourcesResolver["programadorWebJuniorHiberusSubTitulo"]
+                          Titulo=@AllResourcesResolver["programadorWebJuniorHiberusTitulo"] />
 
-        <SharedSection SrcImagen="assets/img/logoHiberus.png"
-                       AltImagen="Hiberus Tecnología"
-                       Description=@CreateFromString($"<p>{AllResourcesResolver["contratoPracticasHiberus1Descripcion"]}</p>")
-                       TiempoTrabajo=@($"dic. 2021 - mar. 2022 · 4 {AllResourcesResolver["meses"]}")
-                       Subtitulo="@AllResourcesResolver["contratoPracticasHiberus1Subitulo"]"
-                       Titulo=@AllResourcesResolver["contratoPracticasHiberus1Titulo"] />
+            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+                          AltImagen="Hiberus Tecnología"
+                          Description=@CreateFromString($"<p>{AllResourcesResolver["contratoPracticasHiberus1Descripcion"]}</p>")
+                          Tiempo=@($"dic. 2021 - mar. 2022 · 4 {AllResourcesResolver["meses"]}")
+                          Subtitulo=@AllResourcesResolver["contratoPracticasHiberus1Subitulo"]
+                          Titulo=@AllResourcesResolver["contratoPracticasHiberus1Titulo"] />
 
-        <SharedSection SrcImagen="assets/img/logoGnoss.png"
-                       AltImagen="Gnoss Tecnología"
-                       Description=@CreateFromString($"{AllResourcesResolver["contratoPracticasGnossDescripcion"]}")
-                       TiempoTrabajo=@($"sept. 2021 - dic. 2021 · 4 {AllResourcesResolver["meses"]}")
-                       Subtitulo=@AllResourcesResolver["contratoPracticasGnossSubitulo"]
-                       Titulo=@AllResourcesResolver["contratoPracticasGnossSubitulo"] />
+            <TimelineItem SrcImagen="assets/img/logoGnoss.png"
+                          AltImagen="Gnoss Tecnología"
+                          Description=@CreateFromString($"{AllResourcesResolver["contratoPracticasGnossDescripcion"]}")
+                          Tiempo=@($"sept. 2021 - dic. 2021 · 4 {AllResourcesResolver["meses"]}")
+                          Subtitulo=@AllResourcesResolver["contratoPracticasGnossSubitulo"]
+                          Titulo=@AllResourcesResolver["contratoPracticasGnossSubitulo"] />
 
-        <SharedSection SrcImagen="assets/img/logoHiberus.png"
-                       AltImagen="Hiberus Tecnología"
-                       Description=@CreateFromString($"{AllResourcesResolver["contratoPracticasHiberus2Descripcion"]}")
-                       TiempoTrabajo=@($"jul. 2021 - sept. 2021 · 3 {AllResourcesResolver["meses"]}")
-                       Subtitulo=@AllResourcesResolver["contratoPracticasHiberus2Subitulo"]
-                       Titulo=@AllResourcesResolver["contratoPracticasHiberus21Titulo"] />
+            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+                          AltImagen="Hiberus Tecnología"
+                          Description=@CreateFromString($"{AllResourcesResolver["contratoPracticasHiberus2Descripcion"]}")
+                          Tiempo=@($"jul. 2021 - sept. 2021 · 3 {AllResourcesResolver["meses"]}")
+                          Subtitulo=@AllResourcesResolver["contratoPracticasHiberus2Subitulo"]
+                          Titulo=@AllResourcesResolver["contratoPracticasHiberus21Titulo"] />
+
+        </div>
 
     </div>
 </section>
-<hr class="m-0" />
 
 
 @code {

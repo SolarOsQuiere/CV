@@ -1,13 +1,18 @@
-@using SolarBlazorDocs.Browser.Services
+﻿@using SolarBlazorDocs.Browser.Services
 @inject IBrowserDocumentPrinter Printer
 @inject NavigationManager Nav
 
 @* Boton flotante que imprime / guarda como PDF el CV completo usando SolarBlazorDocs.Browser. *@
-<button type="button" class="cv-print-fab" @onclick="ImprimirCv" disabled="@_busy" title="Descargar CV en PDF">
-    <span class="cv-print-label">@(_busy ? "Generando…" : "📄 PDF")</span>
+<button type="button" class="@CssClass" @onclick="ImprimirCv" disabled="@_busy" title="@Label">
+    <span class="cv-print-label">@(_busy ? BusyLabel : Label)</span>
 </button>
 
 @code {
+    /// <summary>Clase CSS del boton (por defecto el boton flotante).</summary>
+    [Parameter] public string CssClass { get; set; } = "cv-print-fab";
+    [Parameter] public string Label { get; set; } = "📄 PDF";
+    [Parameter] public string BusyLabel { get; set; } = "Generando…";
+
     private bool _busy;
 
     private async Task ImprimirCv()
