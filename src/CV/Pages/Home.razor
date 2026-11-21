@@ -1,4 +1,4 @@
-@page "/"
+﻿@page "/"
 @page "/Inicio"
 @page "/Index"
 @page "/CV"
@@ -36,16 +36,58 @@
 @* Pagina unica: todas las secciones del CV en scroll continuo. Las rutas antiguas
    (/Experiencia, /Projects...) siguen funcionando y hacen scroll a su seccion. *@
 
-<Inicio ShowActions="true" />
-<SobreMi />
-<Experiencia />
-<Education />
-<Cursos />
-<Tecnologias />
-<Proyectos />
+<div class="cv-carousel" id="cv-carousel">
+    <Inicio ShowActions="true" />
+    <SobreMi />
+    <Experiencia />
+    <Education />
+    <Cursos />
+    <Tecnologias />
+    <Proyectos />
+</div>
+
+@if (_indice > 0)
+{
+    <button type="button" class="carousel-arrow carousel-prev no-print" aria-label="@MenuService.MenuItems[_indice - 1].Text"
+            @onclick="() => Mover(-1)"><i class="fas fa-chevron-left"></i></button>
+}
+@if (_indice < MenuService.MenuItems.Count - 1)
+{
+    <button type="button" class="carousel-arrow carousel-next no-print" aria-label="@MenuService.MenuItems[_indice + 1].Text"
+            @onclick="() => Mover(1)"><i class="fas fa-chevron-right"></i></button>
+}
+
+<div class="carousel-dots no-print">
+    @foreach (var item in MenuService.MenuItems)
+    {
+        var destino = item;
+        <button type="button" class="@(destino.IsActive ? "active" : "")" aria-label="@destino.Text" title="@destino.Text"
+                @onclick="() => Ir(destino)"></button>
+    }
+</div>
 
 @code {
     private DotNetObjectReference<Home>? _self;
+
+    private int _indice => Math.Max(0, MenuService.MenuItems.FindIndex(i => i.IsActive));
+
+    protected override void OnInitialized() => MenuService.OnChange += Refrescar;
+
+    private void Refrescar() => InvokeAsync(StateHasChanged);
+
+    private async Task Ir(MenuNavLink item)
+    {
+        MenuService.CambiarPagina(item);
+        await JS.InvokeVoidAsync("cvNav.scrollTo", item.Href);
+    }
+
+    private Task Mover(int paso)
+    {
+        var destino = _indice + paso;
+        return destino < 0 || destino >= MenuService.MenuItems.Count
+            ? Task.CompletedTask
+            : Ir(MenuService.MenuItems[destino]);
+    }
 
     private static readonly Dictionary<string, string> Rutas = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -75,8 +117,13 @@
     [JSInvokable]
     public void SetActive(string id) => MenuService.CambiarPaginaPorRuta(id);
 
+    /// <summary>Navegacion con las flechas del teclado.</summary>
+    [JSInvokable]
+    public Task Step(int paso) => Mover(paso);
+
     public async ValueTask DisposeAsync()
     {
+        MenuService.OnChange -= Refrescar;
         try { await JS.InvokeVoidAsync("cvNav.unobserve"); } catch (JSDisconnectedException) { }
         _self?.Dispose();
     }

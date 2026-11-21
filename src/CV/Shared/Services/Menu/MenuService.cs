@@ -5,7 +5,7 @@ namespace CV.Shared.Services.Menu;
 /// <summary>
 /// Servicio para manejar el estado global del menu de la app
 /// </summary>
-public class MenuService(IStringLocalizer<AllResourcesRes> AllResourcesResolver)
+public class MenuService(IStringLocalizer<CommonRes> L)
 {
 
     public event Action? OnChange;
@@ -13,13 +13,13 @@ public class MenuService(IStringLocalizer<AllResourcesRes> AllResourcesResolver)
     public List<MenuNavLink> MenuItems { get => _menuItems; }
     public readonly List<MenuNavLink> _menuItems =
     [
-             new(text: AllResourcesResolver["nav_inicio"], href: "inicio", isActive: true),
-             new(text: AllResourcesResolver["nav_sobremi"], href: "sobremi"),
-             new(text: AllResourcesResolver["nav_experiencia"], href: "experiencia"),
-             new(text: AllResourcesResolver["nav_educacion"], href: "educacion"),
-             new(text: AllResourcesResolver["nav_cursos"], href: "cursos"),
-             new(text: AllResourcesResolver["nav_tecnologias"], href: "tecnologias"),
-             new(text: AllResourcesResolver["nav_proyectos"], href: "proyectos")
+             new(text: L["nav_inicio"], href: "inicio", isActive: true),
+             new(text: L["nav_sobremi"], href: "sobremi"),
+             new(text: L["nav_experiencia"], href: "experiencia"),
+             new(text: L["nav_educacion"], href: "educacion"),
+             new(text: L["nav_cursos"], href: "cursos"),
+             new(text: L["nav_tecnologias"], href: "tecnologias"),
+             new(text: L["nav_proyectos"], href: "proyectos")
     ];
 
     public MenuNavLink GetPaginaActual()

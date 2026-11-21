@@ -1,26 +1,42 @@
-@using CV.Shared.Resources;
+﻿@using CV.Shared.Resources;
 @using Microsoft.Extensions.Localization
 @using System.Globalization
+@using CV.Shared.Services
 
-@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@inject IStringLocalizer<HeroRes> L
+@inject IStringLocalizer<CommonRes> Common
 
 <section class="resume-section hero" id="inicio">
     <div class="resume-section-content hero-grid">
 
         <div class="hero-text">
-            <p class="hero-eyebrow">@AllResourcesResolver["subtituloProfesional"]</p>
-            <h1>Héctor Solar Ruiz</h1>
+            <p class="hero-hello">@L["hero_hola"]</p>
+            <h1>Héctor <span class="hero-accent">Solar Ruiz</span></h1>
+            <p class="hero-eyebrow">@L["subtituloProfesional"]</p>
 
-            <p class="lead mb-3">@AllResourcesResolver["subtituloPersonal"]</p>
-            <p>@AllResourcesResolver["descripcionPersonal1"]</p>
-            <p>@AllResourcesResolver["descripcionPersonal2"]</p>
-            <p>@AllResourcesResolver["descripcionPersonal3"]</p>
+            <p class="lead mb-3">@L["subtituloPersonal"]</p>
+            <p>@L["descripcionPersonal1"]</p>
+            <p>@L["descripcionPersonal2"]</p>
+            <p class="hero-edu">@L["descripcionPersonal3"]</p>
+
+            <ul class="hero-chips" aria-label="Stack">
+                @foreach (var tech in Stack)
+                {
+                    <li>@tech</li>
+                }
+            </ul>
+
+            <dl class="hero-stats">
+                <div><dt>@ExperienciaTotal</dt><dd>@L["hero_stat_exp"]</dd></div>
+                <div><dt>ES · EN</dt><dd>@L["hero_stat_idiomas"]</dd></div>
+                <div><dt>.NET</dt><dd>@L["hero_stat_stack"]</dd></div>
+            </dl>
 
             @if (ShowActions)
             {
                 <div class="hero-actions no-print">
-                    <PrintCvButton CssClass="btn-cv btn-cv-primary" Label=@AllResourcesResolver["hero_pdf"] BusyLabel=@AllResourcesResolver["hero_generando"] />
-                    <a class="btn-cv" href="mailto:hectorsolar99@gmail.com">@AllResourcesResolver["hero_contacto"]</a>
+                    <PrintCvButton CssClass="btn-cv btn-cv-primary" Label=@L["hero_pdf"] BusyLabel=@L["hero_generando"] />
+                    <a class="btn-cv" href="mailto:hectorsolar99@gmail.com">@L["hero_contacto"]</a>
                 </div>
             }
 
@@ -34,7 +50,9 @@
         </div>
 
         <div class="hero-photo">
-            <img src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+            <div class="hero-photo-frame">
+                <img src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+            </div>
         </div>
 
     </div>
@@ -43,4 +61,24 @@
 @code {
     /// <summary>Muestra los botones de accion (PDF / contacto). Desactivado en el documento imprimible.</summary>
     [Parameter] public bool ShowActions { get; set; }
+
+    private static readonly string[] Stack = ["C#", ".NET", "Blazor", "SQL", "Docker", "Jenkins", "SonarQube"];
+
+    /// <summary>Suma de todos los periodos de la seccion de experiencia, p. ej. "5 años 5 meses".</summary>
+    private string ExperienciaTotal
+    {
+        get
+        {
+            var total = PeriodosExperiencia.TotalMeses(DateTime.Today);
+            var anios = total / 12;
+            var meses = total % 12;
+
+            var texto = $"{anios} {Common[anios == 1 ? "year" : "years"]}";
+            if (meses > 0)
+            {
+                texto += $" {meses} {Common[meses == 1 ? "mes" : "meses"]}";
+            }
+            return texto;
+        }
+    }
 }

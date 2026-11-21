@@ -1,50 +1,55 @@
 ﻿@using CV.Shared.Resources;
-@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@inject IStringLocalizer<EducationRes> L
+@inject IStringLocalizer<CommonRes> Common
 
 <section class="resume-section" id="educacion">
     <div class="resume-section-content">
 
-        <PageTitleCentered Title=@(@AllResourcesResolver["navbar_educacion"]) />
+        <PageTitleCentered Title=@(@Common["nav_educacion"]) />
 
-        <!-- Universidad -->
-        <SharedSection
-            Titulo="Universidad de La Rioja"
-            Subtitulo="@AllResourcesResolver["descripcionUniversidad"]"
-            TiempoTrabajo="Sep. 2017 - Jul. 2022"
-            SrcImagen="assets/img/logoUniversidad.png"
-            AltImagen="Universidad de La Rioja">
+        <div class="edu-grid">
 
-        </SharedSection>
+            <!-- Universidad -->
+            <article class="edu-card edu-featured">
+                <img class="edu-logo" src="assets/img/logoUniversidad.png" alt="Universidad de La Rioja" />
+                <div class="edu-body">
+                    <span class="edu-date">sept. 2017 - jul. 2022</span>
+                    <h3>Universidad de La Rioja</h3>
+                    <p>@L["descripcionUniversidad"]</p>
+                </div>
+            </article>
 
-        <!-- Bachiller -->
-        <SharedSection
-            Titulo="IES Valle del Oja"
-            Subtitulo="@AllResourcesResolver["descripcionBachiller"]"
-            TiempoTrabajo="Sep. 2015 - Jul. 2017"
-            SrcImagen="assets/img/logoInstituto.png"
-            AltImagen="IES Valle del OJA">
+            <!-- Bachiller -->
+            <article class="edu-card">
+                <img class="edu-logo" src="assets/img/logoInstituto.png" alt="IES Valle del Oja" />
+                <div class="edu-body">
+                    <span class="edu-date">sept. 2015 - jul. 2017</span>
+                    <h3>IES Valle del Oja</h3>
+                    <p>@L["descripcionBachiller"]</p>
+                </div>
+            </article>
 
-        </SharedSection>
+            <!-- Conservatorio -->
+            <article class="edu-card">
+                <img class="edu-logo" src="assets/img/logoConservatorio.png" alt="Conservatorio de Haro" />
+                <div class="edu-body">
+                    <span class="edu-date">ago. 2012 - may. 2016</span>
+                    <h3>Conservatorio de Haro</h3>
+                    <p>@L["descripcionConservatorio"]</p>
+                </div>
+            </article>
 
-        <!-- Conservatorio -->
-        <SharedSection
-            Titulo="Conservatorio de Haro"
-            Subtitulo="@AllResourcesResolver["descripcionConservatorio"]"
-            TiempoTrabajo="Aug. 2012 - May 2016"
-            SrcImagen="assets/img/logoConservatorio.png"
-            AltImagen="Conservatorio de Haro">
+            <!-- ESO -->
+            <article class="edu-card">
+                <img class="edu-logo" src="assets/img/logoInstituto.png" alt="IES Valle del Oja" />
+                <div class="edu-body">
+                    <span class="edu-date">sept. 2011 - jul. 2015</span>
+                    <h3>IES Valle del Oja</h3>
+                    <p>@L["descripcionEso"]</p>
+                </div>
+            </article>
 
-        </SharedSection>
-
-        <!-- ESO -->
-        <SharedSection
-            Titulo="IES Valle del Oja"
-            Subtitulo="@AllResourcesResolver["descripcionEso"]"
-            TiempoTrabajo="Sep. 2011 - Jul. 2015"
-            SrcImagen="assets/img/logoInstituto.png"
-            AltImagen="IES Valle del OJA">
-
-        </SharedSection>
+        </div>
 
     </div>
 </section>

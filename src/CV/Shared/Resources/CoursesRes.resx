@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Az204Descripcion" xml:space="preserve">
+    <value>Desarrollo de aplicaciones en la nube y gestión de infraestructura</value>
+  </data>
+  <data name="Az204Subtitulo" xml:space="preserve">
+    <value>Preparación para examen de Azure 204</value>
+  </data>
+  <data name="Az204Titulo" xml:space="preserve">
+    <value>Formación en Azure 204</value>
+  </data>
+  <data name="CssHtmlMVPDescripcion" xml:space="preserve">
+    <value>Desarrollo y maquetación de páginas con HTML y CSS</value>
+  </data>
+  <data name="CssHtmlMVPSubtitulo" xml:space="preserve">
+    <value>Formación: curso de desarrollo web</value>
+  </data>
+  <data name="CssHtmlMVPTitulo" xml:space="preserve">
+    <value>HTML y CSS a fondo para desarrolladores</value>
+  </data>
+  <data name="cursosCertificaciones" xml:space="preserve">
+    <value>Cursos y certificaciones</value>
+  </data>
+  <data name="descripcionCloudComputing" xml:space="preserve">
+    <value>Conocimientos generales en distintas áreas del Cloud Computing</value>
+  </data>
+  <data name="descripcionContenedoresDocker" xml:space="preserve">
+    <value>Cursos orientados a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software.</value>
+  </data>
+  <data name="descripcionCursoBlazor" xml:space="preserve">
+    <value>Desarrollo Full Stack utilizando Blazor.</value>
+  </data>
+  <data name="descripcionCursoMaui" xml:space="preserve">
+    <value>En este curso se estudia el nuevo framework de desarrollo de aplicaciones multiplataforma de código único y nociones básicas de .NET 6</value>
+  </data>
+  <data name="descripcionIntroduccionDesarrolloWeb" xml:space="preserve">
+    <value>Cursos orientados a aprender nociones básicas del desarrollo web utilizando HTML5, CSS y JavaScript</value>
+  </data>
+  <data name="descripcionProgramacionNET" xml:space="preserve">
+    <value>Se estudian aspectos básicos de la programación .NET desde el front hasta back, usando principalmente MVC y SQL Server.</value>
+  </data>
+  <data name="idCredencial" xml:space="preserve">
+    <value>ID de la credencial:</value>
+  </data>
+  <data name="tituloaz900" xml:space="preserve">
+    <value>Azure Fundamentals</value>
+  </data>
+  <data name="tituloContenedoresDocker" xml:space="preserve">
+    <value>Curso de contenedores Docker</value>
+  </data>
+  <data name="tituloCursoBlazor" xml:space="preserve">
+    <value>Curso de Blazor</value>
+  </data>
+  <data name="tituloCursoMaui" xml:space="preserve">
+    <value>Curso de .NET MAUI y .NET 6</value>
+  </data>
+  <data name="tituloIntroduccionDesarrolloWeb" xml:space="preserve">
+    <value>INTRODUCCIÓN AL DESARROLLO WEB I Y II</value>
+  </data>
+  <data name="tituloProgramacionNET" xml:space="preserve">
+    <value>Programación .NET</value>
+  </data>
+  <data name="tituloReact" xml:space="preserve">
+    <value>Curso de React</value>
+  </data>
+  <data name="EntityFrameworkMvpSubtitulo" xml:space="preserve">
+    <value>Curso de entity framework </value>
+  </data>
+  <data name="EntityFrameworkMvpTitulo" xml:space="preserve">
+    <value>Entity Framework </value>
+  </data>
+  <data name="Docker2025Titulo" xml:space="preserve">
+    <value>Docker: arquitectura y herramientas</value>
+  </data>
+  <data name="Docker2025Subtitulo" xml:space="preserve">
+    <value>Formación: arquitectura y herramientas Docker</value>
+  </data>
+  <data name="Docker2025Descripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Concepto Docker&lt;/li&gt;&lt;li&gt;Docker Engine&lt;/li&gt;&lt;li&gt;Gestión de imágenes&lt;/li&gt;&lt;li&gt;Gestión de capas en una imagen&lt;/li&gt;&lt;li&gt;Redes, recursos y dockerización&lt;/li&gt;&lt;li&gt;Docker Compose&lt;/li&gt;&lt;li&gt;Seguridad&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="AccesibilidadTitulo" xml:space="preserve">
+    <value>Accesibilidad web para perfiles técnicos maquetadores</value>
+  </data>
+  <data name="AccesibilidadSubtitulo" xml:space="preserve">
+    <value>Formación: 30 horas · Modalidad virtual · ene.–feb. 2026</value>
+  </data>
+  <data name="AccesibilidadDescripcion" xml:space="preserve">
+    <value>&lt;ul&gt;&lt;li&gt;Accesibilidad web vs usabilidad y cómo acceden las personas con discapacidad a la web&lt;/li&gt;&lt;li&gt;Legislación y normativa: WCAG 2.2, Norma EN 301 549&lt;/li&gt;&lt;li&gt;Principios, pautas y criterios de conformidad (niveles A, AA, AAA)&lt;/li&gt;&lt;li&gt;Metodología de evaluación y herramientas de validación&lt;/li&gt;&lt;li&gt;Criterios relacionados con color, imágenes y contenido multimedia&lt;/li&gt;&lt;li&gt;Criterios relacionados con textos, enlaces y formularios&lt;/li&gt;&lt;li&gt;Criterios de operabilidad de teclado, foco y comandos de voz&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="cursos_verificar" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+</root>

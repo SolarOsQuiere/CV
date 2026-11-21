@@ -1,15 +1,16 @@
 ﻿@using CV.Shared.Resources;
-@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@inject IStringLocalizer<AboutRes> L
+@inject IStringLocalizer<CommonRes> Common
 
 <section class="resume-section about-section" id="sobremi">
     <div class="resume-section-content">
 
-        <PageTitleCentered Title=@(@AllResourcesResolver["navbar_intereses"]) />
+        <PageTitleCentered Title=@(@Common["nav_sobremi"]) />
 
 
-        <p>@AllResourcesResolver["descripcionSobreMi1"]</p>
-        <p>@AllResourcesResolver["descripcionSobreMi2"]</p>
-        <p class="mb-4">@AllResourcesResolver["descripcionSobreMi3"]</p>
+        <p>@L["descripcionSobreMi1"]</p>
+        <p>@L["descripcionSobreMi2"]</p>
+        <p class="mb-4">@L["descripcionSobreMi3"]</p>
 
         <div class="gallery">
             @foreach (var img in Images)

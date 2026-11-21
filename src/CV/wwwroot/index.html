@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.16.0/devicon.min.css" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/modern.css" rel="stylesheet" />
@@ -29,16 +30,45 @@
     <link rel="stylesheet" href="_content/Blazorise/blazorise.css" />
     <link rel="stylesheet" href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" />
     <link rel="stylesheet" href="_content/Radzen.Blazor/css/standard-base.css">
+
+    <style>
+        /* Splash de precarga: se muestra mientras Blazor WebAssembly descarga y arranca */
+        #splash {
+            position: fixed; inset: 0; z-index: 3000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem;
+            background: #f4f5f9;
+            font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+        #splash.is-hidden { opacity: 0; visibility: hidden; }
+        #splash .splash-photo {
+            width: 132px; height: 132px; border-radius: 50%;
+            object-fit: cover; object-position: center 18%;
+            border: 5px solid #fff;
+            box-shadow: 0 0 0 4px rgba(16, 134, 197, .4), 0 14px 34px rgba(16, 134, 197, .35);
+            animation: splash-pulse 1.6s ease-in-out infinite;
+        }
+        #splash .splash-name { margin: 0; color: #1f2933; font-size: 1.35rem; font-weight: 800; }
+        #splash .splash-role { margin: -.7rem 0 0; color: #5f6b76; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+        #splash .splash-bar { width: 180px; height: 4px; overflow: hidden; border-radius: 2px; background: #dde3e9; }
+        #splash .splash-bar span {
+            display: block; height: 100%; width: var(--blazor-load-percentage, 8%);
+            border-radius: 2px; background: #1086c5; transition: width .25s ease;
+        }
+        @keyframes splash-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        @media (prefers-reduced-motion: reduce) { #splash .splash-photo { animation: none; } }
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+    <div id="splash" role="status" aria-live="polite">
+        <img class="splash-photo" src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+        <p class="splash-name">Héctor Solar Ruiz</p>
+        <p class="splash-role">Software Engineer</p>
+        <div class="splash-bar"><span></span></div>
     </div>
+
+    <div id="app"></div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -55,6 +85,30 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+
+    <script>
+        // Oculta el splash cuando Blazor ha pintado la cabecera (minimo 700 ms para evitar parpadeos).
+        (function () {
+            var splash = document.getElementById('splash');
+            var start = Date.now();
+            var done = false;
+            function hide() {
+                if (done) return;
+                done = true;
+                var wait = Math.max(0, 700 - (Date.now() - start));
+                setTimeout(function () {
+                    splash.classList.add('is-hidden');
+                    setTimeout(function () { splash.remove(); }, 600);
+                }, wait);
+            }
+            var app = document.getElementById('app');
+            var observer = new MutationObserver(function () {
+                if (app.querySelector('.site-header')) { observer.disconnect(); hide(); }
+            });
+            observer.observe(app, { childList: true, subtree: true });
+            setTimeout(hide, 20000);
+        })();
+    </script>
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>

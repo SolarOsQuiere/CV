@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="contratoPracticasGnossDescripcion" xml:space="preserve">
+    <value>Mandatory internship during the degree. Client-side web development (BBVA), D4R project (Data for Reputation).</value>
+  </data>
+  <data name="contratoPracticasGnossSubitulo" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus1Descripcion" xml:space="preserve">
+    <value>Development of my final degree project within the company. During this period I developed a microservice to add functionality to an existing application, automating processes related to human resources management.</value>
+  </data>
+  <data name="contratoPracticasHiberus1Subitulo" xml:space="preserve">
+    <value>HIBERUS · FINAL DEGREE PROJECT DEVELOPMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus1Titulo" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus21Titulo" xml:space="preserve">
+    <value>INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="contratoPracticasHiberus2Descripcion" xml:space="preserve">
+    <value>Development of a .NET Core application for human resources and personnel management.</value>
+  </data>
+  <data name="contratoPracticasHiberus2Subitulo" xml:space="preserve">
+    <value>HIBERUS · INTERNSHIP AGREEMENT</value>
+  </data>
+  <data name="navbar_experiencia" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="programadorWebJuniorHiberusSubTitulo" xml:space="preserve">
+    <value>Participation in cross-functional architecture groups</value>
+  </data>
+  <data name="programadorWebJuniorHiberusTitulo" xml:space="preserve">
+    <value>Software Engineer – Architecture Group</value>
+  </data>
+  <data name="gadGatViviendaDescripcion1" xml:space="preserve">
+    <value>My work within the Technical Architecture group focuses on developing the base architecture for new products being onboarded into the service. This architecture is built on a new platform based on .NET and Domain-Driven Design (DDD) principles. Additionally, I contribute to the development of cross-cutting components that provide shared functionality across products, such as report generation, centralized exception handling, and other common concerns.
+I also provide support to development teams by reviewing and resolving technical issues, all within an agile Scrum framework.</value>
+  </data>
+  <data name="gadGatViviendaDescripcion2" xml:space="preserve">
+    <value>I am part of the GAD team (Development Architecture Group), a cross-functional team whose main purpose is to support developers in aspects related to product development and integration within the CI/CD process. I have contributed to the definition and improvement of these processes using tools such as Jenkins and by implementing automated static code analysis with SonarQube. I also take part in researching and proposing new technologies that add value to the organization.</value>
+  </data>
+  <data name="gadGatViviendaDescripcion3" xml:space="preserve">
+    <value>Previously, I worked in the Housing area, where I carried out maintenance and enhancement tasks for various products. These systems were primarily developed using .NET Framework technologies, with a strong focus on WebForms-based applications.</value>
+  </data>
+  <data name="tl_actual" xml:space="preserve">
+    <value>present</value>
+  </data>
+</root>

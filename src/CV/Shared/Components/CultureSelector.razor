@@ -1,80 +1,31 @@
-﻿@using System.Globalization
+@using System.Globalization
 
-<button class="culture-button" @onclick="ToggleCulture">
-    <span class="flag">@GetFlag()</span>
-</button>
+@* Selector de idioma: control segmentado ES | EN. *@
+<div class="lang-switch" role="group" aria-label="Language">
+    @foreach (var (codigo, etiqueta) in Idiomas)
+    {
+        var activo = codigo == IdiomaActual;
+        <button type="button" class="@(activo ? "active" : "")" aria-pressed="@activo"
+                @onclick="() => Cambiar(codigo)">@etiqueta</button>
+    }
+</div>
 
 @code {
+    [Inject] public NavigationManager NavManager { get; set; } = default!;
+    [Inject] public IJSRuntime JSRuntime { get; set; } = default!;
 
-    [Inject] public NavigationManager NavManager { get; set; }
-    [Inject] public IJSRuntime JSRuntime { get; set; }
+    private static readonly (string Codigo, string Etiqueta)[] Idiomas = [("es", "ES"), ("en", "EN")];
 
-    CultureInfo[] cultures = new[]
+    private static string IdiomaActual =>
+        CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "es" ? "es" : "en";
+
+    private void Cambiar(string codigo)
     {
-        new CultureInfo("en"),
-        new CultureInfo("es")
-    };
-
-    CultureInfo CurrentCulture => CultureInfo.CurrentCulture;
-
-    void ToggleCulture()
-    {
-        var newCulture = CurrentCulture.Name == "es"
-            ? new CultureInfo("en")
-            : new CultureInfo("es");
+        if (codigo == IdiomaActual) return;
 
         var js = (IJSInProcessRuntime)JSRuntime;
-        js.InvokeVoid("blazorCulture.set", newCulture.Name);
+        js.InvokeVoid("blazorCulture.set", codigo);
 
         NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
     }
-
-    string GetFlag()
-    {
-        return CurrentCulture.Name switch
-        {
-            "es" => "🇪🇸",
-            _ => "EN"
-        };
-    }
 }
-
-<style>
-
-    .culture-button {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        border: none;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        transition: all 0.2s ease;
-    }
-
-        /* Hover */
-        .culture-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* Click */
-        .culture-button:active {
-            transform: scale(0.95);
-        }
-
-    /* Animación al cambiar */
-    .flag {
-        display: inline-block;
-        transition: transform 0.3s ease;
-    }
-
-    .culture-button:hover .flag {
-        transform: rotate(10deg) scale(1.1);
-    }
-
-</style>

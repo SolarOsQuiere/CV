@@ -1,170 +1,99 @@
-﻿@using CV.Shared.Resources;
-@inject IStringLocalizer<AllResourcesRes> AllResourcesResolver
+@using CV.Shared.Resources;
+@inject IStringLocalizer<TechnologiesRes> L
+@inject IStringLocalizer<CommonRes> Common
 
 <section class="resume-section" id="tecnologias">
     <div class="resume-section-content">
 
-        <!-- Título -->
-        <PageTitleCentered Title=@(@AllResourcesResolver["navbar_tecnologias"]) />
+        <PageTitleCentered Title=@(@Common["nav_tecnologias"]) />
 
-        <div class="row g-4">
+        <div class="tech-grid">
+            @foreach (var cat in _categorias)
+            {
+                <article class="tech-group">
+                    <header class="tech-group-head">
+                        <span class="tech-group-icon"><i class="fas @cat.Icono"></i></span>
+                        <h3>@cat.Titulo</h3>
+                    </header>
 
-            <!-- Lenguajes -->
-            <div class="col-12 col-md-6">
-                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
-                    <h4 class="mb-3">
-                        @AllResourcesResolver["lenguagesProgramacion"]
-                    </h4>
-
-                    <ul class="mb-3">
-                        <li>HTML, CSS, Javascript, C#, SQL</li>
+                    <ul class="tech-tiles">
+                        @foreach (var t in cat.Items)
+                        {
+                            <li>
+                                <a href="@t.Url" target="_blank" rel="noopener noreferrer" title="@t.Nombre">
+                                    <span class="tech-ico" aria-hidden="true">
+                                        @foreach (var icono in t.Iconos)
+                                        {
+                                            <i class="@icono"></i>
+                                        }
+                                    </span>
+                                    <span>@t.Nombre</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
+                </article>
+            }
 
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="https://html.spec.whatwg.org/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/htmlcssjs.jfif" alt="HTML CSS JS" />
-                        </a>
+            <article class="tech-group tech-wide">
+                <header class="tech-group-head">
+                    <span class="tech-group-icon"><i class="fas fa-tasks"></i></span>
+                    <h3>@L["metodologias"]</h3>
+                </header>
 
-                        <a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/csharp.png" alt="C#" />
-                        </a>
-
-                        <a href="https://www.microsoft.com/sql-server" target="_blank">
-                            <img class="tech-icon" src="assets/icons/sql.png" alt="SQL" />
-                        </a>
-                    </div>
-                </RadzenCard>
-            </div>
-
-            <!-- Frameworks -->
-            <div class="col-12 col-md-6">
-                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
-                    <h4 class="mb-3">Frameworks</h4>
-
-                    <ul class="mb-3">
-                        <li>.NET Core, .NET Framework, Blazor, MVC, EF, Swagger</li>
-                    </ul>
-
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="https://dotnet.microsoft.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/dotnet.png" />
-                        </a>
-
-                        <a href="https://dotnet.microsoft.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/dotnetframework.png" />
-                        </a>
-
-                        <a href="https://learn.microsoft.com/aspnet/core/blazor/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/blazor.png" />
-                        </a>
-
-                        <a href="https://learn.microsoft.com/aspnet/core/mvc/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/mvc.png" />
-                        </a>
-
-                        <a href="https://learn.microsoft.com/ef/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/efcore.png" />
-                        </a>
-
-                        <a href="https://swagger.io/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/swaggeropenapi.png" />
-                        </a>
-                    </div>
-                </RadzenCard>
-            </div>
-
-            <!-- DevOps / Herramientas -->
-            <div class="col-12 col-md-6">
-                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
-                    <h4 class="mb-3">@AllResourcesResolver["svcs"]</h4>
-
-                    <ul class="mb-3">
-                        <li>GIT, GitHub, GitLab</li>
-                    </ul>
-
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="https://git-scm.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/git.png" />
-                        </a>
-
-                        <a href="https://github.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/github.png" />
-                        </a>
-
-                        <a href="https://gitlab.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/gitlab.png" />
-                        </a>
-                    </div>
-                </RadzenCard>
-            </div>
-
-            <!-- CI/CD -->
-            <div class="col-12 col-md-6">
-                <RadzenCard Variant="Variant.Outlined" Class="h-100 tech-card">
-                    <h4 class="mb-3">QA, CI / CD</h4>
-
-                    <ul class="mb-3">
-                        <li>Jenkins, Docker, SonarQube, Podman</li>
-                    </ul>
-
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="https://www.jenkins.io/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/jenkins.png" />
-                        </a>
-
-                        <a href="https://www.docker.com/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/docker.png" />
-                        </a>
-
-                        <a href="https://www.sonarsource.com/products/sonarqube/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/sonarqube.png" />
-                        </a>
-
-                        <a href="https://podman.io/" target="_blank">
-                            <img class="tech-icon" src="assets/icons/podman.png" />
-                        </a>
-                    </div>
-                </RadzenCard>
-            </div>
-
-            <!-- Metodologías -->
-            <div class="col-12">
-                <RadzenCard Variant="Variant.Outlined" Class="tech-card">
-                    <h4 class="mb-3">
-                        @AllResourcesResolver["metodologias"]
-                    </h4>
-
-                    <ul class="mb-0">
-                        <li>Agile, Scrum</li>
-                        <li>DDD & Clean Architecture</li>
-                        <li>SOLID</li>
-                    </ul>
-                </RadzenCard>
-            </div>
-
+                <ul class="hero-chips tech-methods">
+                    @foreach (var m in _metodologias)
+                    {
+                        <li>@m</li>
+                    }
+                </ul>
+            </article>
         </div>
+
     </div>
 </section>
 
-<hr class="m-0" />
+@code {
+    /// <summary>Tecnologia con sus iconos (clases de Devicon o Font Awesome).</summary>
+    private record Tech(string Nombre, string[] Iconos, string Url);
+    private record Categoria(string Titulo, string Icono, Tech[] Items);
 
-<style>
-    .tech-card {
-        transition: all 0.25s ease;
+    private static readonly string[] _metodologias = ["Agile", "Scrum", "DDD & Clean Architecture", "SOLID"];
+
+    private List<Categoria> _categorias = [];
+
+    protected override void OnInitialized()
+    {
+        _categorias =
+        [
+            new(L["lenguagesProgramacion"], "fa-code",
+            [
+                new("HTML · CSS · JS", ["devicon-html5-plain colored", "devicon-css3-plain colored", "devicon-javascript-plain colored"], "https://html.spec.whatwg.org/"),
+                new("C#", ["devicon-csharp-plain colored"], "https://learn.microsoft.com/dotnet/csharp/"),
+                new("SQL Server", ["devicon-microsoftsqlserver-plain colored"], "https://www.microsoft.com/sql-server")
+            ]),
+            new("Frameworks", "fa-cubes",
+            [
+                new(".NET Core", ["devicon-dotnetcore-plain colored"], "https://dotnet.microsoft.com/"),
+                new(".NET Framework", ["devicon-dot-net-plain colored"], "https://dotnet.microsoft.com/"),
+                new("Blazor", ["devicon-blazor-original colored"], "https://learn.microsoft.com/aspnet/core/blazor/"),
+                new("MVC", ["fas fa-layer-group"], "https://learn.microsoft.com/aspnet/core/mvc/"),
+                new("EF Core", ["fas fa-database"], "https://learn.microsoft.com/ef/"),
+                new("Swagger", ["devicon-swagger-plain colored"], "https://swagger.io/")
+            ]),
+            new(L["svcs"], "fa-code-branch",
+            [
+                new("Git", ["devicon-git-plain colored"], "https://git-scm.com/"),
+                new("GitHub", ["devicon-github-original"], "https://github.com/"),
+                new("GitLab", ["devicon-gitlab-plain colored"], "https://gitlab.com/")
+            ]),
+            new("QA, CI / CD", "fa-sync-alt",
+            [
+                new("Jenkins", ["devicon-jenkins-plain colored"], "https://www.jenkins.io/"),
+                new("Docker", ["devicon-docker-plain colored"], "https://www.docker.com/"),
+                new("SonarQube", ["devicon-sonarqube-original colored"], "https://www.sonarsource.com/products/sonarqube/"),
+                new("Podman", ["devicon-podman-plain colored"], "https://podman.io/")
+            ])
+        ];
     }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-    .tech-icon {
-        height: 50px;
-        object-fit: contain;
-        transition: transform 0.2s;
-    }
-
-        .tech-icon:hover {
-            transform: scale(1.1);
-        }
-</style>
+}
