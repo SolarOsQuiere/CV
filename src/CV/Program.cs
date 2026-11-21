@@ -1,4 +1,4 @@
-using Blazorise;
+﻿using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using CV;
@@ -8,10 +8,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SolarBlazorDocs.Extensions;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-//builder.RootComponents.Add<Inicio>("#preRenderComponent");
-//builder.RootComponents.Add<App>("#app");
-//builder.RootComponents.Add<HeadOutlet>("head::after");
-
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 

@@ -32,7 +32,6 @@ experiencia y habilidades técnicas mediante una interfaz moderna y ligera.
   <li>⚙️ Desarrollada con <strong>ASP.NET Core</strong> y <strong>Blazor WebAssembly</strong></li>
   <li>💻 Escrita en <strong>C#, HTML y CSS</strong></li>
   <li>🌐 Ejecutada nativamente en el navegador mediante <strong>WebAssembly</strong></li>
-  <li>🖥️ Versión alternativa con <strong>Blazor Server</strong></li>
 </ul>
 
 <p>
@@ -61,7 +60,6 @@ profile, experience, and technical skills through a modern and lightweight inter
   <li>⚙️ Built with <strong>ASP.NET Core</strong> and <strong>Blazor WebAssembly</strong></li>
   <li>💻 Written in <strong>C#, HTML an CSS</strong></li>
   <li>🌐 Runs natively in the browser using <strong>WebAssembly</strong></li>
-  <li>🖥️ Alternative <strong>Blazor Server</strong> version</li>
 </ul>
 
 <p>
@@ -75,7 +73,7 @@ https://solarosquiere.github.io/CV/
 <img align="center" style="width: fit-content"  src="https://user-images.githubusercontent.com/43806203/218275275-050dced1-3b17-4a31-9d8c-829de59b5443.png" />
 
 Check it out here!
-[https://hesolar.github.io/CV/](https://solarosquiere.github.io/CV/)
+[https://solarosquiere.github.io/CV/](https://solarosquiere.github.io/CV/)
 
 Credits go for : 
 https://github.com/SteveSandersonMS/BlazorOnGitHubPages 
