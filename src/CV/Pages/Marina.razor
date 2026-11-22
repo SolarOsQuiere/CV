@@ -1,0 +1,50 @@
+@attribute [Route(AppRoutes.Marina)]
+@layout BlankLayout
+
+@* Pagina oculta: no hay ningun enlace a ella en la web, solo se llega escribiendo /CV/Marina.
+   Va con noindex para que tampoco aparezca en buscadores. *@
+
+<PageTitle>Marina</PageTitle>
+<HeadContent>
+    <meta name="robots" content="noindex, nofollow" />
+</HeadContent>
+
+<div class="marina">
+    <div class="marina-bg" style="background-image: url('@AssetPaths.Marina')"></div>
+
+    <div class="marina-leaves" aria-hidden="true">
+        @foreach (var hoja in Hojas)
+        {
+            <span class="leaf" style="--x: @(hoja.X)%; --s: @(hoja.Tamano)px; --d: @(hoja.Duracion)s; --delay: @(hoja.Retraso)s"></span>
+        }
+    </div>
+
+    <main class="marina-stage">
+        <figure class="marina-photo">
+            <img src="@AssetPaths.Marina" alt="Dos personas paseando por un camino del bosque en otoño" />
+        </figure>
+
+        <div class="marina-text">
+            <p class="marina-eyebrow">@Nombre</p>
+
+            <h1 class="marina-title" aria-label="@Mensaje">
+                @foreach (var palabra in Palabras)
+                {
+                    <span class="word" aria-hidden="true">
+                        @foreach (var letra in palabra)
+                        {
+                            <span class="letter" style="--i: @letra.Indice">@letra.Caracter</span>
+                        }
+                    </span>
+                    @(" ")
+                }
+            </h1>
+
+            <span class="marina-line" aria-hidden="true"></span>
+
+            <p class="marina-typed @(_tecleando ? "is-typing" : "")" aria-label="@Frase">
+                <span aria-hidden="true">@_escrito</span><span class="caret" aria-hidden="true"></span>
+            </p>
+        </div>
+    </main>
+</div>

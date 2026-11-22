@@ -28,16 +28,34 @@
             {
                 <div class="hero-actions no-print">
                     <PrintCvButton CssClass="btn-cv btn-cv-primary" Label=@L["hero_pdf"] BusyLabel=@L["hero_generando"] />
-                    <a class="btn-cv" href="@ExternalLinks.Contact.MailTo">@L["hero_contacto"]</a>
                 </div>
             }
 
-            <p class="hero-mail"><a href="@ExternalLinks.Contact.MailTo">@ExternalLinks.Contact.Email</a></p>
-
-            <div class="social-icons">
-                <a class="social-icon" href="@ExternalLinks.Social.LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a class="social-icon" href="@ExternalLinks.Social.GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a class="social-icon" href="@ExternalLinks.Social.StackOverflow" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+            <div class="hero-contact">
+                <p class="hero-contact-label">@L["hero_contacto"]</p>
+                <ul class="hero-contact-list">
+                    <li>
+                        <a class="contact-chip" href="@ExternalLinks.Contact.MailTo">
+                            <i class="far fa-envelope" aria-hidden="true"></i>
+                            <span>@ExternalLinks.Contact.Email</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="contact-chip contact-chip-icon" href="@ExternalLinks.Social.LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="contact-chip contact-chip-icon" href="@ExternalLinks.Social.GitHub" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="contact-chip contact-chip-icon" href="@ExternalLinks.Social.StackOverflow" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow" title="Stack Overflow">
+                            <i class="fab fa-stack-overflow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 

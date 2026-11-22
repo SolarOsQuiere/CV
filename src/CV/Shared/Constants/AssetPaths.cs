@@ -8,6 +8,7 @@ public static class AssetPaths
     private const string CourseIcons = Icons + "cursos/";
 
     public const string Profile = Img + "profile.jpg";
+    public const string Marina = Img + "marina.webp";
 
     /// <summary>Logos de empresas y centros de estudio.</summary>
     public static class Logos

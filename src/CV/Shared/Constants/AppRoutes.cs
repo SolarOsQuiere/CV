@@ -16,6 +16,9 @@ public static class AppRoutes
 
     public const string NotFound = "/NotFound";
 
+    /// <summary>Pagina oculta (sin enlaces desde la web): solo se llega escribiendo la URL.</summary>
+    public const string Marina = "/Marina";
+
     /// <summary>
     /// Segmentos aceptados por <see cref="Section"/> y la seccion a la que llevan. El primero de cada
     /// seccion es el canonico (el que usa la propia web); el resto son alias, en ingles y heredados.
