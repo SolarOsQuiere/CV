@@ -1,4 +1,5 @@
-﻿using CV.Shared.Resources;
+﻿using CV.Shared.Constants;
+using CV.Shared.Resources;
 using Microsoft.Extensions.Localization;
 
 namespace CV.Shared.Services.Menu;
@@ -13,13 +14,13 @@ public class MenuService(IStringLocalizer<CommonRes> L)
     public List<MenuNavLink> MenuItems { get => _menuItems; }
     public readonly List<MenuNavLink> _menuItems =
     [
-             new(text: L["nav_inicio"], href: "inicio", isActive: true),
-             new(text: L["nav_sobremi"], href: "sobremi"),
-             new(text: L["nav_experiencia"], href: "experiencia"),
-             new(text: L["nav_educacion"], href: "educacion"),
-             new(text: L["nav_cursos"], href: "cursos"),
-             new(text: L["nav_tecnologias"], href: "tecnologias"),
-             new(text: L["nav_proyectos"], href: "proyectos")
+             new(text: L["nav_inicio"], href: SectionIds.Inicio, isActive: true),
+             new(text: L["nav_sobremi"], href: SectionIds.SobreMi),
+             new(text: L["nav_experiencia"], href: SectionIds.Experiencia),
+             new(text: L["nav_educacion"], href: SectionIds.Educacion),
+             new(text: L["nav_cursos"], href: SectionIds.Cursos),
+             new(text: L["nav_tecnologias"], href: SectionIds.Tecnologias),
+             new(text: L["nav_proyectos"], href: SectionIds.Proyectos)
     ];
 
     public MenuNavLink GetPaginaActual()

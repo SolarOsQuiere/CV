@@ -1,0 +1,26 @@
+@* Elemento de un listado con logo, fecha y titulo; el resto del contenido va como contenido hijo.
+   Se usa en Educacion y en Cursos. *@
+<article class="list-item @(Featured ? "list-item-featured" : "") @(Compact ? "list-item-compact" : "")">
+    <img class="list-item-logo" src="@Logo" alt="@LogoAlt" />
+    <div class="list-item-body">
+        <span class="list-item-date">@Fecha</span>
+        <h3>@Titulo</h3>
+        @ChildContent
+    </div>
+</article>
+
+@code {
+    /// <summary>Ruta de la imagen (ver <see cref="CV.Shared.Constants.AssetPaths"/>).</summary>
+    [Parameter, EditorRequired] public string Logo { get; set; } = "";
+    [Parameter] public string LogoAlt { get; set; } = "";
+    [Parameter] public string Fecha { get; set; } = "";
+    [Parameter, EditorRequired] public string Titulo { get; set; } = "";
+
+    /// <summary>Ocupa todo el ancho del listado y se resalta.</summary>
+    [Parameter] public bool Featured { get; set; }
+
+    /// <summary>Version mas densa (logo y espaciados menores), para listados largos.</summary>
+    [Parameter] public bool Compact { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

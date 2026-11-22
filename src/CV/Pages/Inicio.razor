@@ -6,7 +6,7 @@
 @inject IStringLocalizer<HeroRes> L
 @inject IStringLocalizer<CommonRes> Common
 
-<section class="resume-section hero" id="inicio">
+<section class="resume-section hero" id="@SectionIds.Inicio">
     <div class="resume-section-content hero-grid">
 
         <div class="hero-text">
@@ -36,22 +36,22 @@
             {
                 <div class="hero-actions no-print">
                     <PrintCvButton CssClass="btn-cv btn-cv-primary" Label=@L["hero_pdf"] BusyLabel=@L["hero_generando"] />
-                    <a class="btn-cv" href="mailto:hectorsolar99@gmail.com">@L["hero_contacto"]</a>
+                    <a class="btn-cv" href="@ExternalLinks.Contact.MailTo">@L["hero_contacto"]</a>
                 </div>
             }
 
-            <p class="hero-mail"><a href="mailto:hectorsolar99@gmail.com">hectorsolar99@gmail.com</a></p>
+            <p class="hero-mail"><a href="@ExternalLinks.Contact.MailTo">@ExternalLinks.Contact.Email</a></p>
 
             <div class="social-icons">
-                <a class="social-icon" href="https://www.linkedin.com/in/hesolar/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a class="social-icon" href="https://github.com/hesolar" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a class="social-icon" href="https://stackoverflow.com/users/16686166/hesolar?tab=profile" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                <a class="social-icon" href="@ExternalLinks.Social.LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a class="social-icon" href="@ExternalLinks.Social.GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a class="social-icon" href="@ExternalLinks.Social.StackOverflow" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
             </div>
         </div>
 
         <div class="hero-photo">
             <div class="hero-photo-frame">
-                <img src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+                <img src="@AssetPaths.Profile" alt="Héctor Solar Ruiz" />
             </div>
         </div>
 

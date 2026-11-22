@@ -9,7 +9,7 @@
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
 
     <title>Héctor Solar Ruiz</title>
-    <base href="/" />
+    <base href="/CV/" />
 
     <link rel="preload" id="webassembly" />
     <!-- If you add any scoped CSS files, uncomment the following to load them
@@ -29,7 +29,6 @@
 
     <link rel="stylesheet" href="_content/Blazorise/blazorise.css" />
     <link rel="stylesheet" href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" />
-    <link rel="stylesheet" href="_content/Radzen.Blazor/css/standard-base.css">
 
     <style>
         /* Splash de precarga: se muestra mientras Blazor WebAssembly descarga y arranca */
@@ -55,6 +54,13 @@
             display: block; height: 100%; width: var(--blazor-load-percentage, 8%);
             border-radius: 2px; background: #1086c5; transition: width .25s ease;
         }
+        #splash .splash-error { max-width: 420px; padding: 0 1.25rem; text-align: center; color: #5f6b76; font-size: .9rem; }
+        #splash .splash-error strong { display: block; margin-bottom: .35rem; color: #1f2933; font-size: 1rem; }
+        #splash .splash-error button {
+            margin-top: .9rem; padding: .5rem 1.2rem; border: 0; border-radius: 999px;
+            background: #1f2933; color: #fff; font-weight: 700; cursor: pointer;
+        }
+        #splash.has-error .splash-bar { display: none; }
         @keyframes splash-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
         @media (prefers-reduced-motion: reduce) { #splash .splash-photo { animation: none; } }
     </style>
@@ -66,6 +72,11 @@
         <p class="splash-name">Héctor Solar Ruiz</p>
         <p class="splash-role">Software Engineer</p>
         <div class="splash-bar"><span></span></div>
+        <div class="splash-error" hidden>
+            <strong></strong>
+            <span></span>
+            <button type="button"></button>
+        </div>
     </div>
 
     <div id="app"></div>
@@ -87,11 +98,18 @@
     <script src="js/scripts.js"></script>
 
     <script>
-        // Oculta el splash cuando Blazor ha pintado la cabecera (minimo 700 ms para evitar parpadeos).
+        // Splash de precarga: se oculta cuando Blazor ha pintado cualquier pagina (la web o la 404),
+        // con un minimo de 700 ms para evitar parpadeos. Si el arranque falla, informa del error.
         (function () {
             var splash = document.getElementById('splash');
+            var app = document.getElementById('app');
             var start = Date.now();
             var done = false;
+            var es = (navigator.language || 'en').slice(0, 2) === 'es';
+            var texts = es
+                ? { title: 'No se pudo cargar la aplicación', body: 'Recarga la página con Ctrl+F5. Si sigue fallando, borra los datos del sitio o inténtalo de nuevo en unos minutos.', btn: 'Recargar' }
+                : { title: 'The application could not be loaded', body: 'Reload the page with Ctrl+F5. If it keeps failing, clear the site data or try again in a few minutes.', btn: 'Reload' };
+
             function hide() {
                 if (done) return;
                 done = true;
@@ -101,17 +119,43 @@
                     setTimeout(function () { splash.remove(); }, 600);
                 }, wait);
             }
-            var app = document.getElementById('app');
+
+            function showError() {
+                if (done) return;
+                var box = splash.querySelector('.splash-error');
+                box.querySelector('strong').textContent = texts.title;
+                box.querySelector('span').textContent = texts.body;
+                var btn = box.querySelector('button');
+                btn.textContent = texts.btn;
+                btn.onclick = function () { location.reload(); };
+                box.hidden = false;
+                splash.classList.add('has-error');
+            }
+
             var observer = new MutationObserver(function () {
-                if (app.querySelector('.site-header')) { observer.disconnect(); hide(); }
+                if (app.firstElementChild) { observer.disconnect(); hide(); }
             });
             observer.observe(app, { childList: true, subtree: true });
-            setTimeout(hide, 20000);
+
+            // Fallos de arranque de Blazor (p. ej. integridad de los .wasm) llegan como promesas rechazadas.
+            window.addEventListener('unhandledrejection', showError);
+            setTimeout(showError, 25000);
+        })();
+    </script>
+
+    <script>
+        // Normaliza las mayusculas de la ruta base: el servidor de desarrollo acepta /cv/ pero Blazor exige
+        // la misma capitalizacion que <base href> (/CV/) y, si no coincide, no llega a arrancar.
+        (function () {
+            var base = new URL(document.baseURI).pathname;
+            var path = location.pathname;
+            if (path !== base && path.indexOf(base) !== 0 && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
+                location.replace(base + path.slice(base.length) + location.search + location.hash);
+            }
         })();
     </script>
 
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
 
 
     <script>

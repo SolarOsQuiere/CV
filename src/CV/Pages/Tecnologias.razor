@@ -2,7 +2,7 @@
 @inject IStringLocalizer<TechnologiesRes> L
 @inject IStringLocalizer<CommonRes> Common
 
-<section class="resume-section" id="tecnologias">
+<section class="resume-section" id="@SectionIds.Tecnologias">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@Common["nav_tecnologias"]) />
@@ -68,31 +68,31 @@
         [
             new(L["lenguagesProgramacion"], "fa-code",
             [
-                new("HTML · CSS · JS", ["devicon-html5-plain colored", "devicon-css3-plain colored", "devicon-javascript-plain colored"], "https://html.spec.whatwg.org/"),
-                new("C#", ["devicon-csharp-plain colored"], "https://learn.microsoft.com/dotnet/csharp/"),
-                new("SQL Server", ["devicon-microsoftsqlserver-plain colored"], "https://www.microsoft.com/sql-server")
+                new("HTML · CSS · JS", ["devicon-html5-plain colored", "devicon-css3-plain colored", "devicon-javascript-plain colored"], ExternalLinks.Tech.HtmlCssJs),
+                new("C#", ["devicon-csharp-plain colored"], ExternalLinks.Tech.CSharp),
+                new("SQL Server", ["devicon-microsoftsqlserver-plain colored"], ExternalLinks.Tech.SqlServer)
             ]),
             new("Frameworks", "fa-cubes",
             [
-                new(".NET Core", ["devicon-dotnetcore-plain colored"], "https://dotnet.microsoft.com/"),
-                new(".NET Framework", ["devicon-dot-net-plain colored"], "https://dotnet.microsoft.com/"),
-                new("Blazor", ["devicon-blazor-original colored"], "https://learn.microsoft.com/aspnet/core/blazor/"),
-                new("MVC", ["fas fa-layer-group"], "https://learn.microsoft.com/aspnet/core/mvc/"),
-                new("EF Core", ["fas fa-database"], "https://learn.microsoft.com/ef/"),
-                new("Swagger", ["devicon-swagger-plain colored"], "https://swagger.io/")
+                new(".NET Core", ["devicon-dotnetcore-plain colored"], ExternalLinks.Tech.DotNet),
+                new(".NET Framework", ["devicon-dot-net-plain colored"], ExternalLinks.Tech.DotNet),
+                new("Blazor", ["devicon-blazor-original colored"], ExternalLinks.Tech.Blazor),
+                new("MVC", ["fas fa-layer-group"], ExternalLinks.Tech.Mvc),
+                new("EF Core", ["fas fa-database"], ExternalLinks.Tech.EfCore),
+                new("Swagger", ["devicon-swagger-plain colored"], ExternalLinks.Tech.Swagger)
             ]),
             new(L["svcs"], "fa-code-branch",
             [
-                new("Git", ["devicon-git-plain colored"], "https://git-scm.com/"),
-                new("GitHub", ["devicon-github-original"], "https://github.com/"),
-                new("GitLab", ["devicon-gitlab-plain colored"], "https://gitlab.com/")
+                new("Git", ["devicon-git-plain colored"], ExternalLinks.Tech.Git),
+                new("GitHub", ["devicon-github-original"], ExternalLinks.Tech.GitHub),
+                new("GitLab", ["devicon-gitlab-plain colored"], ExternalLinks.Tech.GitLab)
             ]),
             new("QA, CI / CD", "fa-sync-alt",
             [
-                new("Jenkins", ["devicon-jenkins-plain colored"], "https://www.jenkins.io/"),
-                new("Docker", ["devicon-docker-plain colored"], "https://www.docker.com/"),
-                new("SonarQube", ["devicon-sonarqube-original colored"], "https://www.sonarsource.com/products/sonarqube/"),
-                new("Podman", ["devicon-podman-plain colored"], "https://podman.io/")
+                new("Jenkins", ["devicon-jenkins-plain colored"], ExternalLinks.Tech.Jenkins),
+                new("Docker", ["devicon-docker-plain colored"], ExternalLinks.Tech.Docker),
+                new("SonarQube", ["devicon-sonarqube-original colored"], ExternalLinks.Tech.SonarQube),
+                new("Podman", ["devicon-podman-plain colored"], ExternalLinks.Tech.Podman)
             ])
         ];
     }

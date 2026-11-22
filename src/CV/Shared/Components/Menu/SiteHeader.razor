@@ -2,11 +2,12 @@
 @implements IDisposable
 @inject MenuService MenuService
 @inject IJSRuntime JS
+@inject NavigationManager Nav
 
 <header class="site-header no-print">
     <div class="site-header-inner">
-        <a class="site-brand" href="#inicio" @onclick="() => Ir(MenuService.MenuItems[0])" @onclick:preventDefault>
-            <img class="site-brand-photo" src="assets/img/profile.jpg" alt="" />
+        <a class="site-brand" href="#@SectionIds.Inicio" @onclick="() => Ir(MenuService.MenuItems[0])" @onclick:preventDefault>
+            <img class="site-brand-photo" src="@AssetPaths.Profile" alt="" />
             <span class="site-brand-name">Héctor Solar Ruiz</span>
         </a>
 
@@ -38,7 +39,13 @@
     {
         _abierto = false;
         MenuService.CambiarPagina(item);
-        await JS.InvokeVoidAsync("cvNav.scrollTo", item.Href);
+
+        // Si la pagina actual no tiene carrusel (p. ej. la 404), se navega a la pagina principal en esa seccion.
+        var enCarrusel = await JS.InvokeAsync<bool>("cvNav.scrollTo", item.Href);
+        if (!enCarrusel)
+        {
+            Nav.NavigateTo(AppRoutes.RelativeRouteFor(item.Href));
+        }
     }
 
     public void Dispose() => MenuService.OnChange -= StateHasChanged;

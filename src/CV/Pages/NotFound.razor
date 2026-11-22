@@ -1,4 +1,15 @@
-﻿@page "/NotFound"
-<h1>404</h1>
-<p>Oops! La página que buscas no existe.</p>
-<a href="/">Volver a la página principal</a>
+﻿@attribute [Route(AppRoutes.NotFound)]
+@layout MainLayout
+@inject IStringLocalizer<CommonRes> Common
+@inject NavigationManager Nav
+
+@* Pagina 404. Usa el mismo layout que el resto (cabecera incluida) para que el sitio siga siendo navegable. *@
+
+<section class="resume-section not-found">
+    <div class="resume-section-content">
+        <p class="not-found-code">404</p>
+        <h1>@Common["notfound_title"]</h1>
+        <p class="not-found-text">@Common["notfound_text"]</p>
+        <a class="btn-cv btn-cv-primary" href="@Nav.BaseUri">@Common["notfound_back"]</a>
+    </div>
+</section>

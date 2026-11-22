@@ -10,10 +10,11 @@ window.cvNav = (() => {
     return {
         scrollTo(id) {
             const el = document.getElementById(id);
-            if (!el) return;
+            if (!el) return false;
             const c = carousel();
             if (c) c.scrollTo({ left: el.offsetLeft, behavior: 'smooth' });
             else el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return true;
         },
         observe(ids, dotnetRef) {
             this.unobserve();

@@ -1,6 +1,6 @@
 @inject IStringLocalizer<CoursesRes> L
 
-<section class="resume-section" id="cursos">
+<section class="resume-section" id="@SectionIds.Cursos">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(L["cursosCertificaciones"]) />
@@ -9,35 +9,29 @@
         {
             <div class="course-year"><span>@grupo.Key</span></div>
 
-            <div class="course-grid">
+            <div class="list-grid">
                 @foreach (var c in grupo)
                 {
-                    <article class="course-card">
-                        <img class="course-logo" src="@c.Logo" alt="@c.Alt" />
-                        <div class="course-body">
-                            <span class="edu-date">@c.Fecha</span>
-                            <h3>@c.Titulo</h3>
-
-                            @if (!string.IsNullOrWhiteSpace(c.Subtitulo))
-                            {
-                                <p class="course-sub">@c.Subtitulo</p>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(c.Credencial))
-                            {
-                                <p class="course-cred">@L["idCredencial"] <code>@c.Credencial</code></p>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(c.Descripcion))
-                            {
-                                <div class="course-desc">@((MarkupString)c.Descripcion)</div>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(c.Url))
-                            {
-                                <a class="course-link" href="@c.Url" target="_blank" rel="noopener noreferrer">
-                                    @L["cursos_verificar"] <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            }
-                        </div>
-                    </article>
+                    <ListItemCard Compact="true" Logo="@c.Logo" LogoAlt="@c.Alt" Fecha="@c.Fecha" Titulo="@c.Titulo">
+                        @if (!string.IsNullOrWhiteSpace(c.Subtitulo))
+                        {
+                            <p class="course-sub">@c.Subtitulo</p>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(c.Credencial))
+                        {
+                            <p class="course-cred">@L["idCredencial"] <code>@c.Credencial</code></p>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(c.Descripcion))
+                        {
+                            <div class="course-desc">@c.Descripcion.ToMarkupString()</div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(c.Url))
+                        {
+                            <a class="course-link" href="@c.Url" target="_blank" rel="noopener noreferrer">
+                                @L["cursos_verificar"] <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        }
+                    </ListItemCard>
                 }
             </div>
         }
@@ -46,10 +40,6 @@
 </section>
 
 @code {
-    private const string UrlLaRioja = "https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos";
-    private const string UrlGoogle = "https://learndigital.withgoogle.com/link/1nur091p2ww";
-    private const string UrlAz900 = "https://www.credly.com/badges/cd0b206f-92b1-4f31-a4a6-91d839f75b7c/linked_in?t=rn03ir";
-
     private record Curso(int Anio, string Fecha, string Titulo, string Logo, string Alt,
         string? Subtitulo = null, string? Credencial = null, string? Descripcion = null, string? Url = null);
 
@@ -61,36 +51,36 @@
 
         _cursos =
         [
-            new(2026, "feb. 2026", T("AccesibilidadTitulo"), "assets/img/logoHiberus.png", "Hiberus",
+            new(2026, "feb. 2026", T("AccesibilidadTitulo"), AssetPaths.Logos.Hiberus, "Hiberus",
                 Subtitulo: T("AccesibilidadSubtitulo"), Descripcion: T("AccesibilidadDescripcion")),
 
-            new(2025, "dic. 2025", T("Docker2025Titulo"), "assets/icons/docker.png", "Docker",
+            new(2025, "dic. 2025", T("Docker2025Titulo"), AssetPaths.Courses.Docker, "Docker",
                 Subtitulo: T("Docker2025Subtitulo"), Descripcion: T("Docker2025Descripcion")),
-            new(2025, "sept. 2025", T("EntityFrameworkMvpTitulo"), "assets/icons/cursos/campusmvp.png", "Campus MVP",
+            new(2025, "sept. 2025", T("EntityFrameworkMvpTitulo"), AssetPaths.Courses.CampusMvp, "Campus MVP",
                 Subtitulo: T("EntityFrameworkMvpSubtitulo")),
 
-            new(2023, "dic. 2023", T("CssHtmlMVPTitulo"), "assets/icons/cursos/campusmvp.png", "Campus MVP",
+            new(2023, "dic. 2023", T("CssHtmlMVPTitulo"), AssetPaths.Courses.CampusMvp, "Campus MVP",
                 Subtitulo: T("CssHtmlMVPSubtitulo"), Descripcion: T("CssHtmlMVPDescripcion")),
-            new(2023, "sept. 2023", T("Az204Titulo"), "assets/icons/cursos/pue.png", "PUE",
+            new(2023, "sept. 2023", T("Az204Titulo"), AssetPaths.Courses.Pue, "PUE",
                 Subtitulo: T("Az204Subtitulo"), Descripcion: T("Az204Descripcion")),
-            new(2023, "jun. 2023", T("tituloReact"), "assets/icons/cursos/gobrioja.png", "Gobierno de La Rioja",
-                Credencial: "A5B5KNFRNNOALQ8", Url: UrlLaRioja),
+            new(2023, "jun. 2023", T("tituloReact"), AssetPaths.Courses.LaRioja, "Gobierno de La Rioja",
+                Credencial: "A5B5KNFRNNOALQ8", Url: ExternalLinks.Certificates.LaRioja),
 
-            new(2022, "dic. 2022", T("tituloaz900"), "assets/icons/cursos/azurefundamentals.png", "Azure Fundamentals",
-                Credencial: "994243461", Url: UrlAz900),
-            new(2022, "oct. 2022", T("tituloCursoMaui"), "assets/icons/cursos/gobrioja.png", "Gobierno de La Rioja",
-                Credencial: "E5M024D62Y90BZT", Descripcion: T("descripcionCursoMaui"), Url: UrlLaRioja),
-            new(2022, "sept. 2022", T("tituloCursoBlazor"), "assets/icons/cursos/gobrioja.png", "Gobierno de La Rioja",
-                Credencial: "Y83Q73BHZDJY9BF", Descripcion: T("descripcionCursoBlazor"), Url: UrlLaRioja),
-            new(2022, "jul. 2022", T("tituloProgramacionNET"), "assets/icons/cursos/gobrioja.png", "Gobierno de La Rioja",
-                Credencial: "IYYS1J3Y8FGH5J5ID", Descripcion: T("descripcionProgramacionNET"), Url: UrlLaRioja),
+            new(2022, "dic. 2022", T("tituloaz900"), AssetPaths.Courses.AzureFundamentals, "Azure Fundamentals",
+                Credencial: "994243461", Url: ExternalLinks.Certificates.AzureFundamentals),
+            new(2022, "oct. 2022", T("tituloCursoMaui"), AssetPaths.Courses.LaRioja, "Gobierno de La Rioja",
+                Credencial: "E5M024D62Y90BZT", Descripcion: T("descripcionCursoMaui"), Url: ExternalLinks.Certificates.LaRioja),
+            new(2022, "sept. 2022", T("tituloCursoBlazor"), AssetPaths.Courses.LaRioja, "Gobierno de La Rioja",
+                Credencial: "Y83Q73BHZDJY9BF", Descripcion: T("descripcionCursoBlazor"), Url: ExternalLinks.Certificates.LaRioja),
+            new(2022, "jul. 2022", T("tituloProgramacionNET"), AssetPaths.Courses.LaRioja, "Gobierno de La Rioja",
+                Credencial: "IYYS1J3Y8FGH5J5ID", Descripcion: T("descripcionProgramacionNET"), Url: ExternalLinks.Certificates.LaRioja),
 
-            new(2021, "oct. 2021", "Cloud Computing", "assets/icons/cursos/googleactivate.png", "Google Activate",
-                Credencial: "NZQ DVY NBU", Descripcion: T("descripcionCloudComputing"), Url: UrlGoogle),
-            new(2021, "sept. 2021", T("tituloContenedoresDocker"), "assets/icons/cursos/gobrioja.png", "Gobierno de La Rioja",
-                Credencial: "UXGJYIVF8J4JEZX", Descripcion: T("descripcionContenedoresDocker"), Url: UrlLaRioja),
-            new(2021, "sept. 2021", T("tituloIntroduccionDesarrolloWeb"), "assets/icons/cursos/googleactivate.png", "Google Activate",
-                Credencial: "AAU 9KS DU9 & R3D SRM CTN", Descripcion: T("descripcionIntroduccionDesarrolloWeb"), Url: UrlGoogle)
+            new(2021, "oct. 2021", "Cloud Computing", AssetPaths.Courses.GoogleActivate, "Google Activate",
+                Credencial: "NZQ DVY NBU", Descripcion: T("descripcionCloudComputing"), Url: ExternalLinks.Certificates.GoogleActivate),
+            new(2021, "sept. 2021", T("tituloContenedoresDocker"), AssetPaths.Courses.LaRioja, "Gobierno de La Rioja",
+                Credencial: "UXGJYIVF8J4JEZX", Descripcion: T("descripcionContenedoresDocker"), Url: ExternalLinks.Certificates.LaRioja),
+            new(2021, "sept. 2021", T("tituloIntroduccionDesarrolloWeb"), AssetPaths.Courses.GoogleActivate, "Google Activate",
+                Credencial: "AAU 9KS DU9 & R3D SRM CTN", Descripcion: T("descripcionIntroduccionDesarrolloWeb"), Url: ExternalLinks.Certificates.GoogleActivate)
         ];
     }
 }

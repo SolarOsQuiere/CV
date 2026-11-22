@@ -2,7 +2,7 @@
 @inject IStringLocalizer<ProjectsRes> L
 @inject IStringLocalizer<CommonRes> Common
 
-<section class="resume-section" id="proyectos">
+<section class="resume-section" id="@SectionIds.Proyectos">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@Common["nav_proyectos"]) />
@@ -37,7 +37,7 @@
 
                 <div class="project-actions">
                     <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
-                       href="https://www.nuget.org/packages?q=SolarBlazorDocs">
+                       href="@ExternalLinks.Projects.SolarBlazorDocsNuGet">
                         <i class="fas fa-cube"></i>&nbsp;NuGet
                     </a>
                 </div>
@@ -60,11 +60,11 @@
 
                 <div class="project-actions">
                     <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
-                       href="https://solarosquiere.github.io/PasswordManager/">
+                       href="@ExternalLinks.Projects.PasswordManagerDemo">
                         <i class="fas fa-external-link-alt"></i>&nbsp;Demo
                     </a>
                     <a class="btn-cv" target="_blank" rel="noopener noreferrer"
-                       href="https://github.com/SolarOsQuiere/PasswordManager">
+                       href="@ExternalLinks.Projects.PasswordManagerRepo">
                         <i class="fab fa-github"></i>&nbsp;GitHub
                     </a>
                 </div>

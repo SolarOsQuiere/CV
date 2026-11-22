@@ -4,37 +4,37 @@
 @inject IStringLocalizer<CommonRes> Common
 
 <!-- Experience-->
-<section class="resume-section" id="experiencia">
+<section class="resume-section" id="@SectionIds.Experiencia">
     <div class="resume-section-content">
         <PageTitleCentered Title=@(@Common["nav_experiencia"]) />
 
         <div class="timeline">
 
-            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+            <TimelineItem SrcImagen="@AssetPaths.Logos.Hiberus"
                           AltImagen="Hiberus Tecnología"
                           Current="true"
-                          Description=@CreateFromString($"<p>{L["gadGatViviendaDescripcion1"]}<p>{L["gadGatViviendaDescripcion2"]}<br>{L["gadGatViviendaDescripcion3"]}</p>")
+                          Description=@($"<p>{L["gadGatViviendaDescripcion1"]}<p>{L["gadGatViviendaDescripcion2"]}<br>{L["gadGatViviendaDescripcion3"]}</p>".ToRenderFragment())
                           Tiempo=@($"may. 2022 - {L["tl_actual"]} · {TotalYearsMonthsFormatted(PeriodosExperiencia.InicioActual, DateTime.Now)}")
                           Subtitulo=@L["programadorWebJuniorHiberusSubTitulo"]
                           Titulo=@L["programadorWebJuniorHiberusTitulo"] />
 
-            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+            <TimelineItem SrcImagen="@AssetPaths.Logos.Hiberus"
                           AltImagen="Hiberus Tecnología"
-                          Description=@CreateFromString($"<p>{L["contratoPracticasHiberus1Descripcion"]}</p>")
+                          Description=@($"<p>{L["contratoPracticasHiberus1Descripcion"]}</p>".ToRenderFragment())
                           Tiempo=@($"dic. 2021 - mar. 2022 · 4 {Common["meses"]}")
                           Subtitulo=@L["contratoPracticasHiberus1Subitulo"]
                           Titulo=@L["contratoPracticasHiberus1Titulo"] />
 
-            <TimelineItem SrcImagen="assets/img/logoGnoss.png"
+            <TimelineItem SrcImagen="@AssetPaths.Logos.Gnoss"
                           AltImagen="Gnoss Tecnología"
-                          Description=@CreateFromString($"{L["contratoPracticasGnossDescripcion"]}")
+                          Description=@($"{L["contratoPracticasGnossDescripcion"]}".ToRenderFragment())
                           Tiempo=@($"sept. 2021 - dic. 2021 · 4 {Common["meses"]}")
                           Subtitulo=@L["contratoPracticasGnossSubitulo"]
                           Titulo=@L["contratoPracticasGnossSubitulo"] />
 
-            <TimelineItem SrcImagen="assets/img/logoHiberus.png"
+            <TimelineItem SrcImagen="@AssetPaths.Logos.Hiberus"
                           AltImagen="Hiberus Tecnología"
-                          Description=@CreateFromString($"{L["contratoPracticasHiberus2Descripcion"]}")
+                          Description=@($"{L["contratoPracticasHiberus2Descripcion"]}".ToRenderFragment())
                           Tiempo=@($"jul. 2021 - sept. 2021 · 3 {Common["meses"]}")
                           Subtitulo=@L["contratoPracticasHiberus2Subitulo"]
                           Titulo=@L["contratoPracticasHiberus21Titulo"] />
@@ -76,13 +76,4 @@
         return formattedString;
     }
 
-    public RenderFragment CreateFromString(string content)
-    {
-        RenderFragment renderFragment = builder =>
-        {
-            builder.AddMarkupContent(0, content);
-        };
-
-        return renderFragment;
-    }
 }

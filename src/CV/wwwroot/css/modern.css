@@ -364,14 +364,14 @@ section.hero::before {
     .timeline-card { padding: 1rem; }
 }
 
-/* ---------- Educacion (tarjetas) ---------- */
-.edu-grid {
+/* ---------- Listados (educacion y cursos): componente ListItemCard ---------- */
+.list-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
 }
 
-.edu-card {
+.list-item {
     display: flex;
     align-items: flex-start;
     gap: 1.1rem;
@@ -383,18 +383,18 @@ section.hero::before {
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.edu-card:hover { box-shadow: 0 10px 28px rgba(31, 41, 51, 0.1); transform: translateY(-2px); }
+.list-item:hover { box-shadow: 0 10px 28px rgba(31, 41, 51, 0.1); transform: translateY(-2px); }
 
-.edu-featured {
+.list-item-featured {
     grid-column: 1 / -1;
     border-color: rgba(16, 134, 197, 0.35);
     background: linear-gradient(135deg, rgba(16, 134, 197, 0.07), rgba(32, 201, 166, 0.07)), #fff;
 }
 
-.edu-logo { width: 64px; height: 64px; flex-shrink: 0; object-fit: contain; }
-.edu-featured .edu-logo { width: 88px; height: 88px; }
+.list-item-logo { width: 64px; height: 64px; flex-shrink: 0; object-fit: contain; }
+.list-item-featured .list-item-logo { width: 88px; height: 88px; }
 
-.edu-date {
+.list-item-date {
     display: inline-block;
     margin-bottom: 0.35rem;
     padding: 0.1rem 0.65rem;
@@ -405,11 +405,19 @@ section.hero::before {
     font-weight: 800;
 }
 
-.edu-body h3 { margin: 0 0 0.35rem; font-size: 1.1rem; font-weight: 800; text-transform: none; }
-.edu-body p { margin: 0; font-size: 0.92rem; }
+.list-item-body { min-width: 0; }
+.list-item-body h3 { margin: 0 0 0.35rem; font-size: 1.1rem; font-weight: 800; text-transform: none; }
+.list-item-body p { margin: 0 0 0.3rem; font-size: 0.92rem; }
+.list-item-body > :last-child { margin-bottom: 0; }
+
+.list-item-compact { gap: 1rem; padding: 1.1rem 1.25rem; }
+.list-item-compact .list-item-logo { width: 52px; height: 52px; }
+.list-item-compact .list-item-body { font-size: 0.9rem; }
+.list-item-compact .list-item-body h3 { margin-bottom: 0.3rem; font-size: 1.02rem; }
+.list-item-compact .list-item-body p { font-size: inherit; }
 
 @media (max-width: 767.98px) {
-    .edu-grid { grid-template-columns: 1fr; }
+    .list-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Cursos (agrupados por ano) ---------- */
@@ -426,31 +434,6 @@ section.hero::before {
 
 .course-year span { color: var(--cv-ink); font-size: 1.5rem; font-weight: 800; }
 
-.course-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.course-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.1rem 1.25rem;
-    border: 1px solid var(--cv-line);
-    border-radius: 14px;
-    background: #fff;
-    break-inside: avoid;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.course-card:hover { box-shadow: 0 10px 28px rgba(31, 41, 51, 0.1); transform: translateY(-2px); }
-
-.course-logo { width: 52px; height: 52px; flex-shrink: 0; object-fit: contain; }
-
-.course-body { min-width: 0; font-size: 0.9rem; }
-.course-body h3 { margin: 0 0 0.3rem; font-size: 1.02rem; font-weight: 800; text-transform: none; }
-.course-body p { margin: 0 0 0.3rem; }
 .course-sub { color: var(--cv-muted); }
 .course-cred { font-size: 0.8rem; }
 .course-cred code { color: var(--cv-ink); word-break: break-all; }
@@ -467,10 +450,6 @@ section.hero::before {
 
 .course-link:hover { text-decoration: underline; }
 .course-link i { font-size: 0.7rem; margin-left: 0.2rem; }
-
-@media (max-width: 767.98px) {
-    .course-grid { grid-template-columns: 1fr; }
-}
 
 /* ---------- Tecnologias (grupos con iconos) ---------- */
 .tech-grid {
@@ -716,10 +695,30 @@ body:has(.cv-carousel) { overflow: hidden; }
 .lang-switch button:hover { color: var(--cv-ink); }
 .lang-switch button.active { background: var(--cv-ink); color: #fff; cursor: default; }
 
+/* ---------- Pagina 404 ---------- */
+.not-found {
+    min-height: calc(100vh - var(--cv-header-h));
+    display: flex;
+    align-items: center;
+}
+
+.not-found .resume-section-content { text-align: center; }
+
+.not-found-code {
+    margin: 0;
+    color: var(--cv-accent);
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.not-found h1 { margin: 0.5rem 0 0.75rem; font-size: 2rem; text-transform: none; }
+.not-found-text { margin-bottom: 1.5rem; }
+
 /* ---------- Impresion ---------- */
 @media print {
     body { padding: 0; }
     .site-header, .no-print { display: none !important; }
     section.resume-section { min-height: 0; }
-    .timeline-card:hover, .edu-card:hover, .course-card:hover, .tech-group:hover, .project-card:hover { box-shadow: none; transform: none; }
+    .timeline-card:hover, .list-item:hover, .tech-group:hover, .project-card:hover { box-shadow: none; transform: none; }
 }

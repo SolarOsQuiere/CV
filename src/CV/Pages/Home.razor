@@ -1,31 +1,5 @@
-﻿@page "/"
-@page "/Inicio"
-@page "/Index"
-@page "/CV"
-@page "/AboutMe"
-@page "/SobreMi"
-@page "/CV/AboutMe"
-@page "/CV/SobreMi"
-@page "/Experiencia"
-@page "/Experience"
-@page "/CV/Experiencia"
-@page "/CV/Experience"
-@page "/Education"
-@page "/Educacion"
-@page "/CV/Education"
-@page "/CV/Educacion"
-@page "/Cursos"
-@page "/Courses"
-@page "/CV/Cursos"
-@page "/CV/Courses"
-@page "/Tecnologias"
-@page "/Technologies"
-@page "/CV/Tecnologias"
-@page "/CV/Technologies"
-@page "/Proyectos"
-@page "/Projects"
-@page "/CV/Proyectos"
-@page "/CV/Projects"
+﻿@attribute [Route(AppRoutes.Home)]
+@attribute [Route(AppRoutes.Section)]
 
 @implements IAsyncDisposable
 @using CV.Shared.Services.Menu
@@ -33,8 +7,9 @@
 @inject IJSRuntime JS
 @inject MenuService MenuService
 
-@* Pagina unica: todas las secciones del CV en scroll continuo. Las rutas antiguas
-   (/Experiencia, /Projects...) siguen funcionando y hacen scroll a su seccion. *@
+@* Pagina unica con todas las secciones del CV en un carrusel horizontal.
+   "/" abre la portada y "/{section}" (p. ej. /Cursos o /Courses) abre la seccion indicada;
+   cualquier otro segmento se trata como una pagina inexistente (404). *@
 
 <div class="cv-carousel" id="cv-carousel">
     <Inicio ShowActions="true" />
@@ -89,26 +64,40 @@
             : Ir(MenuService.MenuItems[destino]);
     }
 
-    private static readonly Dictionary<string, string> Rutas = new(StringComparer.OrdinalIgnoreCase)
+    /// <summary>Segmento de la ruta (<c>/{section}</c>); nulo en la portada.</summary>
+    [Parameter] public string? Section { get; set; }
+
+    private bool _listo;
+
+    protected override async Task OnParametersSetAsync()
     {
-        ["sobremi"] = "sobremi", ["aboutme"] = "sobremi",
-        ["experiencia"] = "experiencia", ["experience"] = "experiencia",
-        ["educacion"] = "educacion", ["education"] = "educacion",
-        ["cursos"] = "cursos", ["courses"] = "cursos",
-        ["tecnologias"] = "tecnologias", ["technologies"] = "tecnologias",
-        ["proyectos"] = "proyectos", ["projects"] = "proyectos"
-    };
+        if (Section is not null && !AppRoutes.TryGetSection(Section, out _))
+        {
+            Nav.NotFound();
+            return;
+        }
+
+        // Navegacion dentro de la propia pagina (p. ej. atras/adelante del navegador).
+        if (_listo)
+        {
+            await IrASeccionDeLaRutaAsync();
+        }
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!firstRender) return;
 
         _self = DotNetObjectReference.Create(this);
-        await JS.InvokeVoidAsync("cvNav.observe", MenuService.MenuItems.Select(i => i.Href).ToArray(), _self);
+        await JS.InvokeVoidAsync("cvNav.observe", SectionIds.All, _self);
 
-        var ruta = Nav.ToBaseRelativePath(Nav.Uri).Split('?', '#')[0].TrimEnd('/');
-        var ultimo = ruta[(ruta.LastIndexOf('/') + 1)..];
-        if (Rutas.TryGetValue(ultimo, out var id))
+        _listo = true;
+        await IrASeccionDeLaRutaAsync();
+    }
+
+    private async Task IrASeccionDeLaRutaAsync()
+    {
+        if (AppRoutes.TryGetSection(Section, out var id))
         {
             await JS.InvokeVoidAsync("cvNav.scrollTo", id);
         }

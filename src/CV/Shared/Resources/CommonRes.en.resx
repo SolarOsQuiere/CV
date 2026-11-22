@@ -150,4 +150,13 @@
   <data name="nav_proyectos" xml:space="preserve">
     <value>Projects</value>
   </data>
+  <data name="notfound_title" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="notfound_text" xml:space="preserve">
+    <value>The page you are looking for doesn't exist or has moved.</value>
+  </data>
+  <data name="notfound_back" xml:space="preserve">
+    <value>Back to home</value>
+  </data>
 </root>

@@ -2,7 +2,7 @@
 @inject IStringLocalizer<AboutRes> L
 @inject IStringLocalizer<CommonRes> Common
 
-<section class="resume-section about-section" id="sobremi">
+<section class="resume-section about-section" id="@SectionIds.SobreMi">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@Common["nav_sobremi"]) />
@@ -32,17 +32,7 @@
 </section>
 
 @code {
-    List<string> Images = new()
-    {
-        "assets/img/personales/d.jpeg",
-        "assets/img/personales/c.png",
-        "assets/img/personales/a.jpeg",
-        "assets/img/personales/b.png",
-        "assets/img/personales/e.jpeg",
-        "assets/img/personales/f.jpeg",
-        "assets/img/personales/g.jpeg",
-        "assets/img/personales/h.jpeg"
-    };
+    IReadOnlyList<string> Images = AssetPaths.Gallery;
 
     string selectedImage;
 
