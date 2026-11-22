@@ -12,11 +12,10 @@ public static class SectionIds
     public const string Educacion = "educacion";
     public const string Cursos = "cursos";
     public const string Tecnologias = "tecnologias";
-    public const string Proyectos = "proyectos";
 
     /// <summary>Secciones en el orden en que aparecen en el carrusel y en el menu.</summary>
     public static readonly IReadOnlyList<string> All =
     [
-        Inicio, SobreMi, Experiencia, Educacion, Cursos, Tecnologias, Proyectos
+        Inicio, Experiencia, Educacion, Cursos, Tecnologias, SobreMi
     ];
 }

@@ -15,12 +15,11 @@ public class MenuService(IStringLocalizer<CommonRes> L)
     public readonly List<MenuNavLink> _menuItems =
     [
              new(text: L["nav_inicio"], href: SectionIds.Inicio, isActive: true),
-             new(text: L["nav_sobremi"], href: SectionIds.SobreMi),
              new(text: L["nav_experiencia"], href: SectionIds.Experiencia),
              new(text: L["nav_educacion"], href: SectionIds.Educacion),
              new(text: L["nav_cursos"], href: SectionIds.Cursos),
              new(text: L["nav_tecnologias"], href: SectionIds.Tecnologias),
-             new(text: L["nav_proyectos"], href: SectionIds.Proyectos)
+             new(text: L["nav_sobremi"], href: SectionIds.SobreMi)
     ];
 
     public MenuNavLink GetPaginaActual()

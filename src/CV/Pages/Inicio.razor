@@ -1,12 +1,4 @@
-﻿@using CV.Shared.Resources;
-@using Microsoft.Extensions.Localization
-@using System.Globalization
-@using CV.Shared.Services
-
-@inject IStringLocalizer<HeroRes> L
-@inject IStringLocalizer<CommonRes> Common
-
-<section class="resume-section hero" id="@SectionIds.Inicio">
+﻿<section class="resume-section hero" id="@SectionIds.Inicio">
     <div class="resume-section-content hero-grid">
 
         <div class="hero-text">
@@ -57,28 +49,3 @@
 
     </div>
 </section>
-
-@code {
-    /// <summary>Muestra los botones de accion (PDF / contacto). Desactivado en el documento imprimible.</summary>
-    [Parameter] public bool ShowActions { get; set; }
-
-    private static readonly string[] Stack = ["C#", ".NET", "Blazor", "SQL", "Docker", "Jenkins", "SonarQube"];
-
-    /// <summary>Suma de todos los periodos de la seccion de experiencia, p. ej. "5 años 5 meses".</summary>
-    private string ExperienciaTotal
-    {
-        get
-        {
-            var total = PeriodosExperiencia.TotalMeses(DateTime.Today);
-            var anios = total / 12;
-            var meses = total % 12;
-
-            var texto = $"{anios} {Common[anios == 1 ? "year" : "years"]}";
-            if (meses > 0)
-            {
-                texto += $" {meses} {Common[meses == 1 ? "mes" : "meses"]}";
-            }
-            return texto;
-        }
-    }
-}

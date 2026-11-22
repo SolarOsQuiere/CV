@@ -1,8 +1,4 @@
-﻿@using CV.Shared.Resources;
-@inject IStringLocalizer<EducationRes> L
-@inject IStringLocalizer<CommonRes> Common
-
-<section class="resume-section" id="@SectionIds.Educacion">
+﻿<section class="resume-section" id="@SectionIds.Educacion">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@Common["nav_educacion"]) />
@@ -18,24 +14,3 @@
 
     </div>
 </section>
-
-@code {
-    private record Estudio(string Fecha, string Titulo, string Logo, string Descripcion, bool Destacado = false);
-
-    private List<Estudio> _estudios = [];
-
-    protected override void OnInitialized()
-    {
-        _estudios =
-        [
-            new("sept. 2017 - jul. 2022", "Universidad de La Rioja", AssetPaths.Logos.Universidad,
-                L["descripcionUniversidad"], Destacado: true),
-            new("sept. 2015 - jul. 2017", "IES Valle del Oja", AssetPaths.Logos.Instituto,
-                L["descripcionBachiller"]),
-            new("ago. 2012 - may. 2016", "Conservatorio de Haro", AssetPaths.Logos.Conservatorio,
-                L["descripcionConservatorio"]),
-            new("sept. 2011 - jul. 2015", "IES Valle del Oja", AssetPaths.Logos.Instituto,
-                L["descripcionEso"])
-        ];
-    }
-}

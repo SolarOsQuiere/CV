@@ -1,76 +1,67 @@
-@using CV.Shared.Resources;
-@inject IStringLocalizer<ProjectsRes> L
-@inject IStringLocalizer<CommonRes> Common
+<div class="about-block">
+    <h3 class="about-subtitle">@Common["nav_proyectos"]</h3>
+    <p class="about-intro">@L["proyectosIntro"]</p>
 
-<section class="resume-section" id="@SectionIds.Proyectos">
-    <div class="resume-section-content">
+    <div class="project-grid">
 
-        <PageTitleCentered Title=@(@Common["nav_proyectos"]) />
+        <!-- SolarBlazorDocs (paquete NuGet) -->
+        <article class="project-card">
+            <header class="project-head">
+                <span class="project-icon"><i class="fas fa-file-pdf"></i></span>
+                <h3>SolarBlazorDocs</h3>
+            </header>
 
-        <p class="lead text-center mb-5">@L["proyectosIntro"]</p>
+            <p class="project-desc">@L["solarBlazorDocsDesc"]</p>
 
-        <div class="project-grid">
+            <ul class="hero-chips project-tags">
+                <li>Blazor</li>
+                <li>.NET 10</li>
+                <li>NuGet</li>
+                <li>PDF</li>
+                <li>Excel</li>
+                <li>WebAssembly</li>
+            </ul>
 
-            <!-- SolarBlazorDocs (paquete NuGet) -->
-            <article class="project-card">
-                <header class="project-head">
-                    <span class="project-icon"><i class="fas fa-file-pdf"></i></span>
-                    <h3>SolarBlazorDocs</h3>
-                </header>
+            <ul class="project-pkgs">
+                <li>SolarBlazorDocs.Abstractions</li>
+                <li>SolarBlazorDocs.Pdf · SolarBlazorDocs.Excel</li>
+                <li>SolarBlazorDocs.Browser</li>
+            </ul>
 
-                <p class="project-desc">@L["solarBlazorDocsDesc"]</p>
+            <div class="project-actions">
+                <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
+                   href="@ExternalLinks.Projects.SolarBlazorDocsNuGet">
+                    <i class="fas fa-cube"></i>&nbsp;NuGet
+                </a>
+            </div>
+        </article>
 
-                <ul class="hero-chips project-tags">
-                    <li>Blazor</li>
-                    <li>.NET 10</li>
-                    <li>NuGet</li>
-                    <li>PDF</li>
-                    <li>Excel</li>
-                    <li>WebAssembly</li>
-                </ul>
+        <!-- PasswordManager -->
+        <article class="project-card">
+            <header class="project-head">
+                <span class="project-icon"><i class="fas fa-key"></i></span>
+                <h3>PasswordManager</h3>
+            </header>
 
-                <ul class="project-pkgs">
-                    <li>SolarBlazorDocs.Abstractions</li>
-                    <li>SolarBlazorDocs.Pdf · SolarBlazorDocs.Excel</li>
-                    <li>SolarBlazorDocs.Browser</li>
-                </ul>
+            <p class="project-desc">@L["passwordManagerDesc"]</p>
 
-                <div class="project-actions">
-                    <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
-                       href="@ExternalLinks.Projects.SolarBlazorDocsNuGet">
-                        <i class="fas fa-cube"></i>&nbsp;NuGet
-                    </a>
-                </div>
-            </article>
+            <ul class="hero-chips project-tags">
+                <li>Blazor WebAssembly</li>
+                <li>.NET</li>
+                <li>GitHub Pages</li>
+            </ul>
 
-            <!-- PasswordManager -->
-            <article class="project-card">
-                <header class="project-head">
-                    <span class="project-icon"><i class="fas fa-key"></i></span>
-                    <h3>PasswordManager</h3>
-                </header>
-
-                <p class="project-desc">@L["passwordManagerDesc"]</p>
-
-                <ul class="hero-chips project-tags">
-                    <li>Blazor WebAssembly</li>
-                    <li>.NET</li>
-                    <li>GitHub Pages</li>
-                </ul>
-
-                <div class="project-actions">
-                    <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
-                       href="@ExternalLinks.Projects.PasswordManagerDemo">
-                        <i class="fas fa-external-link-alt"></i>&nbsp;Demo
-                    </a>
-                    <a class="btn-cv" target="_blank" rel="noopener noreferrer"
-                       href="@ExternalLinks.Projects.PasswordManagerRepo">
-                        <i class="fab fa-github"></i>&nbsp;GitHub
-                    </a>
-                </div>
-            </article>
-
-        </div>
+            <div class="project-actions">
+                <a class="btn-cv btn-cv-primary" target="_blank" rel="noopener noreferrer"
+                   href="@ExternalLinks.Projects.PasswordManagerDemo">
+                    <i class="fas fa-external-link-alt"></i>&nbsp;Demo
+                </a>
+                <a class="btn-cv" target="_blank" rel="noopener noreferrer"
+                   href="@ExternalLinks.Projects.PasswordManagerRepo">
+                    <i class="fab fa-github"></i>&nbsp;GitHub
+                </a>
+            </div>
+        </article>
 
     </div>
-</section>
+</div>

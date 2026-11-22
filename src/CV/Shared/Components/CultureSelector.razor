@@ -1,5 +1,3 @@
-@using System.Globalization
-
 @* Selector de idioma: control segmentado ES | EN. *@
 <div class="lang-switch" role="group" aria-label="Language">
     @foreach (var (codigo, etiqueta) in Idiomas)
@@ -9,23 +7,3 @@
                 @onclick="() => Cambiar(codigo)">@etiqueta</button>
     }
 </div>
-
-@code {
-    [Inject] public NavigationManager NavManager { get; set; } = default!;
-    [Inject] public IJSRuntime JSRuntime { get; set; } = default!;
-
-    private static readonly (string Codigo, string Etiqueta)[] Idiomas = [("es", "ES"), ("en", "EN")];
-
-    private static string IdiomaActual =>
-        CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "es" ? "es" : "en";
-
-    private void Cambiar(string codigo)
-    {
-        if (codigo == IdiomaActual) return;
-
-        var js = (IJSInProcessRuntime)JSRuntime;
-        js.InvokeVoid("blazorCulture.set", codigo);
-
-        NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
-    }
-}

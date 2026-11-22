@@ -1,7 +1,4 @@
-﻿@using CV.Shared.Resources;
-@using CV.Shared.Services
-@inject IStringLocalizer<ExperienceRes> L
-@inject IStringLocalizer<CommonRes> Common
+﻿@using CV.Shared.Services
 
 <!-- Experience-->
 <section class="resume-section" id="@SectionIds.Experiencia">
@@ -43,37 +40,3 @@
 
     </div>
 </section>
-
-
-@code {
-    String TotalYearsMonthsFormatted(DateTime fechaInicio, DateTime fechaFin)
-    {
-        int totalMeses = ((fechaFin.Year - fechaInicio.Year) * 12) + fechaFin.Month - fechaInicio.Month;
-        int anios = totalMeses / 12;
-        int meses = totalMeses % 12;
-
-
-        var formattedString = anios.ToString() + " ";
-
-        if (anios == 1)
-        {
-            formattedString += Common["year"];
-        } else
-        {
-            formattedString += Common["years"];
-        }
-
-        formattedString += " " + meses + " ";
-        if (meses == 1)
-        {
-            formattedString += Common["mes"];
-        } else
-        {
-            formattedString += Common["meses"];
-        }
-
-
-        return formattedString;
-    }
-
-}

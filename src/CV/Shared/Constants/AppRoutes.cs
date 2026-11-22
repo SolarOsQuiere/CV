@@ -23,12 +23,11 @@ public static class AppRoutes
     private static readonly (string SectionId, string[] Segments)[] Aliases =
     [
         (SectionIds.Inicio,      ["Inicio", "Index"]),
-        (SectionIds.SobreMi,     ["SobreMi", "AboutMe"]),
+        (SectionIds.SobreMi,     ["SobreMi", "AboutMe", "Proyectos", "Projects"]),
         (SectionIds.Experiencia, ["Experiencia", "Experience"]),
         (SectionIds.Educacion,   ["Educacion", "Education"]),
         (SectionIds.Cursos,      ["Cursos", "Courses"]),
         (SectionIds.Tecnologias, ["Tecnologias", "Technologies"]),
-        (SectionIds.Proyectos,   ["Proyectos", "Projects"]),
     ];
 
     private static readonly Dictionary<string, string> SectionBySegment = Aliases

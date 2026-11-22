@@ -1,16 +1,16 @@
-﻿@using CV.Shared.Resources;
-@inject IStringLocalizer<AboutRes> L
-@inject IStringLocalizer<CommonRes> Common
-
-<section class="resume-section about-section" id="@SectionIds.SobreMi">
+﻿<section class="resume-section about-section" id="@SectionIds.SobreMi">
     <div class="resume-section-content">
 
         <PageTitleCentered Title=@(@Common["nav_sobremi"]) />
 
 
-        <p>@L["descripcionSobreMi1"]</p>
-        <p>@L["descripcionSobreMi2"]</p>
-        <p class="mb-4">@L["descripcionSobreMi3"]</p>
+        <Proyectos />
+
+        <div class="about-block">
+            <h3 class="about-subtitle">@L["sobremi_personal"]</h3>
+            <p>@L["descripcionSobreMi2"]</p>
+            <p class="mb-4">@L["descripcionSobreMi3"]</p>
+        </div>
 
         <div class="gallery">
             @foreach (var img in Images)
@@ -31,21 +31,6 @@
     </div>
 </section>
 
-@code {
-    IReadOnlyList<string> Images = AssetPaths.Gallery;
-
-    string selectedImage;
-
-    void OpenImage(string img)
-    {
-        selectedImage = img;
-    }
-
-    void CloseImage()
-    {
-        selectedImage = null;
-    }
-}
 
 <style>
     /* =========================

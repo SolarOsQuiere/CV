@@ -1,0 +1,51 @@
+using CV.Shared.Constants;
+using CV.Shared.Resources;
+using Microsoft.Extensions.Localization;
+
+namespace CV.Pages;
+
+public partial class Tecnologias(IStringLocalizer<TechnologiesRes> L, IStringLocalizer<CommonRes> Common)
+{
+    /// <summary>Tecnologia con sus iconos (clases de Devicon o Font Awesome).</summary>
+    private record Tech(string Nombre, string[] Iconos, string Url);
+    private record Categoria(string Titulo, string Icono, Tech[] Items);
+
+    private static readonly string[] _metodologias = ["Agile", "Scrum", "DDD & Clean Architecture", "SOLID"];
+
+    private List<Categoria> _categorias = [];
+
+    protected override void OnInitialized()
+    {
+        _categorias =
+        [
+            new(L["lenguagesProgramacion"], "fa-code",
+            [
+                new("HTML · CSS · JS", ["devicon-html5-plain colored", "devicon-css3-plain colored", "devicon-javascript-plain colored"], ExternalLinks.Tech.HtmlCssJs),
+                new("C#", ["devicon-csharp-plain colored"], ExternalLinks.Tech.CSharp),
+                new("SQL Server", ["devicon-microsoftsqlserver-plain colored"], ExternalLinks.Tech.SqlServer)
+            ]),
+            new("Frameworks", "fa-cubes",
+            [
+                new(".NET Core", ["devicon-dotnetcore-plain colored"], ExternalLinks.Tech.DotNet),
+                new(".NET Framework", ["devicon-dot-net-plain colored"], ExternalLinks.Tech.DotNet),
+                new("Blazor", ["devicon-blazor-original colored"], ExternalLinks.Tech.Blazor),
+                new("MVC", ["fas fa-layer-group"], ExternalLinks.Tech.Mvc),
+                new("EF Core", ["fas fa-database"], ExternalLinks.Tech.EfCore),
+                new("Swagger", ["devicon-swagger-plain colored"], ExternalLinks.Tech.Swagger)
+            ]),
+            new(L["svcs"], "fa-code-branch",
+            [
+                new("Git", ["devicon-git-plain colored"], ExternalLinks.Tech.Git),
+                new("GitHub", ["devicon-github-original"], ExternalLinks.Tech.GitHub),
+                new("GitLab", ["devicon-gitlab-plain colored"], ExternalLinks.Tech.GitLab)
+            ]),
+            new("QA, CI / CD", "fa-sync-alt",
+            [
+                new("Jenkins", ["devicon-jenkins-plain colored"], ExternalLinks.Tech.Jenkins),
+                new("Docker", ["devicon-docker-plain colored"], ExternalLinks.Tech.Docker),
+                new("SonarQube", ["devicon-sonarqube-original colored"], ExternalLinks.Tech.SonarQube),
+                new("Podman", ["devicon-podman-plain colored"], ExternalLinks.Tech.Podman)
+            ])
+        ];
+    }
+}

@@ -1,9 +1,3 @@
-@using CV.Shared.Services.Menu
-@implements IDisposable
-@inject MenuService MenuService
-@inject IJSRuntime JS
-@inject NavigationManager Nav
-
 <header class="site-header no-print">
     <div class="site-header-inner">
         <a class="site-brand" href="#@SectionIds.Inicio" @onclick="() => Ir(MenuService.MenuItems[0])" @onclick:preventDefault>
@@ -29,24 +23,3 @@
         </div>
     </div>
 </header>
-
-@code {
-    private bool _abierto;
-
-    protected override void OnInitialized() => MenuService.OnChange += StateHasChanged;
-
-    private async Task Ir(MenuNavLink item)
-    {
-        _abierto = false;
-        MenuService.CambiarPagina(item);
-
-        // Si la pagina actual no tiene carrusel (p. ej. la 404), se navega a la pagina principal en esa seccion.
-        var enCarrusel = await JS.InvokeAsync<bool>("cvNav.scrollTo", item.Href);
-        if (!enCarrusel)
-        {
-            Nav.NavigateTo(AppRoutes.RelativeRouteFor(item.Href));
-        }
-    }
-
-    public void Dispose() => MenuService.OnChange -= StateHasChanged;
-}

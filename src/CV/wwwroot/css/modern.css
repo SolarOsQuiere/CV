@@ -715,6 +715,18 @@ body:has(.cv-carousel) { overflow: hidden; }
 .not-found h1 { margin: 0.5rem 0 0.75rem; font-size: 2rem; text-transform: none; }
 .not-found-text { margin-bottom: 1.5rem; }
 
+/* ---------- Sobre mi (proyectos + parte personal) ---------- */
+.about-block + .about-block { margin-top: 3.5rem; }
+
+.about-subtitle {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: none;
+}
+
+.about-intro { margin-bottom: 1.5rem; }
+
 /* ---------- Impresion ---------- */
 @media print {
     body { padding: 0; }
