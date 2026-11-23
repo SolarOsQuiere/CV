@@ -2,7 +2,7 @@
 @layout BlankLayout
 
 @* Pagina oculta: no hay ningun enlace a ella en la web, solo se llega escribiendo /CV/Marina.
-   Va con noindex para que tampoco aparezca en buscadores. *@
+   Cuenta atras en tiempo real hasta el 6 de diciembre, con un reloj de arena. Va con noindex para que tampoco aparezca en buscadores. *@
 
 <PageTitle>Marina</PageTitle>
 <HeadContent>
@@ -12,39 +12,122 @@
 <div class="marina">
     <div class="marina-bg" style="background-image: url('@AssetPaths.Marina')"></div>
 
-    <div class="marina-leaves" aria-hidden="true">
-        @foreach (var hoja in Hojas)
+    @* Tiempo pasando: un reloj gigante de fondo con las agujas en camara rapida y polvo de arena dorado *@
+    <div class="marina-clock" aria-hidden="true">
+        <span class="clock-ticks"></span>
+        <span class="clock-hours"></span>
+        <span class="clock-ring"></span>
+        <span class="clock-ring clock-ring-inner"></span>
+        <span class="clock-sweep"></span>
+        <span class="hand hand-hour"></span>
+        <span class="hand hand-min"></span>
+        <span class="hand hand-sec"></span>
+        <span class="clock-center"></span>
+    </div>
+
+    <div class="marina-dust" aria-hidden="true">
+        @foreach (var mota in Polvo)
         {
-            <span class="leaf" style="--x: @(hoja.X)%; --s: @(hoja.Tamano)px; --d: @(hoja.Duracion)s; --delay: @(hoja.Retraso)s"></span>
+            <span class="mote" style="--x: @(mota.X)%; --s: @(mota.Tamano)px; --d: @(mota.Duracion)s; --delay: @(mota.Retraso)s; --dx: @(mota.Deriva)vw"></span>
         }
     </div>
 
     <main class="marina-stage">
         <figure class="marina-photo">
-            <img src="@AssetPaths.Marina" alt="Dos personas paseando por un camino del bosque en otoño" />
+            <img src="@AssetPaths.Marina" alt="Selfie de los dos en la calle, al atardecer" />
         </figure>
 
         <div class="marina-text">
             <p class="marina-eyebrow">@Nombre</p>
 
-            <h1 class="marina-title" aria-label="@Mensaje">
-                @foreach (var palabra in Palabras)
+            <div class="marina-head">
+                <button type="button" class="hourglass @(Terminado ? "is-done" : "")" @onclick="Girar"
+                        aria-label="Reloj de arena: pulsa para darle la vuelta" title="Pulsa para darle la vuelta">
+                    <svg class="hg-svg @(_girando ? "is-flipping" : "")" viewBox="0 0 120 180" aria-hidden="true" focusable="false">
+                        <defs>
+                            <clipPath id="marina-glass">
+                                <path d="M24 22 H96 C96 62 68 78 64 90 C68 102 96 118 96 158 H24 C24 118 52 102 56 90 C52 78 24 62 24 22 Z" />
+                            </clipPath>
+                            <linearGradient id="marina-sand" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#ffd27a" />
+                                <stop offset="1" stop-color="#e08a2b" />
+                            </linearGradient>
+                            <linearGradient id="marina-wood" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#e9b25c" />
+                                <stop offset="1" stop-color="#9a5b1e" />
+                            </linearGradient>
+                        </defs>
+
+                        @* Cristal *@
+                        <path class="hg-glass" d="M24 22 H96 C96 62 68 78 64 90 C68 102 96 118 96 158 H24 C24 118 52 102 56 90 C52 78 24 62 24 22 Z" />
+
+                        <g clip-path="url(#marina-glass)">
+                            @* Arena de arriba (lo que falta) *@
+                            <rect class="hg-sand" x="20" y="@N(YArenaArriba)" width="80" height="@N(AlturaArenaArriba + 1)" fill="url(#marina-sand)" />
+
+                            @* Arena de abajo (lo que ya ha pasado), con su monticulo *@
+                            <path class="hg-sand" fill="url(#marina-sand)" d="@TrazadoArenaAbajo" />
+
+                            @if (HayHilo)
+                            {
+                                @* Hilo de arena cayendo por el cuello *@
+                                <line class="hg-stream" x1="60" y1="@N(YCuello - 4)" x2="60" y2="@N(YArenaAbajo - AlturaMonticulo)" />
+                                <circle class="hg-grain" cx="60" cy="92" r="1.3" style="--delay: 0s" />
+                                <circle class="hg-grain" cx="59" cy="92" r="1.1" style="--delay: 0.35s" />
+                                <circle class="hg-grain" cx="61" cy="92" r="1.2" style="--delay: 0.7s" />
+                            }
+                        </g>
+
+                        @* Reflejo del cristal *@
+                        <path class="hg-shine" d="M31 30 C31 54 44 68 51 80" />
+
+                        @* Marco *@
+                        <rect x="16" y="22" width="4" height="136" rx="2" fill="url(#marina-wood)" />
+                        <rect x="100" y="22" width="4" height="136" rx="2" fill="url(#marina-wood)" />
+                        <rect x="12" y="8" width="96" height="14" rx="6" fill="url(#marina-wood)" />
+                        <rect x="12" y="158" width="96" height="14" rx="6" fill="url(#marina-wood)" />
+                    </svg>
+                </button>
+
+                <div class="marina-head-text">
+                    @if (Terminado)
+                    {
+                        <h1 class="marina-final">@MensajeFinal</h1>
+                    }
+                    else
+                    {
+                        <p class="marina-kicker">@Antetitulo</p>
+                        <h1 class="marina-title">@TextoFecha</h1>
+                        <p class="marina-hour">@TextoHora</p>
+                    }
+                </div>
+            </div>
+
+            @if (!Terminado)
+            {
+                <div class="tiles" role="timer" aria-label="Tiempo que falta: @_restante.Days días, @_restante.Hours horas, @_restante.Minutes minutos y @_restante.Seconds segundos">
+                    @{ var n = 0; }
+                    @foreach (var (unidad, valor) in Casillas)
+                    {
+                        <button type="button" class="tile @(unidad == _seleccionada ? "is-selected" : "")"
+                                style="--n: @(n++)" aria-pressed="@(unidad == _seleccionada)"
+                                title="Pulsa para ver el total en @Etiqueta(unidad, 2).ToLowerInvariant()"
+                                @onclick="() => Seleccionar(unidad)">
+                            <span class="tile-num" @key="valor">@valor.ToString("00")</span>
+                            <span class="tile-label">@Etiqueta(unidad, valor)</span>
+                        </button>
+                    }
+                </div>
+
+                <p class="marina-phrase">@Frase</p>
+
+                @if (_seleccionada is not null)
                 {
-                    <span class="word" aria-hidden="true">
-                        @foreach (var letra in palabra)
-                        {
-                            <span class="letter" style="--i: @letra.Indice">@letra.Caracter</span>
-                        }
-                    </span>
-                    @(" ")
+                    <p class="marina-total">
+                        En total, <strong class="total-num" @key="TotalTexto">@TotalTexto</strong> @NombreUnidadTotal
+                    </p>
                 }
-            </h1>
-
-            <span class="marina-line" aria-hidden="true"></span>
-
-            <p class="marina-typed @(_tecleando ? "is-typing" : "")" aria-label="@Frase">
-                <span aria-hidden="true">@_escrito</span><span class="caret" aria-hidden="true"></span>
-            </p>
+            }
         </div>
     </main>
 </div>
