@@ -8,20 +8,16 @@
 <DocumentLayout Language="@Language">
     <HeadContent>
         <base href="@BaseUri" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.16.0/devicon.min.css" />
-        <link rel="stylesheet" href="@(BaseUri)css/app.css" />
-        <link rel="stylesheet" href="@(BaseUri)css/styles.css" />
-        <link rel="stylesheet" href="@(BaseUri)css/modern.css" />
-        <style>
-            body { background: #fff; }
-            #sideNav, .navbar, .no-print { display: none !important; }
-            .resume-section { padding: 1.2cm 1.4cm; page-break-inside: avoid; }
-            .resume-section:not(:last-of-type) { border-bottom: 1px solid #eee; }
-            .experience-card { break-inside: avoid; }
-            img { max-width: 100%; }
-        </style>
+        <link rel="stylesheet" href="@(BaseUri)css/tokens.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/base.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/layout.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/buttons.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/cards.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/chips.css" />
+        <link rel="stylesheet" href="@(BaseUri)CV.styles.css" />
+        <link rel="stylesheet" href="@(BaseUri)css/document.css" />
     </HeadContent>
     <ChildContent>
         <Inicio />

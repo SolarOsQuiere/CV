@@ -1,0 +1,52 @@
+/* Tecnologias agrupadas por categoria, con iconos. */
+
+.tech-group { padding: 1.25rem 1.4rem; }
+.tech-wide { grid-column: 1 / -1; }
+
+.tech-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tech-tiles a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 0.4rem;
+    border: 1px solid var(--cv-line);
+    border-radius: 10px;
+    color: var(--cv-ink);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.tech-tiles a:hover {
+    border-color: var(--cv-accent);
+    background: rgba(16, 134, 197, 0.05);
+    color: var(--cv-ink);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.tech-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 40px;
+    color: var(--cv-accent-dark);
+    font-size: 2.1rem;
+    line-height: 1;
+}
+
+.tech-ico:has(i + i) { font-size: 1.35rem; }
+
+.tech-methods { margin: 0; }

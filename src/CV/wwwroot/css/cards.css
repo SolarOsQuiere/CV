@@ -1,0 +1,31 @@
+/* Superficie de tarjeta compartida (experiencia, listados, tecnologias y proyectos). */
+
+.cv-card {
+    border: 1px solid var(--cv-line);
+    border-radius: var(--cv-radius-card);
+    background: var(--cv-surface);
+    break-inside: avoid;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cv-card:hover { box-shadow: var(--cv-shadow-card); transform: translateY(-2px); }
+
+/* Cabecera de tarjeta: icono + titulo */
+.cv-card-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.cv-card-head h3 { margin: 0; font-size: 1.05rem; font-weight: 800; text-transform: none; }
+
+.cv-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(16, 134, 197, 0.12);
+    color: var(--cv-accent-dark);
+}
+
+@media print {
+    .cv-card:hover { box-shadow: none; transform: none; }
+}

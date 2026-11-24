@@ -1,0 +1,26 @@
+/* Selector de idioma: control segmentado ES | EN. */
+
+.lang-switch {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--cv-line);
+    border-radius: 999px;
+    background: #fff;
+}
+
+.lang-switch button {
+    min-width: 38px;
+    padding: 0.25rem 0.6rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--cv-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-switch button:hover { color: var(--cv-ink); }
+.lang-switch button.active { background: var(--cv-ink); color: #fff; cursor: default; }

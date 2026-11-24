@@ -1,0 +1,19 @@
+/* Titulo de seccion centrado con un subrayado de acento. */
+
+.page-title {
+    margin-bottom: 3rem;
+    color: var(--cv-ink);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.page-title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+    background: var(--cv-accent);
+}

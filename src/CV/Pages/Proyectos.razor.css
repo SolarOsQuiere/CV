@@ -1,0 +1,19 @@
+/* Proyectos destacados. */
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.5rem;
+}
+
+.project-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+.project-desc { flex-grow: 1; font-size: 0.93rem; }
+.project-tags { margin: 0 0 1rem; }
+
+.project-pkgs {
+    margin: 0 0 1.25rem;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+}
+
+.project-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }

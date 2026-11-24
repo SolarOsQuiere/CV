@@ -1,0 +1,46 @@
+/* Estructura comun de las secciones del CV y piezas que comparten varias paginas. */
+
+/* ---------- Seccion ---------- */
+section.resume-section {
+    display: block;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+    scroll-margin-top: var(--cv-header-h);
+}
+
+section.resume-section + section.resume-section { border-top: 1px solid var(--cv-line); }
+
+section.resume-section .resume-section-content { width: 100%; }
+
+/* ---------- Subapartados dentro de una seccion (Proyectos y parte personal de "Sobre mi") ---------- */
+.subsection + .subsection { margin-top: 3.5rem; }
+
+.subsection-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: none;
+}
+
+.subsection-intro { margin-bottom: 1.5rem; }
+
+/* ---------- Rejilla de tarjetas: 2 columnas, 1 en movil ---------- */
+.cv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+@media (max-width: 767.98px) {
+    .cv-grid { grid-template-columns: 1fr; }
+}
+
+/* El carrusel de la portada bloquea el scroll de la pagina (solo existe en la web, no en el PDF) */
+body:has(.cv-carousel) { overflow: hidden; }
+
+/* ---------- Impresion ---------- */
+@media print {
+    body { padding: 0; }
+    .no-print { display: none !important; }
+}

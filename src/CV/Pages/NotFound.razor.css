@@ -1,0 +1,20 @@
+/* Pagina 404. */
+
+.not-found {
+    min-height: calc(100vh - var(--cv-header-h));
+    display: flex;
+    align-items: center;
+}
+
+.not-found .resume-section-content { text-align: center; }
+
+.not-found-code {
+    margin: 0;
+    color: var(--cv-accent);
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.not-found h1 { margin: 0.5rem 0 0.75rem; font-size: 2rem; text-transform: none; }
+.not-found-text { margin-bottom: 1.5rem; }

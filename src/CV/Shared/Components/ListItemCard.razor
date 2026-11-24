@@ -1,6 +1,6 @@
 @* Elemento de un listado con logo, fecha y titulo; el resto del contenido va como contenido hijo.
    Se usa en Educacion y en Cursos. *@
-<article class="list-item @(Featured ? "list-item-featured" : "") @(Compact ? "list-item-compact" : "")">
+<article class="cv-card list-item @(Featured ? "list-item-featured" : "") @(Compact ? "list-item-compact" : "")">
     <img class="list-item-logo" src="@Logo" alt="@LogoAlt" />
     <div class="list-item-body">
         <span class="list-item-date">@Fecha</span>

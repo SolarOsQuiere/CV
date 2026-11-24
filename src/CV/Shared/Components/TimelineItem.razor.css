@@ -1,0 +1,51 @@
+/* Entrada de la linea de tiempo. El ancho del carril (--timeline-pad) lo define la lista que la contiene. */
+
+.timeline-item { position: relative; margin-bottom: 1.75rem; break-inside: avoid; }
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-dot {
+    position: absolute;
+    left: calc(-1 * var(--timeline-pad, 2rem) - 11px);
+    top: 1.6rem;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--cv-line);
+    box-sizing: content-box;
+}
+
+.timeline-item.is-current .timeline-dot {
+    background: var(--cv-accent);
+    border-color: rgba(16, 134, 197, 0.3);
+}
+
+.timeline-card { padding: 1.25rem 1.5rem; }
+
+.timeline-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+
+.timeline-logo { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; }
+
+.timeline-date {
+    margin: 0 0 0.15rem;
+    color: var(--cv-accent-dark);
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.timeline-heading h3 { margin: 0; font-size: 1.15rem; font-weight: 800; text-transform: none; }
+
+.timeline-sub {
+    margin-top: 0.15rem;
+    color: var(--cv-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* La descripcion llega como HTML desde fuera del componente */
+.timeline-body ::deep p:last-child { margin-bottom: 0; }
+
+@media (max-width: 575.98px) {
+    .timeline-card { padding: 1rem; }
+}

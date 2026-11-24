@@ -3,12 +3,12 @@
 
         <PageTitleCentered Title=@(@Common["nav_tecnologias"]) />
 
-        <div class="tech-grid">
+        <div class="cv-grid">
             @foreach (var cat in _categorias)
             {
-                <article class="tech-group">
-                    <header class="tech-group-head">
-                        <span class="tech-group-icon"><i class="fas @cat.Icono"></i></span>
+                <article class="cv-card tech-group">
+                    <header class="cv-card-head">
+                        <span class="cv-icon"><i class="fas @cat.Icono"></i></span>
                         <h3>@cat.Titulo</h3>
                     </header>
 
@@ -31,13 +31,13 @@
                 </article>
             }
 
-            <article class="tech-group tech-wide">
-                <header class="tech-group-head">
-                    <span class="tech-group-icon"><i class="fas fa-tasks"></i></span>
+            <article class="cv-card tech-group tech-wide">
+                <header class="cv-card-head">
+                    <span class="cv-icon"><i class="fas fa-tasks"></i></span>
                     <h3>@L["metodologias"]</h3>
                 </header>
 
-                <ul class="hero-chips tech-methods">
+                <ul class="chips tech-methods">
                     @foreach (var m in _metodologias)
                     {
                         <li>@m</li>

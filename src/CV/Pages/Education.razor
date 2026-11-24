@@ -3,7 +3,7 @@
 
         <PageTitleCentered Title=@(@Common["nav_educacion"]) />
 
-        <div class="list-grid">
+        <div class="cv-grid">
             @foreach (var e in _estudios)
             {
                 <ListItemCard Logo="@e.Logo" LogoAlt="@e.Titulo" Fecha="@e.Fecha" Titulo="@e.Titulo" Featured="@e.Destacado">

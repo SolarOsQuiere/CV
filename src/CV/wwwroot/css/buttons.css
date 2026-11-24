@@ -1,0 +1,22 @@
+/* Botones de la web. */
+
+.btn-cv {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid var(--cv-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--cv-ink);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-cv:hover { color: var(--cv-ink); border-color: var(--cv-accent); text-decoration: none; transform: translateY(-1px); }
+.btn-cv:disabled { opacity: 0.7; cursor: default; transform: none; }
+
+.btn-cv-primary { background: var(--cv-ink); border-color: var(--cv-ink); color: #fff; }
+.btn-cv-primary:hover { color: #fff; background: var(--cv-accent-dark); border-color: var(--cv-accent-dark); }

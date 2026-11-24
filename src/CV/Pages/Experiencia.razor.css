@@ -1,0 +1,13 @@
+/* Linea de tiempo vertical; cada entrada es un TimelineItem. */
+
+.timeline {
+    --timeline-pad: 2rem;
+    position: relative;
+    margin-left: 0.5rem;
+    padding-left: var(--timeline-pad);
+    border-left: 2px solid var(--cv-line);
+}
+
+@media (max-width: 575.98px) {
+    .timeline { --timeline-pad: 1.25rem; }
+}
