@@ -10,7 +10,7 @@
         <span class="sala-suelo"></span>
     </div>
 
-    <div class="escena @(_viajando ? "is-viajando" : "is-lista")" @onclick:stopPropagation="true">
+    <div class="escena @(_viajando ? "is-viajando" : "is-lista") @(_fichaAbierta ? "ficha-abierta" : "")" @onclick:stopPropagation="true">
         <header class="head">
             <div>
                 <h2 class="head-title"><i class="fas fa-trophy" aria-hidden="true"></i> Vitrina de logros</h2>
@@ -95,9 +95,13 @@
         </div>
 
         @* Ficha de detalle del objeto elegido *@
-        <section class="ficha" aria-live="polite">
+        <section class="ficha @(_fichaAbierta ? "is-abierta" : "")" aria-live="polite">
             @if (Seleccionado is { } elegido)
             {
+                <button type="button" class="ficha-cerrar" aria-label="Cerrar" @onclick="CerrarFicha">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+
                 var ok = elegido.EstaDesbloqueado(Ahora);
                 <span class="ficha-medalla @elegido.Rareza.Clase() @(ok ? "is-unlocked" : "is-locked")" aria-hidden="true">
                     <span @key="(_seleccionado, ok)"><i class="fas @(ok ? elegido.Icono : "fa-lock")"></i></span>

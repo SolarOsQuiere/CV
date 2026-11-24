@@ -517,6 +517,28 @@
     .tile-label { font-size: 0.6rem; letter-spacing: 0.1em; }
 }
 
+/* ---------- Rendimiento en movil y pantallas tactiles ----------
+   El desenfoque en vivo, el backdrop-filter y las capas gigantes en movimiento hacen que el movil parpadee:
+   aqui se sustituyen por versiones estaticas o mas ligeras. */
+@media (max-width: 800px), (hover: none) and (pointer: coarse) {
+    .marina-bg { filter: blur(16px) brightness(0.78) saturate(1.4); transform: scale(1.12); animation: none; }
+
+    .marina-photo { height: min(34vh, 320px); height: min(34svh, 320px); }
+
+    /* Reloj de fondo: solo las agujas se mueven (sin barrido ni anillo interior girando) */
+    .clock-sweep { display: none; }
+    .clock-ticks, .clock-ring-inner { animation: none; }
+
+    .mote:nth-child(n+15) { display: none; }
+
+    .hourglass, .hg-svg { filter: none; }
+
+    .tile, .logros-btn, .aviso { -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .tile { background: rgba(40, 32, 24, 0.55); }
+    .logros-btn { background: rgba(40, 32, 24, 0.78); }
+    .aviso { background: rgba(30, 20, 8, 0.94); }
+}
+
 /* ---------- Menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
     .marina-bg, .marina-photo img, .hand, .clock-sweep, .clock-ring-inner, .mote, .aviso, .hourglass::before, .tile-num, .total-num, .marina-final, .hg-stream, .hg-grain, .hg-svg.is-flipping { animation: none; }

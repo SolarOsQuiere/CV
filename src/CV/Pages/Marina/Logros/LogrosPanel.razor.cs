@@ -47,6 +47,9 @@ public partial class LogrosPanel : IDisposable
     private bool _abierta;
     private int? _seleccionado;
 
+    // En movil la ficha es una hoja que sube desde abajo al elegir un logro (asi se lee sin hacer scroll)
+    private bool _fichaAbierta;
+
     // Efecto a pantalla completa del ultimo logro pulsado, y objeto que se sacude si esta bloqueado
     private IReadOnlyList<Particula>? _particulas;
     private int _efectoId;
@@ -159,6 +162,7 @@ public partial class LogrosPanel : IDisposable
         }
 
         _seleccionado = indice;
+        _fichaAbierta = true;
         _vistos.Add(indice);
 
         var logro = Logros[indice];
@@ -224,6 +228,8 @@ public partial class LogrosPanel : IDisposable
         $"--x: {N(p.X)}%; --y: {N(p.Y)}%; --dx: {N(p.Dx)}vw; --h: {N(p.Altura)}vh; --r: {N(p.Giro)}deg; " +
         $"--d: {N(p.Duracion)}s; --t: {N(p.Retraso)}s; --s: {N(p.Tamano)}{(p.Glifo.Length == 0 ? "vmin" : "rem")}" +
         (p.Color is null ? "" : $"; --c: {p.Color}");
+
+    private void CerrarFicha() => _fichaAbierta = false;
 
     private void Siguiente() => Mover(+1);
 
