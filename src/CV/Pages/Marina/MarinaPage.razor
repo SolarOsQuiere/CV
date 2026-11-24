@@ -1,5 +1,6 @@
-@attribute [Route(AppRoutes.Marina)]
+@attribute [Route(MarinaConfig.Ruta)]
 @layout BlankLayout
+@using CV.Pages.Marina.Logros
 
 @* Pagina oculta: no hay ningun enlace a ella en la web, solo se llega escribiendo /CV/Marina.
    Cuenta atras en tiempo real hasta el 6 de diciembre, con un reloj de arena. Va con noindex para que tampoco aparezca en buscadores. *@
@@ -10,7 +11,7 @@
 </HeadContent>
 
 <div class="marina">
-    <div class="marina-bg" style="background-image: url('@AssetPaths.Marina')"></div>
+    <div class="marina-bg" style="background-image: url('@MarinaConfig.Foto')"></div>
 
     @* Tiempo pasando: un reloj gigante de fondo con las agujas en camara rapida y polvo de arena dorado *@
     <div class="marina-clock" aria-hidden="true">
@@ -34,7 +35,7 @@
 
     <main class="marina-stage">
         <figure class="marina-photo">
-            <img src="@AssetPaths.Marina" alt="Selfie de los dos en la calle, al atardecer" />
+            <img src="@MarinaConfig.Foto" alt="Selfie de los dos en la calle, al atardecer" />
         </figure>
 
         <div class="marina-text">
@@ -130,4 +131,24 @@
             }
         </div>
     </main>
+
+    @* Coleccion de logros: boton fijo y panel a pantalla completa *@
+    <button type="button" class="logros-btn" @onclick="AbrirLogros" aria-haspopup="dialog">
+        <i class="fas fa-trophy" aria-hidden="true"></i>
+        <span>Logros</span>
+        <span class="logros-count">@NumDesbloqueados/@Logros.Count</span>
+    </button>
+
+    @if (_logrosAbiertos)
+    {
+        <LogrosPanel Logros="Logros" Ahora="DateTimeOffset.UtcNow" OnCerrar="CerrarLogros" />
+    }
+
+    @if (_aviso is not null)
+    {
+        <div class="aviso" role="status" @key="_aviso">
+            <i class="fas fa-trophy" aria-hidden="true"></i>
+            <span><strong>¡Logro desbloqueado!</strong> @_aviso</span>
+        </div>
+    }
 </div>

@@ -1,8 +1,9 @@
 using System.Globalization;
+using CV.Pages.Marina.Logros;
 
-namespace CV.Pages;
+namespace CV.Pages.Marina;
 
-public partial class Marina : IDisposable
+public partial class MarinaPage : IDisposable
 {
     private const string Nombre = "Marina";
     private const string Antetitulo = "Tiempo para vernos";
@@ -11,14 +12,8 @@ public partial class Marina : IDisposable
     private const string Frase = "Cada vez falta menos para vernos";
     private const string MensajeFinal = "¡Hoy nos vemos!";
 
-    /// <summary>
-    /// Momento de la cita: 6 de diciembre de 2026 a las 23:00 en la peninsula (UTC+1 en invierno).
-    /// Va con su desfase para que la cuenta atras sea la misma sea cual sea la zona horaria del dispositivo.
-    /// </summary>
-    private static readonly DateTimeOffset Objetivo = new(2026, 12, 6, 23, 0, 0, TimeSpan.FromHours(1));
-
-    /// <summary>Desde cuando se cuenta: el reloj de arena empieza lleno aqui y se vacia hasta <see cref="Objetivo"/>.</summary>
-    private static readonly DateTimeOffset Inicio = new(2026, 11, 23, 0, 0, 0, TimeSpan.FromHours(1));
+    private static DateTimeOffset Objetivo => MarinaConfig.Objetivo;
+    private static DateTimeOffset Inicio => MarinaConfig.Inicio;
 
     private static readonly CultureInfo Es = CultureInfo.GetCultureInfo("es-ES");
 
@@ -56,7 +51,15 @@ public partial class Marina : IDisposable
     private Unidad? _seleccionada;
     private bool _girando;
 
+    // Coleccion de logros
+    private bool _logrosAbiertos;
+    private string? _aviso;
+    private DateTimeOffset _ultimaComprobacion = DateTimeOffset.UtcNow;
+
     private bool Terminado => _restante <= TimeSpan.Zero;
+
+    private static IReadOnlyList<Logro> Logros => MarinaLogros.Todos;
+    private int NumDesbloqueados => Logros.Count(l => l.EstaDesbloqueado(DateTimeOffset.UtcNow));
 
     /// <summary>Las cuatro casillas con su valor actual (los "huecos" del reloj: dias, horas, minutos y segundos).</summary>
     private IEnumerable<(Unidad Unidad, long Valor)> Casillas =>
@@ -121,14 +124,11 @@ public partial class Marina : IDisposable
 
                 // Tambien se repinta al llegar a cero: de 0,9 s a 0 s el segundo entero no cambia,
                 // y sin esto no apareceria el mensaje final.
-                if ((long)_restante.TotalSeconds != segundoAnterior || Terminado != terminadoAntes)
+                var hayAviso = ComprobarLogros();
+
+                if ((long)_restante.TotalSeconds != segundoAnterior || Terminado != terminadoAntes || hayAviso)
                 {
                     await InvokeAsync(StateHasChanged);
-                }
-
-                if (Terminado)
-                {
-                    break;
                 }
             }
         }
@@ -137,6 +137,47 @@ public partial class Marina : IDisposable
             // Se ha salido de la pagina.
         }
     }
+
+    /// <summary>Detecta logros que se acaban de desbloquear por fecha y prepara el aviso (se retira solo a los 7 s).</summary>
+    private bool ComprobarLogros()
+    {
+        var ahora = DateTimeOffset.UtcNow;
+        var nuevos = Logros
+            .Where(l => l.Desbloqueo is { } fecha && fecha > _ultimaComprobacion && fecha <= ahora)
+            .Select(l => l.Titulo)
+            .ToList();
+        _ultimaComprobacion = ahora;
+
+        if (nuevos.Count == 0)
+        {
+            return false;
+        }
+
+        _aviso = string.Join(" · ", nuevos);
+        _ = RetirarAvisoAsync(_aviso, _cancelar.Token);
+        return true;
+    }
+
+    private async Task RetirarAvisoAsync(string aviso, CancellationToken token)
+    {
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(7), token);
+            if (_aviso == aviso)
+            {
+                _aviso = null;
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Se ha salido de la pagina.
+        }
+    }
+
+    private void AbrirLogros() => _logrosAbiertos = true;
+
+    private void CerrarLogros() => _logrosAbiertos = false;
 
     private void Actualizar()
     {

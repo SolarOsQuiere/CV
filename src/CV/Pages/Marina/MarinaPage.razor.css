@@ -391,7 +391,73 @@
     animation: pop-in 1.2s cubic-bezier(0.2, 1.2, 0.3, 1) both;
 }
 
+/* ---------- Logros: boton y aviso ---------- */
+.logros-btn {
+    appearance: none;
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.2rem;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.logros-btn:hover { transform: translateY(-2px); border-color: #ffb347; background: rgba(255, 179, 71, 0.18); }
+.logros-btn:focus-visible { outline: 2px solid #ffb347; outline-offset: 3px; }
+.logros-btn i { color: #ffb347; }
+
+.logros-count {
+    padding: 0.05rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 179, 71, 0.22);
+    color: #ffc978;
+    font-size: 0.8rem;
+}
+
+.aviso {
+    position: absolute;
+    top: 1.2rem;
+    left: 50%;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: min(92vw, 30rem);
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(255, 179, 71, 0.7);
+    border-radius: 16px;
+    background: rgba(30, 20, 8, 0.82);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(255, 179, 71, 0.35);
+    color: #fff;
+    pointer-events: none;
+    animation: aviso 7s ease forwards;
+}
+
+.aviso i { color: #ffb347; font-size: 1.4rem; }
+.aviso strong { display: block; color: #ffc978; }
+
 /* ---------- Animaciones ---------- */
+@keyframes aviso {
+    0%   { opacity: 0; transform: translate(-50%, -24px) scale(0.92); }
+    6%   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    90%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -12px) scale(0.98); }
+}
 @keyframes photo-in { to { opacity: 1; transform: none; } }
 @keyframes ken-burns { from { transform: scale(1); } to { transform: scale(1.12) translateY(-1.5%); } }
 @keyframes bg-drift { from { transform: scale(1.08) translateX(-1.5%); } to { transform: scale(1.14) translateX(1.5%); } }
@@ -437,6 +503,8 @@
     }
 
     .marina-clock { left: 50%; top: 62%; width: min(150vw, 760px); }
+    .logros-btn { right: 50%; transform: translateX(50%); bottom: 0.9rem; }
+    .logros-btn:hover { transform: translateX(50%) translateY(-2px); }
     .marina-photo { height: min(34vh, 320px); }
     .marina-text { width: 100%; }
     .marina-head { justify-content: center; margin-top: 0.6rem; }
@@ -450,7 +518,7 @@
 
 /* ---------- Menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
-    .marina-bg, .marina-photo img, .hand, .clock-sweep, .clock-ring-inner, .mote, .hourglass::before, .tile-num, .total-num, .marina-final, .hg-stream, .hg-grain, .hg-svg.is-flipping { animation: none; }
+    .marina-bg, .marina-photo img, .hand, .clock-sweep, .clock-ring-inner, .mote, .aviso, .hourglass::before, .tile-num, .total-num, .marina-final, .hg-stream, .hg-grain, .hg-svg.is-flipping { animation: none; }
     .mote { display: none; }
     .marina-clock { opacity: 0.3; animation: none; }
     .marina-photo, .marina-eyebrow, .marina-kicker, .marina-title, .marina-hour, .hourglass, .tile, .marina-phrase {

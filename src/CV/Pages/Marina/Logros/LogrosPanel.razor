@@ -1,0 +1,43 @@
+@* Panel a pantalla completa con la coleccion de logros: dorados los conseguidos, apagados los pendientes. *@
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Colección de logros"
+     tabindex="-1" @ref="_panel" @onclick="OnCerrar" @onkeydown="Teclado">
+
+    <div class="panel" @onclick:stopPropagation="true">
+        <header class="head">
+            <div>
+                <h2 class="head-title"><i class="fas fa-trophy" aria-hidden="true"></i> Logros</h2>
+                <p class="head-count">
+                    <strong>@Desbloqueados</strong> de @Total desbloqueados
+                </p>
+            </div>
+
+            <button type="button" class="close" aria-label="Cerrar" @onclick="OnCerrar">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </header>
+
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="@Total" aria-valuenow="@Desbloqueados">
+            <span class="progress-fill" style="width: @(Porcentaje)%"></span>
+        </div>
+
+        <ul class="grid">
+            @{ var i = 0; }
+            @foreach (var logro in Logros)
+            {
+                var conseguido = logro.EstaDesbloqueado(Ahora);
+                <li class="card @(conseguido ? "is-unlocked" : "is-locked")" style="--i: @(i++)">
+                    <span class="badge" aria-hidden="true">
+                        @* El script de Font Awesome cambia cada <i> por un <svg>; con @key el icono se recrea al desbloquearse. *@
+                        <span class="badge-icon" @key="conseguido"><i class="fas @(conseguido ? logro.Icono : "fa-lock")"></i></span>
+                    </span>
+                    <h3 class="card-title">@TituloVisible(logro, conseguido)</h3>
+                    <p class="card-text">@TextoVisible(logro, conseguido)</p>
+                    @if (conseguido && logro.Desbloqueo is { } fecha)
+                    {
+                        <p class="card-date">@Fecha(fecha)</p>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>

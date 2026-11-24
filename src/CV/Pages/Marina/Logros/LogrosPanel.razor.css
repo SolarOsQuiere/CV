@@ -1,0 +1,192 @@
+/* Coleccion de logros: panel a pantalla completa sobre la pagina de Marina. */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(1rem, 4vh, 3rem) 1rem;
+    overflow-y: auto;
+    background: rgba(8, 10, 9, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    outline: none;
+    color: #fff;
+    font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    animation: overlay-in 0.35s ease both;
+}
+
+.panel {
+    width: min(100%, 64rem);
+    padding: clamp(1.1rem, 3vw, 2rem);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    animation: panel-in 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+/* ---------- Cabecera ---------- */
+.head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.head-title {
+    margin: 0;
+    font-family: "Saira Extra Condensed", "Muli", sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: none;
+    color: #fff;
+}
+
+.head-title i { margin-right: 0.35rem; color: #ffb347; font-size: 0.85em; }
+
+.head-count { margin: 0.45rem 0 0; color: rgba(255, 255, 255, 0.78); }
+.head-count strong { color: #ffc978; font-size: 1.15em; }
+
+.close {
+    appearance: none;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.close:hover { background: rgba(255, 179, 71, 0.25); border-color: #ffb347; transform: rotate(90deg); }
+.close:focus-visible { outline: 2px solid #ffb347; outline-offset: 3px; }
+
+/* ---------- Progreso ---------- */
+.progress {
+    height: 8px;
+    margin: 1.3rem 0 1.6rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.progress-fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ffb347, #ff7e5f);
+    box-shadow: 0 0 14px rgba(255, 179, 71, 0.7);
+    transition: width 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* ---------- Tarjetas ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    padding: 1.3rem 1rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    text-align: center;
+    opacity: 0;
+    animation: card-in 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) calc(0.25s + var(--i) * 80ms) forwards;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 0.8rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.6rem;
+}
+
+.badge-icon { display: inline-flex; align-items: center; justify-content: center; }
+
+.card-title {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: none;
+    color: #fff;
+}
+
+.card-text { margin: 0; font-size: 0.86rem; color: rgba(255, 255, 255, 0.78); }
+
+.card-date {
+    margin: 0.75rem 0 0;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffc978;
+}
+
+/* Bloqueado: apagado */
+.is-locked .card-title, .is-locked .card-text { opacity: 0.6; }
+.is-locked .badge { border: 1px dashed rgba(255, 255, 255, 0.25); }
+
+/* Desbloqueado: dorado y con un brillo que lo recorre */
+.is-unlocked {
+    border-color: rgba(255, 179, 71, 0.75);
+    background: linear-gradient(160deg, rgba(255, 179, 71, 0.22), rgba(255, 255, 255, 0.05));
+    box-shadow: 0 0 34px rgba(255, 179, 71, 0.18);
+}
+
+.is-unlocked .badge {
+    background: radial-gradient(circle at 30% 28%, #ffe7b0, #e0902b);
+    color: #5a3208;
+    box-shadow: 0 0 24px rgba(255, 179, 71, 0.65);
+}
+
+.is-unlocked::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: skewX(-18deg);
+    animation: shine 4.5s ease-in-out calc(1s + var(--i) * 0.4s) infinite;
+    pointer-events: none;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes overlay-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes card-in { from { opacity: 0; transform: translateY(18px) scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes shine { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+
+@media (max-width: 575.98px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+    .card { padding: 1rem 0.6rem 0.9rem; }
+    .badge { width: 56px; height: 56px; font-size: 1.3rem; }
+    .card-title { font-size: 0.95rem; }
+    .card-text { font-size: 0.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .overlay, .panel, .is-unlocked::after { animation: none; }
+    .card { opacity: 1; animation: none; }
+    .progress-fill, .close { transition: none; }
+}
