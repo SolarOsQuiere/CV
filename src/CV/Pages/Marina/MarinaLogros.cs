@@ -17,14 +17,14 @@ internal static class MarinaLogros
     public static readonly IReadOnlyList<Logro> Todos =
     [
         new("Cocineros en apuros", "Primera partida de Overcooked.", "fa-utensils",
-            Conseguido: true, Efecto: EfectoLogro.Verduras),
+            Conseguido: true, Desbloqueo: new(2026, 11, 24, 12, 0, 0, TimeSpan.FromHours(1)), Efecto: EfectoLogro.Verduras),
 
         new("Subdelegada de inglés", "Subdelegada de la clase de inglés.", "fa-chalkboard-teacher",
             Conseguido: true, Efecto: EfectoLogro.Palabras, Rareza: Rareza.Raro,
             Comentario: "Solo tu hermana y tú tenéis este logro."),
 
         new("Dormirse en una conversación", "Quedarse dormida mientras hablábamos.", "fa-bed",
-            Conseguido: true, Efecto: EfectoLogro.Sueno, Nuevo: true),
+            Conseguido: true, Desbloqueo: new(2026, 11, 25, 12, 0, 0, TimeSpan.FromHours(1)), Efecto: EfectoLogro.Sueno, Nuevo: true),
 
         new("Empieza la cuenta atrás", "Alguien se ha puesto a contar los días.", "fa-hourglass-start",
             Desbloqueo: MarinaConfig.Inicio, Efecto: EfectoLogro.Tiempo),
