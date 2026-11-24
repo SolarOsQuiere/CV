@@ -418,6 +418,7 @@
 .logros-btn:hover { transform: translateY(-2px); border-color: #ffb347; background: rgba(255, 179, 71, 0.18); }
 .logros-btn:focus-visible { outline: 2px solid #ffb347; outline-offset: 3px; }
 .logros-btn i { color: #ffb347; }
+.logros-icono { width: 1.7rem; height: 1.7rem; flex-shrink: 0; color: #ffb347; filter: drop-shadow(0 0 6px rgba(255, 179, 71, 0.55)); }
 
 .logros-count {
     padding: 0.05rem 0.55rem;

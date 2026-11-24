@@ -10,6 +10,7 @@ namespace CV.Pages.Marina.Logros;
 /// </param>
 /// <param name="Secreto">Si es <c>true</c>, mientras este bloqueado el titulo se oculta ("???").</param>
 /// <param name="Pista">Pista que se ve mientras esta bloqueado.</param>
+/// <param name="Efecto">Animacion a pantalla completa que se lanza al pulsar el logro ya desbloqueado.</param>
 public record Logro(
     string Titulo,
     string Descripcion,
@@ -17,7 +18,8 @@ public record Logro(
     bool Conseguido = false,
     DateTimeOffset? Desbloqueo = null,
     bool Secreto = false,
-    string? Pista = null)
+    string? Pista = null,
+    EfectoLogro Efecto = EfectoLogro.Confeti)
 {
     public bool EstaDesbloqueado(DateTimeOffset ahora) =>
         Conseguido || (Desbloqueo is not null && Desbloqueo <= ahora);

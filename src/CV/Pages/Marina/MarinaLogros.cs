@@ -9,6 +9,7 @@ namespace CV.Pages.Marina;
 ///   <item>Para darlo por conseguido, pon <c>Conseguido: true</c>; si quieres que se vea la fecha, anade tambien <c>Desbloqueo</c>.</item>
 ///   <item>Si le pones solo <c>Desbloqueo</c> con una fecha futura, se desbloquea solo cuando llegue (y sale un aviso).</item>
 ///   <item>Los iconos son clases de Font Awesome 5 gratuito (<c>fa-heart</c>, <c>fa-star</c>, <c>fa-music</c>...).</item>
+///   <item>Con <c>Efecto:</c> eliges la animacion que sale al pulsar el logro: Verduras, Palabras, Tiempo, Corazones, Estrellas, Notas, Flashes o Confeti (por defecto).</item>
 /// </list>
 /// </summary>
 internal static class MarinaLogros
@@ -16,21 +17,21 @@ internal static class MarinaLogros
     public static readonly IReadOnlyList<Logro> Todos =
     [
         new("Cocineros en apuros", "Primera partida de Overcooked.", "fa-utensils",
-            Conseguido: true),
+            Conseguido: true, Efecto: EfectoLogro.Verduras),
 
         new("Subdelegada de inglés", "Subdelegada de la clase de inglés.", "fa-chalkboard-teacher",
-            Conseguido: true),
+            Conseguido: true, Efecto: EfectoLogro.Palabras),
 
         new("Empieza la cuenta atrás", "Alguien se ha puesto a contar los días.", "fa-hourglass-start",
-            Desbloqueo: MarinaConfig.Inicio),
+            Desbloqueo: MarinaConfig.Inicio, Efecto: EfectoLogro.Tiempo),
 
         new("Por fin nos vemos", "Llegó el 6 de diciembre.", "fa-calendar-check",
-            Desbloqueo: MarinaConfig.Objetivo,
+            Desbloqueo: MarinaConfig.Objetivo, Efecto: EfectoLogro.Corazones,
             Pista: "Se desbloquea cuando termine la cuenta atrás."),
 
-        new("Logro secreto", "Todavía por descubrir.", "fa-star", Secreto: true),
-        new("Logro secreto", "Todavía por descubrir.", "fa-heart", Secreto: true),
-        new("Logro secreto", "Todavía por descubrir.", "fa-camera", Secreto: true),
-        new("Logro secreto", "Todavía por descubrir.", "fa-music", Secreto: true)
+        new("Logro secreto", "Todavía por descubrir.", "fa-star", Secreto: true, Efecto: EfectoLogro.Estrellas),
+        new("Logro secreto", "Todavía por descubrir.", "fa-heart", Secreto: true, Efecto: EfectoLogro.Corazones),
+        new("Logro secreto", "Todavía por descubrir.", "fa-camera", Secreto: true, Efecto: EfectoLogro.Flashes),
+        new("Logro secreto", "Todavía por descubrir.", "fa-music", Secreto: true, Efecto: EfectoLogro.Notas)
     ];
 }

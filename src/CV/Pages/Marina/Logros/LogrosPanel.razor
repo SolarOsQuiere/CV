@@ -1,18 +1,27 @@
-@* Panel a pantalla completa con la coleccion de logros: dorados los conseguidos, apagados los pendientes. *@
-<div class="overlay" role="dialog" aria-modal="true" aria-label="Colección de logros"
-     tabindex="-1" @ref="_panel" @onclick="OnCerrar" @onkeydown="Teclado">
+@* Viaje a la vitrina: un salto en el tiempo (rayos, anillos y destello) que termina en una sala de museo.
+   En la sala, la vitrina de madera con cristal abre sus puertas con una animacion CSS; dentro, cada logro es un
+   objeto sobre su peana y, al elegirlo, una ficha lo muestra en detalle. *@
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Vitrina de logros"
+     tabindex="-1" @ref="_panel" @onclick="ClicFondo" @onkeydown="Teclado">
 
-    <div class="panel" @onclick:stopPropagation="true">
+    @* La sala: pared oscura, foco de luz desde arriba y suelo en perspectiva *@
+    <div class="sala" aria-hidden="true">
+        <span class="sala-foco"></span>
+        <span class="sala-suelo"></span>
+    </div>
+
+    <div class="escena @(_viajando ? "is-viajando" : "is-lista")" @onclick:stopPropagation="true">
         <header class="head">
             <div>
-                <h2 class="head-title"><i class="fas fa-trophy" aria-hidden="true"></i> Logros</h2>
+                <h2 class="head-title"><i class="fas fa-trophy" aria-hidden="true"></i> Vitrina de logros</h2>
                 <p class="head-count">
                     <strong>@Desbloqueados</strong> de @Total desbloqueados
                 </p>
             </div>
 
-            <button type="button" class="close" aria-label="Cerrar" @onclick="OnCerrar">
-                <i class="fas fa-times" aria-hidden="true"></i>
+            <button type="button" class="close" aria-label="Volver" @onclick="OnCerrar">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Volver</span>
             </button>
         </header>
 
@@ -20,24 +29,129 @@
             <span class="progress-fill" style="width: @(Porcentaje)%"></span>
         </div>
 
-        <ul class="grid">
-            @{ var i = 0; }
-            @foreach (var logro in Logros)
-            {
-                var conseguido = logro.EstaDesbloqueado(Ahora);
-                <li class="card @(conseguido ? "is-unlocked" : "is-locked")" style="--i: @(i++)">
-                    <span class="badge" aria-hidden="true">
-                        @* El script de Font Awesome cambia cada <i> por un <svg>; con @key el icono se recrea al desbloquearse. *@
-                        <span class="badge-icon" @key="conseguido"><i class="fas @(conseguido ? logro.Icono : "fa-lock")"></i></span>
-                    </span>
-                    <h3 class="card-title">@TituloVisible(logro, conseguido)</h3>
-                    <p class="card-text">@TextoVisible(logro, conseguido)</p>
-                    @if (conseguido && logro.Desbloqueo is { } fecha)
+        <div class="vitrina @(_abierta ? "is-open" : "is-closed")">
+            <div class="marco">
+                <div class="interior" aria-hidden="@(!_abierta ? "true" : null)">
+                    <div class="luz" aria-hidden="true"></div>
+
+                    @foreach (var balda in Baldas)
                     {
-                        <p class="card-date">@Fecha(fecha)</p>
+                        <div class="balda">
+                            <ul class="objetos">
+                                @foreach (var (logro, indice) in balda)
+                                {
+                                    var conseguido = logro.EstaDesbloqueado(Ahora);
+                                    <li>
+                                        <button type="button"
+                                                class="objeto @(conseguido ? "is-unlocked" : "is-locked") @(_seleccionado == indice ? "is-selected" : "") @(_sacudido == indice ? "is-sacudir" : "")"
+                                                style="--i: @indice" tabindex="@(_abierta ? 0 : -1)"
+                                                aria-pressed="@(_seleccionado == indice)"
+                                                aria-label="@TituloVisible(logro, conseguido)"
+                                                @onclick="() => Elegir(indice)">
+                                            <span class="peana" aria-hidden="true">
+                                                <span class="medalla">
+                                                    @* El script de Font Awesome cambia cada <i> por un <svg>; con @key el icono se recrea al desbloquearse. *@
+                                                    <span class="medalla-icono" @key="conseguido"><i class="fas @(conseguido ? logro.Icono : "fa-lock")"></i></span>
+                                                </span>
+                                            </span>
+                                            <span class="placa">@TituloVisible(logro, conseguido)</span>
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                            <span class="tabla" aria-hidden="true"></span>
+                        </div>
                     }
-                </li>
+                </div>
+
+                @* Las dos puertas de cristal: giran sobre sus bisagras al abrir *@
+                <div class="puertas" aria-hidden="true" @onclick="AbrirVitrina">
+                    <div class="puerta puerta-izq"><span class="tirador"></span></div>
+                    <div class="puerta puerta-der"><span class="tirador"></span></div>
+                </div>
+
+                @if (!_abierta)
+                {
+                    <button type="button" class="abrir" @onclick="AbrirVitrina">
+                        <i class="fas fa-key" aria-hidden="true"></i>
+                        <span>Pulsa para abrir la vitrina</span>
+                    </button>
+                }
+            </div>
+
+            <div class="pie" aria-hidden="true"></div>
+        </div>
+
+        @* Ficha de detalle del objeto elegido *@
+        <section class="ficha" aria-live="polite">
+            @if (Seleccionado is { } elegido)
+            {
+                var ok = elegido.EstaDesbloqueado(Ahora);
+                <span class="ficha-medalla @(ok ? "is-unlocked" : "is-locked")" aria-hidden="true">
+                    <span @key="(_seleccionado, ok)"><i class="fas @(ok ? elegido.Icono : "fa-lock")"></i></span>
+                </span>
+
+                <div class="ficha-texto">
+                    <p class="ficha-estado @(ok ? "is-unlocked" : "")">@(ok ? "Desbloqueado" : "Pendiente")</p>
+                    <h3 class="ficha-titulo">@TituloVisible(elegido, ok)</h3>
+                    <p class="ficha-desc">@TextoVisible(elegido, ok)</p>
+                    @if (ok && elegido.Desbloqueo is { } fecha)
+                    {
+                        <p class="ficha-fecha">@Fecha(fecha)</p>
+                    }
+                </div>
+
+                <div class="ficha-nav">
+                    <button type="button" class="nav" aria-label="Logro anterior" @onclick="Anterior">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <span class="ficha-pos">@((_seleccionado ?? 0) + 1) / @Total</span>
+                    <button type="button" class="nav" aria-label="Logro siguiente" @onclick="Siguiente">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
             }
-        </ul>
+            else
+            {
+                <p class="ficha-pista">Abre la vitrina para ver los logros uno a uno.</p>
+            }
+        </section>
     </div>
+
+    @* Efecto del logro pulsado: particulas a pantalla completa (verduras saltando, palabras, corazones...) *@
+    @if (_particulas is not null)
+    {
+        <div class="efecto" aria-hidden="true" @key="_efectoId">
+            @foreach (var particula in _particulas)
+            {
+                <span class="p p-@(particula.Movimiento.ToString().ToLowerInvariant()) @(particula.Glifo.Length == 0 ? "p-vacio" : "")"
+                      style="@EstiloParticula(particula)">@particula.Glifo</span>
+            }
+        </div>
+    }
+
+    @* El viaje: se pinta encima de la sala hasta que se llega *@
+    @if (_viajando || _llegando)
+    {
+        <div class="viaje @(_viajando ? "" : "is-fin")" aria-hidden="true">
+            <div class="viaje-fondo"></div>
+
+            @foreach (var rayo in Rayos)
+            {
+                <span class="rayo" style="--a: @(N(rayo.Angulo))deg; --l: @(rayo.Largo)px; --d: @(N(rayo.Retraso))s"></span>
+            }
+
+            <span class="anillo" style="--d: 0s"></span>
+            <span class="anillo" style="--d: 0.55s"></span>
+            <span class="anillo" style="--d: 1.1s"></span>
+
+            <div class="viaje-centro">
+                <i class="fas fa-suitcase-rolling viaje-icono"></i>
+                <p class="viaje-texto">Viajando a la vitrina…</p>
+            </div>
+
+            <p class="viaje-saltar">Pulsa para saltar el viaje</p>
+            <span class="viaje-flash"></span>
+        </div>
+    }
 </div>
