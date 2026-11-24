@@ -52,13 +52,39 @@ public partial class LogrosPanel : IDisposable
     private int _efectoId;
     private int? _sacudido;
 
+    // Logros "nuevos" que ya se han pulsado (dejan de mostrar la insignia NEW)
+    private readonly HashSet<int> _vistos = [];
+
+    private bool EsNuevo(int indice) => Logros[indice].Nuevo && !_vistos.Contains(indice);
+
     private int Total => Logros.Count;
     private int Desbloqueados => Logros.Count(l => l.EstaDesbloqueado(Ahora));
     private int Porcentaje => Total == 0 ? 0 : Desbloqueados * 100 / Total;
 
-    /// <summary>Los logros repartidos por baldas, con su posicion en la coleccion.</summary>
-    private IEnumerable<(Logro Logro, int Indice)[]> Baldas =>
-        Logros.Select((logro, indice) => (Logro: logro, Indice: indice)).Chunk(PorBalda);
+    /// <summary>% de jugadores que tienen cada logro (mismo orden que <see cref="Logros"/>); fijo mientras la vitrina esta abierta.</summary>
+    private double[] _porcentajes = [];
+
+    protected override void OnInitialized() =>
+        _porcentajes = Logros.Select(l =>
+        {
+            if (l.Porcentaje is { } fijo)
+            {
+                return fijo;
+            }
+
+            var (min, max) = l.Rareza.Rango();
+            return Math.Round(min + Random.Shared.NextDouble() * (max - min), 1);
+        }).ToArray();
+
+    /// <summary>Los logros agrupados por categoria (de comun a legendario) y repartidos por baldas, con su posicion en la coleccion.</summary>
+    private IEnumerable<(Rareza Rareza, int Cantidad, IEnumerable<(Logro Logro, int Indice)[]> Baldas)> Categorias =>
+        Logros.Select((logro, indice) => (Logro: logro, Indice: indice))
+            .GroupBy(x => x.Logro.Rareza)
+            .OrderBy(g => g.Key)
+            .Select(g => (g.Key, g.Count(), g.Chunk(PorBalda)));
+
+    private string PorcentajeJugadores(int indice) =>
+        indice < _porcentajes.Length ? _porcentajes[indice].ToString("0.#", Es) : "?";
 
     private Logro? Seleccionado => _seleccionado is { } i && i < Logros.Count ? Logros[i] : null;
 
@@ -133,6 +159,7 @@ public partial class LogrosPanel : IDisposable
         }
 
         _seleccionado = indice;
+        _vistos.Add(indice);
 
         var logro = Logros[indice];
         if (logro.EstaDesbloqueado(Ahora))

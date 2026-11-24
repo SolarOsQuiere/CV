@@ -288,6 +288,7 @@
 }
 
 .objeto {
+    position: relative;
     appearance: none;
     width: 100%;
     display: flex;
@@ -350,12 +351,12 @@
 
 .is-unlocked .medalla {
     border: 0;
-    background: radial-gradient(circle at 30% 28%, #ffe7b0, #e0902b);
-    color: #5a3208;
-    box-shadow: 0 0 22px rgba(255, 179, 71, 0.6);
+    background: radial-gradient(circle at 30% 28%, var(--r-luz, #ffe7b0), var(--r-sombra, #e0902b));
+    color: var(--r-tinta, #5a3208);
+    box-shadow: 0 0 22px var(--r-brillo, rgba(255, 179, 71, 0.6));
 }
 
-.objeto.is-selected .medalla { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 0 34px rgba(255, 214, 150, 0.95); }
+.objeto.is-selected .medalla { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 0 34px var(--r-brillo, rgba(255, 214, 150, 0.95)); }
 
 /* Placa de latón con el nombre */
 .placa {
@@ -363,8 +364,8 @@
     padding: 0.18rem 0.6rem;
     overflow: hidden;
     border-radius: 4px;
-    background: linear-gradient(#e8c476, #b8893a);
-    color: #3a2408;
+    background: linear-gradient(var(--r-placa-a, #e8c476), var(--r-placa-b, #b8893a));
+    color: var(--r-placa-t, #3a2408);
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.04em;
@@ -501,9 +502,9 @@
 
 .ficha-medalla.is-unlocked {
     border: 0;
-    background: radial-gradient(circle at 30% 28%, #ffe7b0, #e0902b);
-    color: #5a3208;
-    box-shadow: 0 0 30px rgba(255, 179, 71, 0.6);
+    background: radial-gradient(circle at 30% 28%, var(--r-luz, #ffe7b0), var(--r-sombra, #e0902b));
+    color: var(--r-tinta, #5a3208);
+    box-shadow: 0 0 30px var(--r-brillo, rgba(255, 179, 71, 0.6));
 }
 
 .ficha-texto { flex: 1; min-width: 0; }
@@ -539,6 +540,100 @@
     text-transform: uppercase;
     color: #ffc978;
 }
+
+/* ---------- Categorias (rareza) ---------- */
+/* Escala de color de menos a mas: plata -> azul -> morado -> oro.
+   --rareza: acento; --r-luz/--r-sombra: degradado de la medalla; --r-tinta: icono; --r-brillo: resplandor. */
+.r-comun {
+    --rareza: #c3ccd1; --r-luz: #f1f4f5; --r-sombra: #8d9aa1; --r-tinta: #2f3a40; --r-brillo: rgba(205, 216, 222, 0.55);
+    --r-placa-a: #d5dcdf; --r-placa-b: #8f9ca3; --r-placa-t: #263035;
+}
+.r-raro {
+    --rareza: #5fb3ff; --r-luz: #bfe2ff; --r-sombra: #2f7fd1; --r-tinta: #0b2c52; --r-brillo: rgba(95, 179, 255, 0.65);
+    --r-placa-a: #8cc8ff; --r-placa-b: #2f7fd1; --r-placa-t: #06223f;
+}
+.r-epico {
+    --rareza: #c283ff; --r-luz: #e6c8ff; --r-sombra: #8a3fd6; --r-tinta: #2c0b52; --r-brillo: rgba(194, 131, 255, 0.7);
+    --r-placa-a: #cf9bff; --r-placa-b: #8a3fd6; --r-placa-t: #230a42;
+}
+.r-legendario {
+    --rareza: #ffb53d; --r-luz: #fff0b8; --r-sombra: #e8801a; --r-tinta: #5a2c04; --r-brillo: rgba(255, 181, 61, 0.8);
+    --r-placa-a: #ffd36a; --r-placa-b: #e8801a; --r-placa-t: #4a2402;
+}
+
+.categoria {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0.5rem 4px 0.2rem;
+    color: var(--rareza);
+    font-family: "Saira Extra Condensed", "Muli", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.categoria::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--rareza), transparent);
+    opacity: 0.55;
+}
+
+.categoria small {
+    order: 2;
+    padding: 0 0.5rem;
+    border: 1px solid var(--rareza);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+}
+
+.ficha-rareza {
+    margin-left: 0.6rem;
+    padding: 0.05rem 0.55rem;
+    border: 1px solid var(--rareza);
+    border-radius: 999px;
+    color: var(--rareza);
+    letter-spacing: 0.1em;
+}
+
+/* Insignia NEW: logro recien conseguido */
+.nuevo {
+    position: absolute;
+    top: -4px;
+    right: 6px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff5d6c, #ff9a3d);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 3px 10px rgba(255, 93, 108, 0.55);
+    pointer-events: none;
+    animation: nuevo-pulso 1.3s ease-in-out infinite;
+}
+
+.nuevo i, .nuevo svg { font-size: 0.6rem; }
+
+.nuevo-ficha { position: static; margin-left: 0.6rem; font-size: 0.65rem; animation: none; }
+
+@keyframes nuevo-pulso { 0%, 100% { transform: scale(1) rotate(-4deg); } 50% { transform: scale(1.12) rotate(4deg); } }
+
+.ficha-jugadores {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ficha-jugadores strong { color: #fff; }
 
 .ficha-nav { display: flex; flex-shrink: 0; align-items: center; gap: 0.6rem; }
 
@@ -735,6 +830,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .nuevo { animation: none; }
     .abrir, .is-open .peana, .is-closed .puerta::after, .ficha-medalla > span { animation: none; }
     /* Sin movimiento: no hay viaje, se va directo a la sala */
     .viaje { display: none; }

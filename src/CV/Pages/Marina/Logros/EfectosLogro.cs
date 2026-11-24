@@ -9,6 +9,8 @@ public enum EfectoLogro
     Verduras,
     /// <summary>Palabras en ingles apareciendo con un golpe por toda la pantalla.</summary>
     Palabras,
+    /// <summary>Zzz, lunas y estrellas flotando hacia arriba, como un sueno.</summary>
+    Sueno,
     /// <summary>Lluvia de numeros dorados y relojes de arena.</summary>
     Tiempo,
     /// <summary>Corazones subiendo.</summary>
@@ -68,6 +70,11 @@ public static class EfectosLogro
                 Movimiento.Pop,
                 X: Entre(4, 72), Y: Entre(8, 82), Dx: 0, Altura: 0, Giro: Entre(-12, 12),
                 Duracion: Entre(2.1, 2.8), Retraso: Entre(0, 2), Tamano: Entre(1.8, 3.6), Color: Uno(["#ffffff", "#ffe27a", "#bfe6ff"]))),
+
+            EfectoLogro.Sueno => Crear(26, _ => new Particula(
+                Uno(["💤", "Z", "z", "🌙", "✨", "⭐"]), Movimiento.Subir,
+                X: Entre(4, 94), Y: 0, Dx: Entre(-10, 10), Altura: 0, Giro: 0,
+                Duracion: Entre(3.4, 4.6), Retraso: Entre(0, 1.9), Tamano: Entre(2, 4.6), Color: "#cfd8ff")),
 
             EfectoLogro.Tiempo => Crear(46, i => new Particula(
                 i % 11 == 0 ? "⏳" : azar.Next(10).ToString(), Movimiento.Caer,
