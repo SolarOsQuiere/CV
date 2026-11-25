@@ -52,7 +52,7 @@
                                             <button type="button"
                                                     class="objeto @rareza.Clase() @(conseguido ? "is-unlocked" : "is-locked") @(_seleccionado == indice ? "is-selected" : "") @(_sacudido == indice ? "is-sacudir" : "")"
                                                     style="--i: @indice" tabindex="@(_abierta ? 0 : -1)"
-                                                    aria-pressed="@(_seleccionado == indice)"
+                                                    aria-pressed="@(_seleccionado == indice ? "true" : "false")"
                                                     aria-label="@TituloVisible(logro, conseguido)"
                                                     @onclick="() => Elegir(indice)">
                                                 <span class="peana" aria-hidden="true">

@@ -1,0 +1,213 @@
+@* Historial de red flags protegido por un buscaminas: hay que marcar con bandera todas las minas (red flags enterradas)
+   sin pisar ninguna. Al conseguirlo se abre el expediente con las red flags encontradas. *@
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Red flags"
+     tabindex="-1" @ref="_panel" @onclick="OnCerrar" @onkeydown="Teclado">
+
+    <div class="caja @(Tablero.Estado == EstadoJuego.Perdido ? "is-perdido" : "")" @onclick:stopPropagation="true">
+        <header class="head">
+            <div>
+                <h2 class="head-title"><IconoBandera class="head-icono" /> Red flags</h2>
+                <p class="head-sub">
+                    @if (_resuelto)
+                    {
+                        <text><strong>@Banderas.Count</strong> encontradas</text>
+                    }
+                    else
+                    {
+                        <text>Expediente bloqueado</text>
+                    }
+                </p>
+            </div>
+
+            <button type="button" class="close" aria-label="Volver" @onclick="OnCerrar">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Volver</span>
+            </button>
+        </header>
+
+        @if (_cargando)
+        {
+            @* Se lee si ya estaba resuelto antes de pintar nada *@
+        }
+        else if (!_resuelto)
+        {
+            <div class="cinta" aria-hidden="true"><span>Zona minada · red flags · no pisar · zona minada · red flags · no pisar</span></div>
+
+            <p class="instrucciones">
+                @if (Tablero.Minas == 1)
+                {
+                    <text>Hay <strong>1 red flag</strong> enterrada. Márcala con una bandera <IconoBandera class="inline-icono" /> sin pisar ninguna casilla mala.</text>
+                }
+                else
+                {
+                    <text>Hay <strong>@Tablero.Minas red flags</strong> enterradas. Márcalas todas con una bandera <IconoBandera class="inline-icono" /> sin pisar ninguna.</text>
+                }
+                En el móvil, mantén pulsada una casilla o usa el botón de modo.
+            </p>
+
+            <div class="barra">
+                <span class="led" aria-label="Banderas por colocar">@Contador</span>
+
+                <button type="button" class="cara" aria-label="Empezar de nuevo" title="Empezar de nuevo" @onclick="Reiniciar">@Cara</button>
+
+                <button type="button" class="modo @(_modoBandera ? "is-bandera" : "")" aria-pressed="@(_modoBandera ? "true" : "false")"
+                        title="@(_modoBandera ? "Modo bandera: cada toque marca" : "Modo pala: cada toque descubre")"
+                        @onclick="() => _modoBandera = !_modoBandera">
+                    @if (_modoBandera)
+                    {
+                        <IconoBandera class="modo-icono" />
+                    }
+                    else
+                    {
+                        <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+                    }
+                </button>
+            </div>
+
+            <div class="campo">
+                <div class="tablero" style="--cols: @Tablero.Columnas" role="grid" aria-label="Campo de red flags">
+                    @for (var f = 0; f < Tablero.Filas; f++)
+                    {
+                        for (var c = 0; c < Tablero.Columnas; c++)
+                        {
+                            var fila = f;
+                            var columna = c;
+                            var celda = Tablero[fila, columna];
+                            <button type="button" class="@ClaseCelda(celda)" style="--o: @celda.Orden"
+                                    aria-label="@EtiquetaCelda(celda)"
+                                    @key="fila * Tablero.Columnas + columna"
+                                    @onpointerdown="() => Abajo(fila, columna)"
+                                    @onpointerup="() => Cancelar()"
+                                    @onpointerleave="() => Cancelar()"
+                                    @onpointercancel="() => Cancelar()"
+                                    @onclick="() => Pulsar(fila, columna)"
+                                    @oncontextmenu="e => ClicDerecho(e, fila, columna)"
+                                    @oncontextmenu:preventDefault="true">
+                                @if (celda.Abierta && celda.Vecinas > 0)
+                                {
+                                    @celda.Vecinas
+                                }
+                                else if (celda.Bandera && !(Tablero.Estado == EstadoJuego.Perdido && !celda.Mina))
+                                {
+                                    <IconoBandera />
+                                }
+                                else if (Tablero.Estado == EstadoJuego.Perdido && celda.Mina)
+                                {
+                                    <IconoMina />
+                                }
+                                else if (Tablero.Estado == EstadoJuego.Perdido && celda.Bandera)
+                                {
+                                    <IconoMina />
+                                }
+                            </button>
+                        }
+                    }
+                </div>
+
+                @if (Tablero.Estado == EstadoJuego.Perdido)
+                {
+                    <span class="destello" aria-hidden="true"></span>
+                }
+            </div>
+
+            <p class="estado @(Tablero.Estado == EstadoJuego.Perdido ? "is-mal" : "") @(Tablero.Estado == EstadoJuego.Ganado ? "is-bien" : "")" aria-live="polite">
+                @Mensaje
+            </p>
+        }
+        else
+        {
+            <p class="lista-intro">Expediente abierto: has desenterrado todas las red flags.</p>
+
+            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="@Banderas.Count" aria-valuenow="@Banderas.Count">
+                <span class="progress-fill"></span>
+            </div>
+
+            <div class="armario">
+                <div class="interior">
+                    <h3 class="categoria"><span>Encontradas</span><small>@Banderas.Count</small></h3>
+
+                    @foreach (var balda in Baldas)
+                    {
+                        <div class="balda">
+                            <ul class="objetos">
+                                @foreach (var (flag, indice) in balda)
+                                {
+                                    <li>
+                                        <button type="button" class="objeto @(_seleccionada == indice && _fichaAbierta ? "is-selected" : "")"
+                                                style="--i: @indice" aria-pressed="@(_seleccionada == indice ? "true" : "false")"
+                                                aria-label="@flag.Titulo" @onclick="() => Elegir(indice)">
+                                            <span class="peana" aria-hidden="true">
+                                                <span class="medalla"><IconoBandera /></span>
+                                            </span>
+                                            <span class="placa">@flag.Titulo</span>
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                            <span class="tabla" aria-hidden="true"></span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* Ficha de detalle de la red flag elegida (en movil, una hoja fija abajo) *@
+            <section class="ficha @(_fichaAbierta ? "is-abierta" : "")" aria-live="polite">
+                @if (_fichaAbierta)
+                {
+                    var elegida = Seleccionada;
+                    <button type="button" class="ficha-cerrar" aria-label="Cerrar" @onclick="CerrarFicha">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+
+                    <span class="ficha-medalla" aria-hidden="true"><IconoBandera /></span>
+
+                    <div class="ficha-texto">
+                        <p class="ficha-estado">Encontrada</p>
+                        <h3 class="ficha-titulo">@elegida.Titulo</h3>
+                        <p class="ficha-desc">@elegida.Descripcion</p>
+                        <div class="ficha-pie">
+                            <span class="gravedad" title="Gravedad @elegida.Gravedad de 5" aria-label="Gravedad @elegida.Gravedad de 5">
+                                @for (var g = 1; g <= 5; g++)
+                                {
+                                    <IconoBandera class="@(g <= elegida.Gravedad ? "gr is-on" : "gr")" />
+                                }
+                            </span>
+                            @if (elegida.Fecha is { } fecha)
+                            {
+                                <span class="ficha-fecha">@Fecha(fecha)</span>
+                            }
+                        </div>
+                    </div>
+
+                    @if (Banderas.Count > 1)
+                    {
+                        <div class="ficha-nav">
+                            <button type="button" class="nav" aria-label="Anterior" @onclick="() => Mover(-1)"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                            <span class="ficha-pos">@(_seleccionada + 1) / @Banderas.Count</span>
+                            <button type="button" class="nav" aria-label="Siguiente" @onclick="() => Mover(1)"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="ficha-pista">Toca una red flag para ver su ficha.</p>
+                }
+            </section>
+
+            <button type="button" class="rejugar" @onclick="Rejugar">
+                <i class="fas fa-redo" aria-hidden="true"></i> Volver a jugar
+            </button>
+        }
+    </div>
+
+    @* Al ganar: lluvia de banderas rojas *@
+    @if (_celebrando)
+    {
+        <div class="lluvia" aria-hidden="true">
+            @for (var i = 0; i < 24; i++)
+            {
+                <IconoBandera class="llovida" style="@EstiloLluvia(i)" />
+            }
+        </div>
+    }
+</div>

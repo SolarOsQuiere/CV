@@ -33,6 +33,16 @@ Edita `MarinaLogros.cs`: anade un `Logro` o sustituye uno de los secretos. Con `
 desbloqueado; con `Desbloqueo: <fecha>` se muestra la fecha y, si es futura, se desbloquea solo cuando llegue.
 Con `Efecto: EfectoLogro.X` eliges la animacion al pulsarlo.
 
+## Red flags (buscaminas)
+
+El boton de la bandera roja abre un buscaminas: hay que marcar con bandera todas las minas (cada mina es una red flag enterrada) sin pisar
+ninguna. Al conseguirlo llueven banderas y se abre el expediente, un panel como el de los logros con todas las red flags. Se recuerda que ya
+esta resuelto (localStorage); el boton "Volver a jugar" lo repite.
+
+- `MarinaRedFlags.cs`: **la coleccion de red flags**. El buscaminas tiene tantas minas como entradas haya aqui (y el campo crece con ellas).
+- `RedFlags/`: `RedFlagsPanel` (juego y expediente), `Tablero` (logica del buscaminas), `RedFlag` (modelo) e iconos SVG.
+- Controles: toque/clic descubre; mantener pulsado, clic derecho o el boton de modo ponen bandera.
+
 ## Como eliminar la pagina
 
 1. Borra la carpeta `src/CV/Pages/Marina/`.

@@ -1,6 +1,7 @@
 @attribute [Route(MarinaConfig.Ruta)]
 @layout BlankLayout
 @using CV.Pages.Marina.Logros
+@using CV.Pages.Marina.RedFlags
 
 @* Pagina oculta: no hay ningun enlace a ella en la web, solo se llega escribiendo /CV/Marina.
    Cuenta atras en tiempo real hasta el 6 de diciembre, con un reloj de arena. Va con noindex para que tampoco aparezca en buscadores. *@
@@ -111,7 +112,7 @@
                     @foreach (var (unidad, valor) in Casillas)
                     {
                         <button type="button" class="tile @(unidad == _seleccionada ? "is-selected" : "")"
-                                style="--n: @(n++)" aria-pressed="@(unidad == _seleccionada)"
+                                style="--n: @(n++)" aria-pressed="@(unidad == _seleccionada ? "true" : "false")"
                                 title="Pulsa para ver el total en @Etiqueta(unidad, 2).ToLowerInvariant()"
                                 @onclick="() => Seleccionar(unidad)">
                             <span class="tile-num" @key="valor">@valor.ToString("00")</span>
@@ -132,22 +133,34 @@
         </div>
     </main>
 
-    @* Coleccion de logros: el boton lleva de viaje a la sala de la vitrina *@
-    <button type="button" class="logros-btn" @onclick="AbrirLogros" aria-haspopup="dialog">
-        <svg class="logros-icono" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="3" width="22" height="26" rx="2"/>
-            <path d="M16 3v26M5 12h22M5 21h22"/>
-            <path d="M9 12v-3.5M12 12V6M20 12V8M23 12V6.5M9 21v-4M13 21v-2.5M20 21v-5M24 21v-3" stroke-width="2.2"/>
-            <path d="M3 29h26" stroke-width="2.4"/>
-            <circle cx="14" cy="16.5" r=".6" fill="currentColor"/><circle cx="18" cy="16.5" r=".6" fill="currentColor"/>
-        </svg>
-        <span>Logros</span>
-        <span class="logros-count">@NumDesbloqueados/@Logros.Count</span>
-    </button>
+    @* Barra inferior: red flags (buscaminas) a la izquierda y coleccion de logros (viaje a la vitrina) a la derecha *@
+    <div class="marina-acciones">
+        <button type="button" class="flags-btn" @onclick="AbrirRedFlags" aria-haspopup="dialog" aria-label="Red flags" title="Red flags">
+            <IconoBandera class="flags-icono" />
+            <span class="flags-count">@MarinaRedFlags.Todas.Count</span>
+        </button>
+
+        <button type="button" class="logros-btn" @onclick="AbrirLogros" aria-haspopup="dialog">
+            <svg class="logros-icono" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="3" width="22" height="26" rx="2"/>
+                <path d="M16 3v26M5 12h22M5 21h22"/>
+                <path d="M9 12v-3.5M12 12V6M20 12V8M23 12V6.5M9 21v-4M13 21v-2.5M20 21v-5M24 21v-3" stroke-width="2.2"/>
+                <path d="M3 29h26" stroke-width="2.4"/>
+                <circle cx="14" cy="16.5" r=".6" fill="currentColor"/><circle cx="18" cy="16.5" r=".6" fill="currentColor"/>
+            </svg>
+            <span>Logros</span>
+            <span class="logros-count">@NumDesbloqueados/@Logros.Count</span>
+        </button>
+    </div>
 
     @if (_logrosAbiertos)
     {
         <LogrosPanel Logros="Logros" Ahora="DateTimeOffset.UtcNow" OnCerrar="CerrarLogros" />
+    }
+
+    @if (_redFlagsAbiertas)
+    {
+        <RedFlagsPanel OnCerrar="CerrarRedFlags" />
     }
 
     @if (_aviso is not null)

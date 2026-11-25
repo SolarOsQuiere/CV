@@ -1,0 +1,543 @@
+/* Red flags: buscaminas que protege el expediente. Tablero clasico con relieve sobre una zona minada. */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(0.8rem, 3vh, 2.2rem) 0.8rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 36px 36px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 36px 36px,
+        radial-gradient(ellipse at 50% 0%, #26302b 0%, #0f1512 60%, #080b09 100%);
+    outline: none;
+    color: #fff;
+    font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    animation: entrar 0.4s ease both;
+}
+
+.caja {
+    position: relative;
+    width: min(100%, 31rem);
+    /* Solo "backwards": al acabar no queda ningun transform (si no, la ficha fija se colocaria respecto a la caja) */
+    animation: subir 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) backwards;
+}
+
+/* ---------- Cabecera ---------- */
+.head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; }
+
+.head-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    font-family: "Saira Extra Condensed", "Muli", sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+}
+
+.head-title ::deep .head-icono { width: 1.6em; height: 1.6em; filter: drop-shadow(0 0 10px rgba(229, 37, 42, 0.7)); }
+
+.head-sub { margin: 0.1rem 0 0; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; }
+.head-sub strong { color: #ff6b6b; }
+
+.close {
+    appearance: none;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    height: 44px;
+    padding: 0 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.close:hover { background: rgba(229, 37, 42, 0.25); border-color: #e5252a; }
+.close:focus-visible { outline: 2px solid #ff6b6b; outline-offset: 3px; }
+
+/* ---------- Cinta de peligro ---------- */
+.cinta {
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+    padding: 0.35rem 0;
+    border-radius: 6px;
+    background: repeating-linear-gradient(-45deg, #f5c400 0 14px, #141414 14px 28px);
+}
+
+.cinta span {
+    display: block;
+    width: max-content;
+    padding: 0.1rem 0.8rem;
+    background: #f5c400;
+    color: #141414;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: cinta 14s linear infinite;
+}
+
+.instrucciones { margin: 0 0 1rem; color: rgba(255, 255, 255, 0.82); font-size: 0.92rem; }
+.instrucciones strong { color: #ff6b6b; }
+.instrucciones ::deep .inline-icono { width: 1.1em; height: 1.1em; vertical-align: -0.2em; }
+
+/* ---------- Barra: contador, carita y modo ---------- */
+.barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.7rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: #7b8791;
+    box-shadow: inset 3px 3px 0 #b8c1c8, inset -3px -3px 0 #4f5a63;
+}
+
+.led {
+    min-width: 4.2rem;
+    padding: 0.1rem 0.5rem;
+    background: #1a0505;
+    box-shadow: inset 2px 2px 0 #000, inset -2px -2px 0 #3a1010;
+    color: #ff2b2b;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(255, 43, 43, 0.8);
+}
+
+.cara, .modo {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    background: #c9d0d6;
+    box-shadow: inset 3px 3px 0 #fff, inset -3px -3px 0 #7b8791;
+    color: #222;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.cara:active, .modo:active, .modo.is-bandera { box-shadow: inset 3px 3px 0 #7b8791, inset -2px -2px 0 #e8edf0; }
+.modo { font-size: 1.2rem; }
+.modo ::deep .modo-icono { width: 1.6rem; height: 1.6rem; }
+.cara:focus-visible, .modo:focus-visible { outline: 2px solid #ff6b6b; outline-offset: 2px; }
+
+/* ---------- Tablero ---------- */
+.campo { position: relative; }
+
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 2px;
+    padding: 6px;
+    background: #7b8791;
+    box-shadow: inset 3px 3px 0 #4f5a63, inset -3px -3px 0 #b8c1c8, 0 18px 40px rgba(0, 0, 0, 0.55);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.celda {
+    appearance: none;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    background: #c9d0d6;
+    box-shadow: inset 3px 3px 0 #fff, inset -3px -3px 0 #7b8791;
+    color: #222;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: clamp(1.1rem, 5.4vw, 1.6rem);
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.celda:not(.is-abierta):hover { background: #d6dce1; }
+.celda:focus-visible { outline: 2px solid #e5252a; outline-offset: -2px; z-index: 1; }
+
+.celda ::deep svg { width: 68%; height: 68%; }
+
+.celda.is-abierta {
+    background: #b3bcc4;
+    box-shadow: inset 1px 1px 0 #8b969f;
+    cursor: default;
+    animation: destapar 0.32s ease-out calc(var(--o) * 55ms) both;
+}
+
+.celda.n-1 { color: #1c4fff; }
+.celda.n-2 { color: #0a8a1f; }
+.celda.n-3 { color: #e5252a; }
+.celda.n-4 { color: #10107a; }
+.celda.n-5 { color: #7a1010; }
+.celda.n-6 { color: #0a7a7a; }
+.celda.n-7 { color: #111; }
+.celda.n-8 { color: #666; }
+
+.celda.is-bandera ::deep svg { animation: plantar 0.3s cubic-bezier(0.2, 1.6, 0.4, 1); }
+
+/* Al perder: la mina pisada, el resto de minas y las banderas mal puestas */
+.is-perdido .celda { cursor: default; }
+.celda.is-explotada { background: #ff3b30; box-shadow: inset 1px 1px 0 #8b0000; animation: estallar 0.5s ease-out both; }
+.is-perdido .celda ::deep svg { animation: mina 0.4s ease-out calc(var(--o) * 110ms) both; }
+
+.destello {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 70, 50, 0.85), rgba(255, 70, 50, 0) 70%);
+    opacity: 0;
+    pointer-events: none;
+    animation: destello 0.7s ease-out both;
+}
+
+.is-perdido .tablero { animation: temblor 0.5s ease-in-out; }
+
+.estado { min-height: 3em; margin: 0.9rem 0 0; color: rgba(255, 255, 255, 0.72); font-size: 0.9rem; text-align: center; }
+.estado.is-mal { color: #ff8a80; font-weight: 700; }
+.estado.is-bien { color: #8be58b; font-weight: 700; }
+
+/* ---------- Expediente: panel como el de los logros ---------- */
+.lista-intro { margin: 0 0 0.8rem; color: rgba(255, 255, 255, 0.78); }
+
+.progress { height: 8px; margin-bottom: 1.1rem; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, 0.12); }
+.progress-fill { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #e5252a, #ff7e5f); box-shadow: 0 0 14px rgba(229, 37, 42, 0.7); transform-origin: 0 50%; animation: llenar 1.1s cubic-bezier(0.2, 0.9, 0.3, 1) 0.3s backwards; }
+
+.armario {
+    padding: 14px;
+    border-radius: 16px;
+    background-image:
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 2px, transparent 2px 9px),
+        linear-gradient(135deg, #4a1d1d, #2a0f0f 50%, #3d1818);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55), inset 0 0 0 2px rgba(255, 140, 140, 0.14);
+}
+
+.interior {
+    padding: 12px 8px 0;
+    border-radius: 8px;
+    background: radial-gradient(ellipse at 50% 0%, #3b1a1a, #140808 72%);
+    box-shadow: inset 0 0 44px rgba(0, 0, 0, 0.85);
+}
+
+.categoria {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 4px 0.3rem;
+    color: #ff6b6b;
+    font-family: "Saira Extra Condensed", "Muli", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.categoria::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, #ff6b6b, transparent); opacity: 0.55; }
+.categoria small { order: 2; padding: 0 0.5rem; border: 1px solid #ff6b6b; border-radius: 999px; font-size: 0.7rem; letter-spacing: 0.04em; }
+
+.balda { position: relative; padding: 4px 4px 0; }
+
+.objetos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: end;
+}
+
+.tabla {
+    display: block;
+    height: 12px;
+    margin-top: 2px;
+    border-radius: 3px;
+    background: linear-gradient(#8a3a3a, #4a1a1a);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.55);
+}
+
+.objeto {
+    appearance: none;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.2rem 0.5rem;
+    border: 0;
+    background: none;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.objeto:hover { transform: translateY(-4px); }
+.objeto.is-selected { transform: translateY(-7px) scale(1.1); }
+.objeto:focus-visible { outline: 2px solid #ff6b6b; outline-offset: 2px; border-radius: 10px; }
+
+.peana { display: inline-flex; animation: objeto-in 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) calc(0.5s + var(--i) * 120ms) backwards; }
+
+.medalla {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #ff8a80, #b3151a);
+    box-shadow: 0 0 22px rgba(229, 37, 42, 0.6);
+    transition: box-shadow 0.3s ease;
+}
+
+.medalla ::deep svg { width: 62%; height: 62%; }
+.objeto.is-selected .medalla { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35), 0 0 34px rgba(255, 107, 107, 0.9); }
+
+.placa {
+    max-width: 100%;
+    padding: 0.18rem 0.6rem;
+    overflow: hidden;
+    border-radius: 4px;
+    background: linear-gradient(#ff9a9a, #c0383d);
+    color: #2a0505;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Ficha de detalle */
+.ficha {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-height: 120px;
+    margin-top: 1.2rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+}
+
+.ficha-medalla {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #ff8a80, #b3151a);
+    box-shadow: 0 0 30px rgba(229, 37, 42, 0.6);
+    animation: ficha-pop 0.5s cubic-bezier(0.2, 1.3, 0.3, 1) both;
+}
+
+.ficha-medalla ::deep svg { width: 62%; height: 62%; }
+
+.ficha-texto { flex: 1; min-width: 0; }
+.ficha-estado { margin: 0; color: #ff9a9a; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+
+.ficha-titulo {
+    margin: 0.15rem 0 0.25rem;
+    color: #fff;
+    font-family: "Saira Extra Condensed", "Muli", sans-serif;
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: none;
+}
+
+.ficha-desc { margin: 0; color: rgba(255, 255, 255, 0.84); }
+.ficha-pista { margin: 0 auto; color: rgba(255, 255, 255, 0.6); text-align: center; }
+
+.ficha-pie { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.7rem; }
+.ficha-fecha { color: #ff9a9a; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.gravedad { display: inline-flex; gap: 0.15rem; }
+.gravedad ::deep .gr { width: 1.15rem; height: 1.15rem; opacity: 0.18; filter: grayscale(1); }
+.gravedad ::deep .gr.is-on { opacity: 1; filter: none; }
+
+.ficha-cerrar { display: none; }
+.ficha-nav { display: flex; flex-shrink: 0; align-items: center; gap: 0.6rem; }
+.ficha-pos { color: rgba(255, 255, 255, 0.6); font-size: 0.8rem; }
+
+.nav {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav:hover { background: rgba(229, 37, 42, 0.3); border-color: #e5252a; }
+
+.rejugar {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.3rem auto 0;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.rejugar:hover { border-color: #e5252a; background: rgba(229, 37, 42, 0.2); }
+.caja { padding-bottom: 1.5rem; }
+.caja > .rejugar { display: flex; }
+
+/* ---------- Lluvia de banderas al ganar ---------- */
+.lluvia { position: fixed; inset: 0; z-index: 3050; overflow: hidden; pointer-events: none; }
+
+.lluvia ::deep .llovida {
+    position: absolute;
+    top: -12%;
+    left: var(--x);
+    width: var(--s);
+    height: var(--s);
+    opacity: 0;
+    animation: llover var(--d) ease-in var(--t) both;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes entrar { from { opacity: 0; } to { opacity: 1; } }
+@keyframes subir { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes destapar { from { opacity: 0.2; transform: scale(0.55); } to { opacity: 1; transform: none; } }
+@keyframes plantar { from { transform: translateY(-60%) scale(1.5); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes mina { from { transform: scale(0); } 70% { transform: scale(1.3); } to { transform: scale(1); } }
+@keyframes estallar { 0% { transform: scale(1); } 30% { transform: scale(1.35); } 100% { transform: scale(1); } }
+@keyframes destello { 0% { opacity: 0.95; transform: scale(0.4); } 100% { opacity: 0; transform: scale(1.6); } }
+@keyframes temblor {
+    0%, 100% { transform: translate(0, 0); }
+    15% { transform: translate(-7px, 3px) rotate(-0.6deg); }
+    35% { transform: translate(6px, -4px) rotate(0.5deg); }
+    55% { transform: translate(-5px, 2px); }
+    75% { transform: translate(4px, -2px); }
+}
+@keyframes llenar { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes objeto-in { from { opacity: 0; transform: translateY(24px) scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes ficha-pop { from { transform: scale(0.5) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes tarjeta { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes desplegar { from { transform: scaleX(0) rotate(-14deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes llover {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(125vh) rotate(var(--r)); }
+}
+
+/* ---------- Movil y pantallas tactiles ---------- */
+@media (max-width: 575.98px) {
+    .close span { display: none; }
+    .close { width: 44px; padding: 0; justify-content: center; }
+    .led { font-size: 1.4rem; min-width: 3.6rem; }
+    .lluvia ::deep .llovida:nth-child(n+15) { display: none; }
+}
+
+@media (max-width: 767.98px), (hover: none) and (pointer: coarse) {
+    .objetos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 0.9rem; }
+    .medalla { width: 60px; height: 60px; }
+
+    /* Hoja de detalle fija abajo: se lee sin hacer scroll */
+    .ficha {
+        position: fixed;
+        left: 0.6rem;
+        right: 0.6rem;
+        bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+        z-index: 6;
+        max-height: 55vh;
+        max-height: 55dvh;
+        margin: 0;
+        padding: 1rem 1rem 0.9rem;
+        overflow-y: auto;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.7rem 0.9rem;
+        border-color: rgba(255, 140, 140, 0.4);
+        background: linear-gradient(160deg, #3a1515, #1a0808);
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.65);
+        transform: translateY(calc(100% + 1.5rem));
+        visibility: hidden;
+        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0s linear 0.35s;
+    }
+
+    .ficha.is-abierta { transform: none; visibility: visible; transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0s; }
+    .ficha-medalla { width: 64px; height: 64px; }
+    .ficha-texto { flex: 1 1 0; padding-right: 2rem; }
+    .ficha-nav { flex-basis: 100%; justify-content: center; }
+
+    .ficha-cerrar {
+        position: absolute;
+        top: 0.55rem;
+        right: 0.55rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .caja:has(.ficha.is-abierta) { padding-bottom: 14rem; }
+
+    .cinta span { animation: none; }
+    .head-title ::deep .head-icono { filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .overlay, .caja, .flag, .celda.is-abierta, .cinta span { animation: none; }
+    .flag ::deep .flag-icono { animation: none; }
+    .is-perdido .tablero, .destello { animation: none; }
+    .lluvia { display: none; }
+}
