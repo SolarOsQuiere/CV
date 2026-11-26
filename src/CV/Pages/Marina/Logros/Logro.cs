@@ -35,8 +35,11 @@ public record Logro(
         Conseguido || (Desbloqueo is not null && Desbloqueo <= ahora);
 }
 
-/// <summary>Categoria de un logro, de mas a menos frecuente.</summary>
-public enum Rareza { Comun, Raro, Epico, Legendario }
+/// <summary>
+/// Categoria de un logro: las cuatro primeras van de mas a menos frecuente; <see cref="Frikada"/> es una categoria aparte
+/// (con su propio color) para las frikadas. En la vitrina salen en este orden.
+/// </summary>
+public enum Rareza { Comun, Raro, Epico, Legendario, Frikada }
 
 public static class RarezaExtensions
 {
@@ -45,6 +48,7 @@ public static class RarezaExtensions
         Rareza.Comun => "Común",
         Rareza.Raro => "Raro",
         Rareza.Epico => "Épico",
+        Rareza.Frikada => "Frikada",
         _ => "Legendario"
     };
 
@@ -53,6 +57,7 @@ public static class RarezaExtensions
         Rareza.Comun => "Comunes",
         Rareza.Raro => "Raros",
         Rareza.Epico => "Épicos",
+        Rareza.Frikada => "Frikadas",
         _ => "Legendarios"
     };
 
@@ -65,6 +70,7 @@ public static class RarezaExtensions
         Rareza.Comun => (35, 82),
         Rareza.Raro => (10, 28),
         Rareza.Epico => (3, 9),
+        Rareza.Frikada => (8, 34),
         _ => (0.4, 2.4)
     };
 }

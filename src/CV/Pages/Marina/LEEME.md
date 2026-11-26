@@ -31,7 +31,7 @@ Los efectos estan en `Logros/EfectosLogro.cs` (generacion) y `Logros/LogrosPanel
 
 ## Como rellenar los logros
 
-Edita `MarinaLogros.cs`: anade un `Logro` o sustituye uno de los secretos. Con `Conseguido: true` queda
+Edita `MarinaLogros.cs`: anade un `Logro` a la lista. Con `Conseguido: true` queda
 desbloqueado; con `Desbloqueo: <fecha>` se muestra la fecha y, si es futura, se desbloquea solo cuando llegue.
 Con `Efecto: EfectoLogro.X` eliges la animacion al pulsarlo.
 
