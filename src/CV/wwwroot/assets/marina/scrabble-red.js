@@ -11,6 +11,9 @@ let peer = null;
 let conn = null;
 let carga = null;
 
+// Traza en la consola del navegador (F12): sirve para ver en que paso se queda una conexion.
+const log = (...datos) => console.info('[scrabble-red]', ...datos);
+
 function cargarPeerJs() {
     if (window.Peer) {
         return Promise.resolve();
@@ -28,14 +31,18 @@ function cargarPeerJs() {
 }
 
 function enlazar(dotnet, c) {
-    c.on('data', d => dotnet.invokeMethodAsync('AlMensaje', String(d)));
+    c.on('data', d => {
+        log('recibido', String(d).slice(0, 80));
+        dotnet.invokeMethodAsync('AlMensaje', String(d)).catch(e => log('error al pasar el mensaje a .NET', e));
+    });
     c.on('close', () => {
+        log('canal cerrado');
         if (conn === c) {
             conn = null;
-            dotnet.invokeMethodAsync('AlCierre');
+            dotnet.invokeMethodAsync('AlCierre').catch(e => log('error en AlCierre', e));
         }
     });
-    c.on('error', () => { });
+    c.on('error', e => log('error del canal', e));
 }
 
 // Anfitrion: abre la sala con ese codigo. Devuelve null si va bien o el texto del error.
@@ -44,17 +51,22 @@ export async function crear(dotnet, codigo) {
     try { await cargarPeerJs(); } catch { return 'No se pudo cargar PeerJS (¿sin internet?).'; }
 
     return new Promise(resolve => {
-        const p = new window.Peer(PREFIJO + codigo);
+        const p = new window.Peer(PREFIJO + codigo, { debug: 2 });
         peer = p;
         let abierta = false;
+        log('anfitrion: registrando la sala', PREFIJO + codigo);
 
         const timer = setTimeout(() => {
             if (!abierta) { abierta = true; resolve('No se pudo contactar con el servicio de salas.'); cerrar(); }
         }, ESPERA_MS);
 
-        p.on('open', () => { if (!abierta) { abierta = true; clearTimeout(timer); resolve(null); } });
+        p.on('open', id => {
+            log('anfitrion: sala abierta', id);
+            if (!abierta) { abierta = true; clearTimeout(timer); resolve(null); }
+        });
 
         p.on('error', e => {
+            log('anfitrion: error de PeerJS', e.type, e);
             if (!abierta) {
                 abierta = true;
                 clearTimeout(timer);
@@ -68,6 +80,7 @@ export async function crear(dotnet, codigo) {
 
         // Solo cabe un invitado: cualquier otro se rechaza.
         p.on('connection', c => {
+            log('anfitrion: entra una conexion', c.peer, 'ya habia una abierta:', !!(conn && conn.open));
             if (conn && conn.open) {
                 c.on('open', () => {
                     c.send(JSON.stringify({
@@ -90,9 +103,10 @@ export async function unirse(dotnet, codigo) {
     try { await cargarPeerJs(); } catch { return 'No se pudo cargar PeerJS (¿sin internet?).'; }
 
     return new Promise(resolve => {
-        const p = new window.Peer();
+        const p = new window.Peer({ debug: 2 });
         peer = p;
         let listo = false;
+        log('invitado: conectando con la sala', PREFIJO + codigo);
 
         const terminar = texto => {
             if (listo) { return; }
@@ -104,11 +118,16 @@ export async function unirse(dotnet, codigo) {
 
         const timer = setTimeout(() => terminar('No se encontró la sala. ¿El código es correcto y el anfitrión sigue conectado?'), ESPERA_MS);
 
-        p.on('error', e => terminar(e.type === 'peer-unavailable' ? 'No existe ninguna sala con ese código.' : `No se pudo conectar (${e.type}).`));
+        p.on('error', e => {
+            log('invitado: error de PeerJS', e.type, e);
+            terminar(e.type === 'peer-unavailable' ? 'No existe ninguna sala con ese código.' : `No se pudo conectar (${e.type}).`);
+        });
 
-        p.on('open', () => {
+        p.on('open', id => {
+            log('invitado: registrado en el servicio de salas como', id, '- abriendo canal con el anfitrion');
             const c = p.connect(PREFIJO + codigo, { reliable: true });
             c.on('open', () => {
+                log('invitado: canal abierto con el anfitrion');
                 if (listo) { return; }
                 conn = c;
                 enlazar(dotnet, c);

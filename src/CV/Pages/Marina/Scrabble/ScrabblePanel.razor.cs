@@ -19,9 +19,17 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
 
     [Inject] private NavigationManager Navegacion { get; set; } = default!;
 
+    /// <summary>Lo que se espera a que el anfitrion conteste tras conectar antes de dar la sala por perdida.</summary>
+    private static readonly TimeSpan EsperaAnfitrion = TimeSpan.FromSeconds(10);
+
     private readonly ScrabbleSesion _sesion = new(new PeerJsTransport(JS));
     private ElementReference _panel;
+    private ElementReference _campoNombre;
     private bool _enlaceCopiado;
+    private bool _eliminado;
+
+    /// <summary>Se ha llegado por un enlace de invitacion.</summary>
+    private bool Invitado => !string.IsNullOrWhiteSpace(CodigoInicial);
 
     private string _nombre = "";
     private string _codigo = "";
@@ -83,7 +91,8 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
     {
         if (firstRender)
         {
-            await _panel.FocusAsync();
+            // Con enlace de invitacion se va directo al campo del nombre.
+            await (Invitado && _campoNombre.Context is not null ? _campoNombre.FocusAsync() : _panel.FocusAsync());
         }
     }
 
@@ -126,7 +135,33 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
             : await _sesion.UnirseAsync(codigo, nombre);
 
         _conectando = false;
+
+        if (!crear && _error is null)
+        {
+            _ = EsperarAnfitrionAsync();
+        }
     }
+
+    /// <summary>
+    /// Conectar por WebRTC no basta: el anfitrion tiene que aceptar y mandar el estado. Si en unos segundos no llega nada
+    /// se avisa en vez de dejar la pantalla de entrada como si no hubiera pasado nada.
+    /// </summary>
+    private async Task EsperarAnfitrionAsync()
+    {
+        await Task.Delay(EsperaAnfitrion);
+
+        if (_eliminado || _estado is not null)
+        {
+            return;
+        }
+
+        await _sesion.CerrarAsync();
+        _error = "Te has conectado, pero el anfitrión no ha respondido. Comprueba que sigue en la sala (con la página abierta) y vuelve a intentarlo.";
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private Task TeclaNombre(KeyboardEventArgs e) =>
+        e.Key == "Enter" && _codigo.Length > 0 ? EntrarSala() : Task.CompletedTask;
 
     private static string GenerarCodigo() =>
         new(Enumerable.Range(0, LongitudCodigo).Select(_ => AlfabetoCodigo[Random.Shared.Next(AlfabetoCodigo.Length)]).ToArray());
@@ -315,5 +350,9 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
         return pendiente is { } p ? $"{p} sin confirmar, {posicion}" : $"Casilla vacía, {posicion}";
     }
 
-    public async ValueTask DisposeAsync() => await _sesion.DisposeAsync();
+    public async ValueTask DisposeAsync()
+    {
+        _eliminado = true;
+        await _sesion.DisposeAsync();
+    }
 }

@@ -329,6 +329,9 @@ public sealed class ScrabbleSesion : IAsyncDisposable
         }
     }
 
+    /// <summary>Cierra el canal (sin avisar por <see cref="Cerrada"/>): se vuelve a poder entrar o crear sala.</summary>
+    public Task CerrarAsync() => _transporte.CloseAsync();
+
     public async ValueTask DisposeAsync()
     {
         _transporte.MessageReceived -= AlMensajeAsync;

@@ -31,8 +31,14 @@
             <section class="lobby">
                 <label class="campo">
                     <span>Tu nombre</span>
-                    <input type="text" maxlength="20" autocomplete="off" @bind="_nombre" @bind:event="oninput" placeholder="Cómo te ven en la sala" />
+                    <input type="text" maxlength="20" autocomplete="off" @ref="_campoNombre" @bind="_nombre" @bind:event="oninput"
+                           @onkeydown="TeclaNombre" placeholder="Cómo te ven en la sala" />
                 </label>
+
+                @if (Invitado)
+                {
+                    <p class="invitado">Te han invitado a la sala <strong>@_codigo</strong>. Escribe tu nombre y pulsa <strong>Entrar</strong> (o Intro).</p>
+                }
 
                 <div class="lobby-opciones">
                     <div class="opcion">
@@ -45,7 +51,7 @@
                         <h3>Entrar con código</h3>
                         <input type="text" maxlength="12" autocomplete="off" class="input-codigo" @bind="_codigo" @bind:event="oninput"
                                placeholder="CÓDIGO" @onkeydown="TeclaCodigo" />
-                        <button type="button" class="btn" disabled="@_conectando" @onclick="EntrarSala">Entrar</button>
+                        <button type="button" class="btn @(Invitado ? "btn-principal" : "")" disabled="@_conectando" @onclick="EntrarSala">Entrar</button>
                     </div>
                 </div>
 
