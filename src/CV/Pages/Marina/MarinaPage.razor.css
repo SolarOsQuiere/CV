@@ -595,3 +595,43 @@
         animation: none;
     }
 }
+
+/* ---------- Boton del Scrabble (entre las banderas y los logros) ---------- */
+.scrabble-btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.scrabble-btn:hover { transform: translateY(-2px); border-color: #6fd49a; background: rgba(60, 170, 110, 0.22); }
+.scrabble-btn:focus-visible { outline: 2px solid #6fd49a; outline-offset: 3px; }
+
+.scrabble-icono {
+    display: inline-grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 5px;
+    background: #f1d9a4;
+    color: #3b2a10;
+    font-weight: 900;
+    box-shadow: 0 2px 0 #a07b3a;
+}
+
+@media (max-width: 720px) {
+    .scrabble-btn { padding: 0.55rem 0.8rem; font-size: 0.85rem; }
+}

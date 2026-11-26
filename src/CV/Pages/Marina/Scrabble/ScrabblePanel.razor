@@ -1,0 +1,195 @@
+@* Scrabble para dos, sin servidor: uno crea la sala (su navegador lleva la partida), el otro entra con el codigo.
+   Tablero, atril y chat en tiempo real. La red esta en ScrabbleSesion.cs / wwwroot/assets/marina/scrabble-red.js. *@
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Scrabble"
+     tabindex="-1" @ref="_panel" @onclick="OnCerrar" @onkeydown="Teclado">
+
+    <div class="caja" @onclick:stopPropagation="true">
+        <header class="head">
+            <div>
+                <h2 class="head-title">Scrabble</h2>
+                <p class="head-sub">
+                    @if (_estado is { } e)
+                    {
+                        <text>Sala <strong class="codigo">@e.Sala</strong></text>
+                    }
+                    else
+                    {
+                        <text>Para dos, en tiempo real</text>
+                    }
+                </p>
+            </div>
+
+            <button type="button" class="close" aria-label="Volver" @onclick="OnCerrar">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                <span>Volver</span>
+            </button>
+        </header>
+
+        @if (_estado is null)
+        {
+            @* ---------- Entrada: crear sala o entrar con un codigo ---------- *@
+            <section class="lobby">
+                <label class="campo">
+                    <span>Tu nombre</span>
+                    <input type="text" maxlength="20" autocomplete="off" @bind="_nombre" @bind:event="oninput" placeholder="Cómo te ven en la sala" />
+                </label>
+
+                <div class="lobby-opciones">
+                    <div class="opcion">
+                        <h3>Crear sala</h3>
+                        <p>Se genera un código que le pasas a la otra persona.</p>
+                        <button type="button" class="btn btn-principal" disabled="@_conectando" @onclick="CrearSala">Crear sala</button>
+                    </div>
+
+                    <div class="opcion">
+                        <h3>Entrar con código</h3>
+                        <input type="text" maxlength="12" autocomplete="off" class="input-codigo" @bind="_codigo" @bind:event="oninput"
+                               placeholder="CÓDIGO" @onkeydown="TeclaCodigo" />
+                        <button type="button" class="btn" disabled="@_conectando" @onclick="EntrarSala">Entrar</button>
+                    </div>
+                </div>
+
+                @if (_conectando)
+                {
+                    <p class="estado" aria-live="polite">Conectando…</p>
+                }
+                else if (_error is not null)
+                {
+                    <p class="estado is-mal" role="alert">@_error</p>
+                }
+
+                <p class="nota">
+                    No hay servidor propio: los dos navegadores se conectan directamente (WebRTC con PeerJS). El servicio público de PeerJS
+                    solo sirve para que se encuentren. El código solo vale mientras quien creó la sala tenga la página abierta.
+                </p>
+            </section>
+        }
+        else
+        {
+            <div class="partida">
+                <div class="zona-juego">
+                    @* Marcador *@
+                    <div class="marcador">
+                        @for (var i = 0; i < _estado.Jugadores.Count; i++)
+                        {
+                            var jugador = _estado.Jugadores[i];
+                            <div class="jugador @(_estado.Fase == FasePartida.Jugando && _estado.Turno == i ? "is-turno" : "") @(jugador.Conectado ? "" : "is-fuera")">
+                                <span class="jugador-nombre">@jugador.Nombre@(i == _estado.Yo ? " (tú)" : "")</span>
+                                <span class="jugador-puntos">@jugador.Puntos</span>
+                            </div>
+                        }
+                        @if (_estado.Jugadores.Count < 2)
+                        {
+                            <div class="jugador is-fuera"><span class="jugador-nombre">Esperando…</span><span class="jugador-puntos">–</span></div>
+                        }
+                    </div>
+
+                    <p class="estado @(EsMiTurno ? "is-bien" : "")" aria-live="polite">@Mensaje</p>
+
+                    @* Tablero *@
+                    <div class="tablero" role="grid" aria-label="Tablero">
+                        @for (var f = 0; f < Reglas.Tamano; f++)
+                        {
+                            for (var c = 0; c < Reglas.Tamano; c++)
+                            {
+                                var fila = f;
+                                var columna = c;
+                                var fija = _estado.Tablero[fila][columna];
+                                var pendiente = _pendientes.TryGetValue((fila, columna), out var indice) ? _estado.Atril[indice] : (char?)null;
+                                <button type="button" class="@ClaseCasilla(fila, columna, fija, pendiente)" @key="fila * Reglas.Tamano + columna"
+                                        aria-label="@EtiquetaCasilla(fila, columna, fija, pendiente)"
+                                        @onclick="() => PulsarCasilla(fila, columna)">
+                                    @if (fija != Reglas.Vacia)
+                                    {
+                                        <span class="letra">@fija</span><span class="valor">@Reglas.Puntos(fija)</span>
+                                    }
+                                    else if (pendiente is { } p)
+                                    {
+                                        <span class="letra">@p</span><span class="valor">@Reglas.Puntos(p)</span>
+                                    }
+                                    else
+                                    {
+                                        @TextoPremio(fila, columna)
+                                    }
+                                </button>
+                            }
+                        }
+                    </div>
+
+                    @* Atril y acciones *@
+                    @if (_estado.Fase != FasePartida.Esperando)
+                    {
+                        <div class="atril" aria-label="Tu atril">
+                            @for (var i = 0; i < _estado.Atril.Length; i++)
+                            {
+                                var posicion = i;
+                                var letra = _estado.Atril[posicion];
+                                var usada = _pendientes.ContainsValue(posicion);
+                                <button type="button" class="ficha @(_seleccion == posicion ? "is-sel" : "") @(_cambio.Contains(posicion) ? "is-cambio" : "") @(usada ? "is-usada" : "")"
+                                        disabled="@usada" aria-pressed="@((_seleccion == posicion || _cambio.Contains(posicion)) ? "true" : "false")"
+                                        aria-label="Ficha @letra, @Reglas.Puntos(letra) puntos" @onclick="() => PulsarFicha(posicion)">
+                                    <span class="letra">@letra</span><span class="valor">@Reglas.Puntos(letra)</span>
+                                </button>
+                            }
+                        </div>
+
+                        @if (_estado.Fase == FasePartida.Jugando)
+                        {
+                            <div class="acciones">
+                                @if (_modoCambio)
+                                {
+                                    <button type="button" class="btn btn-principal" disabled="@(!EsMiTurno || _cambio.Count == 0)" @onclick="ConfirmarCambio">Cambiar @_cambio.Count</button>
+                                    <button type="button" class="btn" @onclick="CancelarCambio">Cancelar</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-principal" disabled="@(!EsMiTurno || _pendientes.Count == 0)" @onclick="JugarAsync">Jugar</button>
+                                    <button type="button" class="btn" disabled="@(_pendientes.Count == 0)" @onclick="Recoger">Recoger</button>
+                                    <button type="button" class="btn" disabled="@(!EsMiTurno || _estado.FichasEnBolsa < Reglas.TamanoAtril)" @onclick="EmpezarCambio"
+                                            title="Cambiar fichas (hacen falta al menos 7 en la bolsa)">Cambiar</button>
+                                    <button type="button" class="btn" disabled="@(!EsMiTurno)" @onclick="PasarAsync">Pasar</button>
+                                }
+                            </div>
+                        }
+                    }
+
+                    @if (_error is not null)
+                    {
+                        <p class="estado is-mal" role="alert">@_error</p>
+                    }
+
+                    @if (_estado.Fase == FasePartida.Terminada)
+                    {
+                        <button type="button" class="btn btn-principal nueva" @onclick="NuevaPartidaAsync">Nueva partida</button>
+                    }
+
+                    <p class="nota">Bolsa: @_estado.FichasEnBolsa fichas. Las palabras no se validan con diccionario: confiad el uno en el otro.</p>
+                </div>
+
+                @* Chat en tiempo real *@
+                <aside class="chat" aria-label="Chat de la sala">
+                    <h3 class="chat-titulo">Chat</h3>
+                    <ul class="chat-lista">
+                        @* Va del mas nuevo al mas viejo: con column-reverse la lista se queda siempre abajo sin JavaScript *@
+                        @for (var i = _chat.Count - 1; i >= 0; i--)
+                        {
+                            var mensaje = _chat[i];
+                            <li class="msg @(mensaje.EsSistema ? "is-sistema" : "") @(mensaje.Autor == MiNombre && !mensaje.EsSistema ? "is-mio" : "")">
+                                @if (!mensaje.EsSistema)
+                                {
+                                    <strong>@mensaje.Autor</strong>
+                                }
+                                <span>@mensaje.Texto</span>
+                            </li>
+                        }
+                    </ul>
+                    <form class="chat-form" @onsubmit="EnviarChatAsync">
+                        <input type="text" maxlength="300" autocomplete="off" placeholder="Escribe un mensaje" aria-label="Mensaje"
+                               @bind="_textoChat" @bind:event="oninput" />
+                        <button type="submit" class="btn btn-principal" aria-label="Enviar"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                    </form>
+                </aside>
+            </div>
+        }
+    </div>
+</div>

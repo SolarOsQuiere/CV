@@ -2,6 +2,7 @@
 @layout BlankLayout
 @using CV.Pages.Marina.Logros
 @using CV.Pages.Marina.RedFlags
+@using CV.Pages.Marina.Scrabble
 
 @* Pagina oculta: no hay ningun enlace a ella en la web, solo se llega escribiendo /CV/Marina.
    Cuenta atras en tiempo real hasta el 6 de diciembre, con un reloj de arena. Va con noindex para que tampoco aparezca en buscadores. *@
@@ -140,6 +141,11 @@
             <span class="flags-count">@MarinaRedFlags.Todas.Count</span>
         </button>
 
+        <button type="button" class="scrabble-btn" @onclick="AbrirScrabble" aria-haspopup="dialog" aria-label="Scrabble" title="Scrabble para dos">
+            <span class="scrabble-icono" aria-hidden="true">S</span>
+            <span>Scrabble</span>
+        </button>
+
         <button type="button" class="logros-btn" @onclick="AbrirLogros" aria-haspopup="dialog">
             <svg class="logros-icono" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="5" y="3" width="22" height="26" rx="2"/>
@@ -156,6 +162,11 @@
     @if (_logrosAbiertos)
     {
         <LogrosPanel Logros="Logros" Ahora="DateTimeOffset.UtcNow" OnCerrar="CerrarLogros" />
+    }
+
+    @if (_scrabbleAbierto)
+    {
+        <ScrabblePanel OnCerrar="CerrarScrabble" />
     }
 
     @if (_redFlagsAbiertas)

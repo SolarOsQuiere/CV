@@ -11,8 +11,10 @@ el resto de la web: solo se llega escribiendo `/CV/Marina`.
 | `MarinaConfig.cs` | Ruta, foto y fechas (el momento de la cita y el inicio de la cuenta) |
 | `MarinaLogros.cs` | **La coleccion de logros: aqui se va rellenando** |
 | `Logros/` | La vitrina de logros (`LogrosPanel`: mueble de madera con puertas de cristal que se abren en 3D, objetos sobre peanas y ficha de detalle) y el modelo `Logro` |
+| `Scrabble/` | El Scrabble para dos con chat (ver abajo) |
 | `BlankLayout.razor` | Layout sin cabecera ni menu (solo lo usa esta pagina) |
 | `../../wwwroot/assets/marina/marina.webp` | La foto |
+| `../../wwwroot/assets/marina/scrabble-red.js` | La red del Scrabble (PeerJS) |
 
 ## La vitrina
 
@@ -42,6 +44,17 @@ esta resuelto (localStorage); el boton "Volver a jugar" lo repite.
 - `MarinaRedFlags.cs`: **la coleccion de red flags**. El buscaminas tiene tantas minas como entradas haya aqui (y el campo crece con ellas).
 - `RedFlags/`: `RedFlagsPanel` (juego y expediente), `Tablero` (logica del buscaminas), `RedFlag` (modelo) e iconos SVG.
 - Controles: toque/clic descubre; mantener pulsado, clic derecho o el boton de modo ponen bandera.
+
+## Scrabble (dos jugadores + chat)
+
+El boton "Scrabble" abre un Scrabble en castellano para dos personas, con chat en tiempo real. **No hay servidor propio**: todo corre en el navegador (WebAssembly).
+
+- Uno pulsa **Crear sala** (se genera un codigo de 5 caracteres, client side) y se lo pasa al otro, que lo escribe en **Entrar**. Maximo dos por sala; una tercera persona recibe "sala llena".
+- Los dos navegadores se conectan directamente por WebRTC con **PeerJS** (`wwwroot/assets/marina/scrabble-red.js`, carga `peerjs@1.5.4` desde jsDelivr). El servicio publico gratuito de PeerJS solo sirve para que se encuentren; el codigo de sala es el id del anfitrion. Sin TURN, alguna red muy restrictiva (algunas corporativas o 4G) puede no conectar.
+- Quien crea la sala es el **anfitrion**: la partida vive en su navegador (`Scrabble/SalaPartida.cs`, la autoridad) y el invitado solo manda acciones y recibe su estado (el atril del rival nunca viaja). Si el anfitrion cierra la pagina, la sala se acaba; si se va el invitado, puede volver con el mismo nombre.
+- `Scrabble/ScrabbleSesion.cs`: red y reparto de estado/chat. `Scrabble/Modelo/`: reglas (`Reglas.cs`) y mensajes (`Mensajes.cs`). `Scrabble/ScrabblePanel.*`: la interfaz.
+- Reglas: 95 fichas (sin CH/LL/RR ni comodines), premios clasicos, primera palabra por el centro, bonus de 50 por usar las 7 fichas, cambiar fichas, pasar (4 pases seguidos acaban la partida) y fin al vaciar atril y bolsa. **No hay diccionario**: las palabras no se validan.
+- Controles: toca una ficha del atril y luego una casilla; toca una ficha colocada para recogerla; **Jugar** confirma.
 
 ## Como eliminar la pagina
 

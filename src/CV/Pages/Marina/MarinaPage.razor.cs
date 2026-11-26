@@ -53,6 +53,7 @@ public partial class MarinaPage : IDisposable
 
     // Coleccion de logros
     private bool _redFlagsAbiertas;
+    private bool _scrabbleAbierto;
     private bool _logrosAbiertos;
     private string? _aviso;
     private DateTimeOffset _ultimaComprobacion = DateTimeOffset.UtcNow;
@@ -181,6 +182,10 @@ public partial class MarinaPage : IDisposable
     private void AbrirRedFlags() => _redFlagsAbiertas = true;
 
     private void CerrarRedFlags() => _redFlagsAbiertas = false;
+
+    private void AbrirScrabble() => _scrabbleAbierto = true;
+
+    private void CerrarScrabble() => _scrabbleAbierto = false;
 
     private void CerrarLogros() => _logrosAbiertos = false;
 
