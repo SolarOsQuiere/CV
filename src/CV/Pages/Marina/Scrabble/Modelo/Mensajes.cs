@@ -12,6 +12,7 @@ public record JugadorVista(string Nombre, int Puntos, bool Conectado);
 /// </summary>
 /// <param name="Tablero">15 filas de 15 caracteres; <see cref="Reglas.Vacia"/> marca la casilla vacia.</param>
 /// <param name="Turno">Indice (en <paramref name="Jugadores"/>) de quien juega.</param>
+/// <param name="NumeroTurno">Jugadas hechas en la partida; el cliente lo devuelve en cada movimiento para detectar los desactualizados.</param>
 public record EstadoPartida(
     string Sala,
     FasePartida Fase,
@@ -21,30 +22,16 @@ public record EstadoPartida(
     int Yo,
     int Turno,
     int FichasEnBolsa,
-    string? Aviso);
+    string? Aviso,
+    int NumeroTurno);
 
 public record MensajeChat(string Autor, string Texto, DateTimeOffset Hora, bool EsSistema);
 
-/// <summary>Lo que viaja por el canal entre los dos navegadores (como JSON). Cada <see cref="Tipos"/> usa solo los campos que le tocan.</summary>
-public record Paquete(
-    string Tipo,
-    string? Texto = null,
-    string? Nombre = null,
-    List<Colocacion>? Fichas = null,
-    EstadoPartida? Estado = null,
-    MensajeChat? Chat = null);
-
-/// <summary>Valores de <see cref="Paquete.Tipo"/>. Invitado -> anfitrion: hola, jugar, pasar, cambiar, nueva, chat. Anfitrion -> invitado: estado, chat, error, rechazo, lleno.</summary>
-public static class Tipos
+/// <summary>Contenido de <c>PLAYER_MOVE</c>: una accion de juego del Scrabble.</summary>
+public record Movimiento(string Accion, List<Colocacion>? Fichas = null, string? Letras = null)
 {
-    public const string Hola = "hola";
     public const string Jugar = "jugar";
     public const string Pasar = "pasar";
     public const string Cambiar = "cambiar";
-    public const string Nueva = "nueva";
-    public const string Chat = "chat";
-    public const string Estado = "estado";
-    public const string Error = "error";
-    public const string Rechazo = "rechazo";
-    public const string Lleno = "lleno";
+    public const string NuevaPartida = "nueva";
 }

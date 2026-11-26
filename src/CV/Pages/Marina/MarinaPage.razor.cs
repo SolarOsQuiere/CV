@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using System.Globalization;
 using CV.Pages.Marina.Logros;
 
@@ -102,7 +103,16 @@ public partial class MarinaPage : IDisposable
     /// <summary>Hay hilo de arena mientras quede arena arriba y la cita no haya llegado.</summary>
     private bool HayHilo => !Terminado && AlturaArenaArriba > 0.3;
 
-    protected override void OnInitialized() => Actualizar();
+    /// <summary>Codigo de sala del enlace de invitacion del Scrabble (<c>/Marina?sala=ABC12</c>): abre el Scrabble con el codigo puesto.</summary>
+    [SupplyParameterFromQuery(Name = "sala")]
+    [Parameter]
+    public string? Sala { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Actualizar();
+        _scrabbleAbierto = !string.IsNullOrWhiteSpace(Sala);
+    }
 
     protected override void OnAfterRender(bool firstRender)
     {

@@ -70,7 +70,10 @@ export async function crear(dotnet, codigo) {
         p.on('connection', c => {
             if (conn && conn.open) {
                 c.on('open', () => {
-                    c.send(JSON.stringify({ tipo: 'lleno', texto: 'La sala está llena (máximo dos jugadores).' }));
+                    c.send(JSON.stringify({
+                        type: 'JOIN_REJECTED', roomId: codigo, messageId: 'sala-llena', turn: 0,
+                        payload: { text: 'La sala está llena (máximo dos jugadores).' }
+                    }));
                     setTimeout(() => c.close(), 300);
                 });
                 return;

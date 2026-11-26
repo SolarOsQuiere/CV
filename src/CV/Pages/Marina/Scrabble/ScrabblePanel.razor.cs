@@ -14,8 +14,14 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
     /// <summary>Se lanza al volver (boton, fondo o tecla Escape).</summary>
     [Parameter] public EventCallback OnCerrar { get; set; }
 
-    private readonly ScrabbleSesion _sesion = new(JS);
+    /// <summary>Codigo de sala que viene en el enlace de invitacion (<c>?sala=ABC12</c>): se deja escrito en "Entrar con código".</summary>
+    [Parameter] public string? CodigoInicial { get; set; }
+
+    [Inject] private NavigationManager Navegacion { get; set; } = default!;
+
+    private readonly ScrabbleSesion _sesion = new(new PeerJsTransport(JS));
     private ElementReference _panel;
+    private bool _enlaceCopiado;
 
     private string _nombre = "";
     private string _codigo = "";
@@ -45,8 +51,28 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
         _ => _estado.Aviso ?? ""
     };
 
+    /// <summary>Enlace para pasarle a la otra persona: abre la pagina con el codigo ya puesto.</summary>
+    private string EnlaceInvitacion => Navegacion.ToAbsoluteUri($"{MarinaConfig.Ruta.TrimStart('/')}?sala={Uri.EscapeDataString(_estado?.Sala ?? "")}").ToString();
+
+    private async Task CopiarEnlaceAsync()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("navigator.clipboard.writeText", EnlaceInvitacion);
+            _enlaceCopiado = true;
+            StateHasChanged();
+            await Task.Delay(2000);
+            _enlaceCopiado = false;
+        }
+        catch (Exception)
+        {
+            // Sin permiso para el portapapeles: el enlace sigue visible para copiarlo a mano.
+        }
+    }
+
     protected override void OnInitialized()
     {
+        _codigo = (CodigoInicial ?? "").Trim().ToUpperInvariant();
         _sesion.EstadoRecibido += e => _ = InvokeAsync(() => AlEstado(e));
         _sesion.ChatRecibido += m => _ = InvokeAsync(() => AlChat(m));
         _sesion.ErrorRecibido += texto => _ = InvokeAsync(() => { _error = texto; StateHasChanged(); });

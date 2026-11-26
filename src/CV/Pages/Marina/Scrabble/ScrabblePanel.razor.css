@@ -252,3 +252,6 @@ input[type="text"]:focus-visible { outline: 2px solid #ffd27a; outline-offset: 1
 @media (prefers-reduced-motion: reduce) {
     .ficha, .btn { transition: none; }
 }
+
+.invitacion { display: flex; gap: 0.5rem; margin: 0 0 0.8rem; }
+.invitacion input { flex: 1; min-width: 0; font-size: 0.85rem; }

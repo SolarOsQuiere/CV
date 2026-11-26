@@ -86,6 +86,14 @@
 
                     <p class="estado @(EsMiTurno ? "is-bien" : "")" aria-live="polite">@Mensaje</p>
 
+                    @if (_sesion.EsAnfitrion && _estado.Jugadores.Count < 2)
+                    {
+                        <div class="invitacion">
+                            <input type="text" readonly aria-label="Enlace de invitación" value="@EnlaceInvitacion" @onfocus="CopiarEnlaceAsync" />
+                            <button type="button" class="btn btn-principal" @onclick="CopiarEnlaceAsync">@(_enlaceCopiado ? "¡Copiado!" : "Copiar enlace")</button>
+                        </div>
+                    }
+
                     @* Tablero *@
                     <div class="tablero" role="grid" aria-label="Tablero">
                         @for (var f = 0; f < Reglas.Tamano; f++)
