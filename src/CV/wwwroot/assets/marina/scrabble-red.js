@@ -5,11 +5,13 @@
 
 const PREFIJO = 'marina-scrabble-';
 const VERSION_PEERJS = '1.5.4';
-const ESPERA_MS = 12000;
+// Margen para registrarse en el servicio de salas y negociar la conexion (con datos moviles o TURN puede tardar).
+const ESPERA_MS = 20000;
 
 let peer = null;
 let conn = null;
 let carga = null;
+let pantalla = null;
 
 // Traza en la consola del navegador (F12): sirve para ver en que paso se queda una conexion.
 const log = (...datos) => console.info('[scrabble-red]', ...datos);
@@ -45,6 +47,28 @@ function enlazar(dotnet, c) {
     c.on('error', e => log('error del canal', e));
 }
 
+// El anfitrion (sobre todo en movil) pierde la sala si la pantalla se apaga o la pestana pasa a segundo plano:
+// se pide que la pantalla siga encendida mientras dure la sala (y se vuelve a pedir al volver a la pestana).
+async function mantenerPantalla() {
+    try {
+        if ('wakeLock' in navigator && document.visibilityState === 'visible') {
+            pantalla = await navigator.wakeLock.request('screen');
+            log('pantalla: se mantiene encendida mientras la sala este abierta');
+        }
+    } catch (e) {
+        log('pantalla: no se pudo mantener encendida', e?.message ?? e);
+    }
+}
+
+let esAnfitrion = false;
+
+// El navegador libera el bloqueo al ocultar la pestana: al volver hay que pedirlo otra vez.
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && esAnfitrion && (!pantalla || pantalla.released)) {
+        mantenerPantalla();
+    }
+});
+
 // Anfitrion: abre la sala con ese codigo. Devuelve null si va bien o el texto del error.
 export async function crear(dotnet, codigo) {
     cerrar();
@@ -62,7 +86,13 @@ export async function crear(dotnet, codigo) {
 
         p.on('open', id => {
             log('anfitrion: sala abierta', id);
-            if (!abierta) { abierta = true; clearTimeout(timer); resolve(null); }
+            if (!abierta) {
+                abierta = true;
+                clearTimeout(timer);
+                esAnfitrion = true;
+                mantenerPantalla();
+                resolve(null);
+            }
         });
 
         p.on('error', e => {
@@ -116,7 +146,11 @@ export async function unirse(dotnet, codigo) {
             if (texto !== null) { cerrar(); }
         };
 
-        const timer = setTimeout(() => terminar('No se encontró la sala. ¿El código es correcto y el anfitrión sigue conectado?'), ESPERA_MS);
+        // Si se llego a pedir el canal y no se abrio, la sala existe pero no hay camino directo entre los dos (la red).
+        let pedido = false;
+        const timer = setTimeout(() => terminar(pedido
+            ? 'Se encontró la sala, pero no se pudo abrir la conexión directa con el anfitrión. Suele ser la red (datos móviles, wifi de empresa o un cortafuegos que bloquea WebRTC): prueba con los dos en la misma wifi.'
+            : 'No se pudo contactar con el servicio de salas.'), ESPERA_MS);
 
         p.on('error', e => {
             log('invitado: error de PeerJS', e.type, e);
@@ -126,6 +160,17 @@ export async function unirse(dotnet, codigo) {
         p.on('open', id => {
             log('invitado: registrado en el servicio de salas como', id, '- abriendo canal con el anfitrion');
             const c = p.connect(PREFIJO + codigo, { reliable: true });
+            pedido = true;
+
+            // Estado de la negociacion WebRTC (checking -> connected, o failed si ninguna ruta funciona).
+            c.peerConnection?.addEventListener('iceconnectionstatechange', () => {
+                const estado = c.peerConnection.iceConnectionState;
+                log('invitado: estado ICE', estado);
+                if (estado === 'failed') {
+                    terminar('No se pudo establecer la conexión directa con el anfitrión: la red de alguno de los dos bloquea WebRTC. Prueba con los dos en la misma wifi.');
+                }
+            });
+
             c.on('open', () => {
                 log('invitado: canal abierto con el anfitrion');
                 if (listo) { return; }
@@ -148,6 +193,9 @@ export function cerrar() {
     const p = peer;
     conn = null;
     peer = null;
+    esAnfitrion = false;
+    try { pantalla?.release(); } catch { /* ya liberada */ }
+    pantalla = null;
     try { c?.close(); } catch { /* ya cerrada */ }
     try { p?.destroy(); } catch { /* ya destruido */ }
 }
