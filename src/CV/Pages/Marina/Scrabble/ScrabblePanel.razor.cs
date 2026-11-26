@@ -22,7 +22,7 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
     /// <summary>Lo que se espera a que el anfitrion conteste tras conectar antes de dar la sala por perdida.</summary>
     private static readonly TimeSpan EsperaAnfitrion = TimeSpan.FromSeconds(10);
 
-    private readonly ScrabbleSesion _sesion = new(new PeerJsTransport(JS));
+    private readonly ScrabbleSesion _sesion = new(new JsGameTransport(JS, "./assets/marina/scrabble-mqtt.js"));
     private ElementReference _panel;
     private ElementReference _campoNombre;
     private bool _enlaceCopiado;
@@ -143,7 +143,7 @@ public partial class ScrabblePanel(IJSRuntime JS) : IAsyncDisposable
     }
 
     /// <summary>
-    /// Conectar por WebRTC no basta: el anfitrion tiene que aceptar y mandar el estado. Si en unos segundos no llega nada
+    /// Conectar con el broker no basta: el anfitrion tiene que aceptar y mandar el estado. Si en unos segundos no llega nada
     /// se avisa en vez de dejar la pantalla de entrada como si no hubiera pasado nada.
     /// </summary>
     private async Task EsperarAnfitrionAsync()

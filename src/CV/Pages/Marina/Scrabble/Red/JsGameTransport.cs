@@ -4,13 +4,15 @@ using Microsoft.JSInterop;
 namespace CV.Pages.Marina.Scrabble;
 
 /// <summary>
-/// <see cref="IGameTransport"/> sobre WebRTC con PeerJS (<c>wwwroot/assets/marina/scrabble-red.js</c>).
-/// PeerJS pone el servicio publico de senalizacion (SDP/ICE, solo para que se encuentren); los datos van directos entre navegadores.
+/// <see cref="IGameTransport"/> que delega el envio y la recepcion en un modulo de JavaScript
+/// (hoy <c>wwwroot/assets/marina/scrabble-mqtt.js</c>: broker MQTT publico por WebSocket). El modulo exporta
+/// <c>crear</c>, <c>unirse</c>, <c>enviar</c> y <c>cerrar</c> y llama a <see cref="AlMensaje"/> y <see cref="AlCierre"/>.
+/// Para cambiar de tecnologia (WebRTC, otro broker...) basta con otro modulo con esas cuatro funciones.
 /// </summary>
-public sealed class PeerJsTransport(IJSRuntime js) : IGameTransport
+public sealed class JsGameTransport(IJSRuntime js, string rutaModulo) : IGameTransport
 {
     private IJSObjectReference? _modulo;
-    private DotNetObjectReference<PeerJsTransport>? _referencia;
+    private DotNetObjectReference<JsGameTransport>? _referencia;
 
     public event Func<GameMessage, Task>? MessageReceived;
 
@@ -65,7 +67,7 @@ public sealed class PeerJsTransport(IJSRuntime js) : IGameTransport
     private async Task PrepararAsync()
     {
         _referencia ??= DotNetObjectReference.Create(this);
-        _modulo ??= await js.InvokeAsync<IJSObjectReference>("import", "./assets/marina/scrabble-red.js");
+        _modulo ??= await js.InvokeAsync<IJSObjectReference>("import", rutaModulo);
     }
 
     /// <summary>Llega texto del otro navegador: se descarta lo demasiado grande, lo que no es JSON y lo que no trae tipo.</summary>

@@ -1,5 +1,5 @@
 @* Scrabble para dos, sin servidor: uno crea la sala (su navegador lleva la partida), el otro entra con el codigo.
-   Tablero, atril y chat en tiempo real. La red esta en ScrabbleSesion.cs / wwwroot/assets/marina/scrabble-red.js. *@
+   Tablero, atril y chat en tiempo real. La red esta en ScrabbleSesion.cs / Red/ / wwwroot/assets/marina/scrabble-mqtt.js. *@
 <div class="overlay" role="dialog" aria-modal="true" aria-label="Scrabble"
      tabindex="-1" @ref="_panel" @onclick="OnCerrar" @onkeydown="Teclado">
 
@@ -65,8 +65,8 @@
                 }
 
                 <p class="nota">
-                    No hay servidor propio: los dos navegadores se conectan directamente (WebRTC con PeerJS). El servicio público de PeerJS
-                    solo sirve para que se encuentren. El código solo vale mientras quien creó la sala tenga la página abierta.
+                    No hay servidor propio: los mensajes pasan por un broker MQTT público y gratuito, que no es privado (quien lo mire puede ver
+                    las salas). El código solo vale mientras quien creó la sala tenga la página abierta.
                 </p>
             </section>
         }
