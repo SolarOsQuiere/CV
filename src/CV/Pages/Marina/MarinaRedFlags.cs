@@ -16,6 +16,8 @@ internal static class MarinaRedFlags
     public static readonly IReadOnlyList<RedFlag> Todas =
     [
         new("Jugar a los juegos de LinkedIn", "Tener 60 años y jugar a los juegos de LinkedIn.", Gravedad: 2),
-        new("Ser de Galicia", "Ser de Galicia.", Gravedad: 1)
+        new("Ser de Galicia", "Ser de Galicia.", Gravedad: 1),
+        new("Prohibido descansar", "No se puede dormir aquí.", Gravedad: 3),
+        new("Sarcástica por naturaleza", "Ser sarcástica por naturaleza.", Gravedad: 2)
     ];
 }
