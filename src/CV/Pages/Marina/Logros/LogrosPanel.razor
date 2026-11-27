@@ -50,7 +50,7 @@
                                         var conseguido = logro.EstaDesbloqueado(Ahora);
                                         <li>
                                             <button type="button"
-                                                    class="objeto @rareza.Clase() @(conseguido ? "is-unlocked" : "is-locked") @(_seleccionado == indice ? "is-selected" : "") @(_sacudido == indice ? "is-sacudir" : "")"
+                                                    class="objeto @rareza.Clase() @(conseguido ? "is-unlocked" : "is-locked") @(_seleccionado == indice ? "is-selected" : "")"
                                                     style="--i: @indice" tabindex="@(_abierta ? 0 : -1)"
                                                     aria-pressed="@(_seleccionado == indice ? "true" : "false")"
                                                     aria-label="@TituloVisible(logro, conseguido)"

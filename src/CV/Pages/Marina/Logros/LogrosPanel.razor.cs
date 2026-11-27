@@ -50,10 +50,9 @@ public partial class LogrosPanel : IDisposable
     // En movil la ficha es una hoja que sube desde abajo al elegir un logro (asi se lee sin hacer scroll)
     private bool _fichaAbierta;
 
-    // Efecto a pantalla completa del ultimo logro pulsado, y objeto que se sacude si esta bloqueado
+    // Efecto a pantalla completa del ultimo logro pulsado (solo los desbloqueados lo tienen: los bloqueados no se animan)
     private IReadOnlyList<Particula>? _particulas;
     private int _efectoId;
-    private int? _sacudido;
 
     // Logros "nuevos" que ya se han pulsado (dejan de mostrar la insignia NEW)
     private readonly HashSet<int> _vistos = [];
@@ -152,7 +151,8 @@ public partial class LogrosPanel : IDisposable
     }
 
     /// <summary>
-    /// Pulsar un objeto lo elige y lanza su efecto en pantalla; si esta bloqueado, el objeto se sacude.
+    /// Pulsar un objeto lo elige y, si esta desbloqueado, lanza su efecto en pantalla. Si esta bloqueado solo se elige
+    /// (se ve su ficha), sin ninguna animacion.
     /// </summary>
     private void Elegir(int indice)
     {
@@ -169,10 +169,6 @@ public partial class LogrosPanel : IDisposable
         if (logro.EstaDesbloqueado(Ahora))
         {
             LanzarEfecto(logro.Efecto);
-        }
-        else
-        {
-            _ = SacudirAsync(indice, _cancelar.Token);
         }
     }
 
@@ -201,27 +197,6 @@ public partial class LogrosPanel : IDisposable
         }
     }
 
-    private async Task SacudirAsync(int indice, CancellationToken token)
-    {
-        try
-        {
-            _sacudido = null;
-            await InvokeAsync(StateHasChanged);
-            _sacudido = indice;
-            await InvokeAsync(StateHasChanged);
-
-            await Task.Delay(700, token);
-            if (_sacudido == indice)
-            {
-                _sacudido = null;
-                await InvokeAsync(StateHasChanged);
-            }
-        }
-        catch (OperationCanceledException)
-        {
-            // Se ha vuelto antes de que terminara.
-        }
-    }
 
     /// <summary>Variables CSS de una particula (siempre con punto decimal, sea cual sea la cultura).</summary>
     private static string EstiloParticula(Particula p) =>

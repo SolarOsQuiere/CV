@@ -25,9 +25,10 @@ Escape vuelve. Todo es CSS y C#, sin JavaScript propio.
 
 ## Animacion de cada logro
 
-Al pulsar un logro desbloqueado se lanza una animacion a pantalla completa (~5 s) segun su `Efecto`; si esta bloqueado, el objeto se sacude.
+Al pulsar un logro desbloqueado se lanza una animacion a pantalla completa (~5 s) segun su `Efecto`.
 Los efectos estan en `Logros/EfectosLogro.cs` (generacion) y `Logros/LogrosPanel.razor.css` (animaciones):
-`Verduras` (cocina), `Palabras` (ingles), `Tiempo`, `Corazones`, `Estrellas`, `Notas`, `Flashes` y `Confeti` (por defecto).
+`Verduras` (cocina), `Palabras` (ingles), `Sueno`, `Tiempo`, `Corazones`, `Estrellas`, `Notas`, `Flashes`, `Titanes` (Attack on Titan), `JuegosDeMesa`, `Consola` (PowerShell y calaveras), `Elogio` (un cumplido), `Millon` (el millon de segundos) y `Confeti` (por defecto).
+Los logros **bloqueados no tienen ninguna animacion**: al pulsarlos solo se ve su ficha; el efecto y el movimiento al pasar el raton son solo de los desbloqueados.
 
 ## Como rellenar los logros
 
