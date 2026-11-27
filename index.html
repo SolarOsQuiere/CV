@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="CV " />
+    <meta name="author" content="Héctor Solar Ruiz" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <title>Héctor Solar Ruiz</title>
+    <base href="/CV/" />
+
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.16.0/devicon.min.css" />
+
+    <!-- CSS global (tokens, base y piezas compartidas) -->
+    <link href="css/tokens.css" rel="stylesheet" />
+    <link href="css/base.css" rel="stylesheet" />
+    <link href="css/layout.css" rel="stylesheet" />
+    <link href="css/buttons.css" rel="stylesheet" />
+    <link href="css/cards.css" rel="stylesheet" />
+    <link href="css/chips.css" rel="stylesheet" />
+    <link href="css/splash.css" rel="stylesheet" />
+    <link href="css/blazor-ui.css" rel="stylesheet" />
+
+    <!-- CSS de cada componente (CSS isolation de Blazor: *.razor.css) -->
+    <link href="CV.styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="splash" role="status" aria-live="polite">
+        <img class="splash-photo" src="assets/img/profile.jpg" alt="Héctor Solar Ruiz" />
+        <p class="splash-name">Héctor Solar Ruiz</p>
+        <p class="splash-role">Software Engineer</p>
+        <div class="splash-bar"><span></span></div>
+        <div class="splash-error" hidden>
+            <strong></strong>
+            <span></span>
+            <button type="button"></button>
+        </div>
+    </div>
+
+    <div id="app"></div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <script src="js/scripts.js"></script>
+
+    <script>
+        // Splash de precarga: se oculta cuando Blazor ha pintado cualquier pagina (la web o la 404),
+        // con un minimo de 700 ms para evitar parpadeos. Si el arranque falla, informa del error.
+        (function () {
+            var splash = document.getElementById('splash');
+            var app = document.getElementById('app');
+            var start = Date.now();
+            var done = false;
+            var es = (navigator.language || 'en').slice(0, 2) === 'es';
+            var texts = es
+                ? { title: 'No se pudo cargar la aplicación', body: 'Recarga la página con Ctrl+F5. Si sigue fallando, borra los datos del sitio o inténtalo de nuevo en unos minutos.', btn: 'Recargar' }
+                : { title: 'The application could not be loaded', body: 'Reload the page with Ctrl+F5. If it keeps failing, clear the site data or try again in a few minutes.', btn: 'Reload' };
+
+            function hide() {
+                if (done) return;
+                done = true;
+                var wait = Math.max(0, 700 - (Date.now() - start));
+                setTimeout(function () {
+                    splash.classList.add('is-hidden');
+                    setTimeout(function () { splash.remove(); }, 600);
+                }, wait);
+            }
+
+            function showError() {
+                if (done) return;
+                var box = splash.querySelector('.splash-error');
+                box.querySelector('strong').textContent = texts.title;
+                box.querySelector('span').textContent = texts.body;
+                var btn = box.querySelector('button');
+                btn.textContent = texts.btn;
+                btn.onclick = function () { location.reload(); };
+                box.hidden = false;
+                splash.classList.add('has-error');
+            }
+
+            var observer = new MutationObserver(function () {
+                if (app.firstElementChild) { observer.disconnect(); hide(); }
+            });
+            observer.observe(app, { childList: true, subtree: true });
+
+            // Fallos de arranque de Blazor (p. ej. integridad de los .wasm) llegan como promesas rechazadas.
+            window.addEventListener('unhandledrejection', showError);
+            setTimeout(showError, 25000);
+        })();
+    </script>
+
+    <script>
+        // Normaliza las mayusculas de la ruta base: el servidor de desarrollo acepta /cv/ pero Blazor exige
+        // la misma capitalizacion que <base href> (/CV/) y, si no coincide, no llega a arrancar.
+        (function () {
+            var base = new URL(document.baseURI).pathname;
+            var path = location.pathname;
+            if (path !== base && path.indexOf(base) !== 0 && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
+                location.replace(base + path.slice(base.length) + location.search + location.hash);
+            }
+        })();
+    </script>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script>
+        window.blazorCulture = {
+            get: () => localStorage['BlazorCulture'],
+            set: (value) => localStorage['BlazorCulture'] = value
+        };
+    </script>
+    <script>navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });</script>
+
+</body>
+
+</html>
+

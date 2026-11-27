@@ -1,0 +1,10 @@
+/* Estilos del documento imprimible / PDF (CvDocument). Solo se enlaza desde ahi, nunca desde la web. */
+
+body { background: #fff; }
+
+.no-print { display: none !important; }
+
+section.resume-section { padding: 1.2cm 1.4cm; page-break-inside: avoid; }
+section.resume-section:not(:last-of-type) { border-bottom: 1px solid #eee; }
+
+img { max-width: 100%; }

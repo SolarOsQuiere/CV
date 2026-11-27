@@ -1,0 +1,20 @@
+/* Chips (etiquetas) de la portada, tecnologias y proyectos. */
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.chips li {
+    padding: 0.25rem 0.8rem;
+    border: 1px solid rgba(16, 134, 197, 0.3);
+    border-radius: 999px;
+    background: rgba(16, 134, 197, 0.08);
+    color: var(--cv-accent-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+}

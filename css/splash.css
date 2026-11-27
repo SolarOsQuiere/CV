@@ -1,0 +1,32 @@
+/* Splash de precarga: se muestra mientras Blazor WebAssembly descarga y arranca */
+#splash {
+    position: fixed; inset: 0; z-index: 3000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem;
+    background: #f4f5f9;
+    font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    transition: opacity .5s ease, visibility .5s ease;
+}
+#splash.is-hidden { opacity: 0; visibility: hidden; }
+#splash .splash-photo {
+    width: 132px; height: 132px; border-radius: 50%;
+    object-fit: cover; object-position: center 18%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 0 4px rgba(16, 134, 197, .4), 0 14px 34px rgba(16, 134, 197, .35);
+    animation: splash-pulse 1.6s ease-in-out infinite;
+}
+#splash .splash-name { margin: 0; color: #1f2933; font-size: 1.35rem; font-weight: 800; }
+#splash .splash-role { margin: -.7rem 0 0; color: #5f6b76; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+#splash .splash-bar { width: 180px; height: 4px; overflow: hidden; border-radius: 2px; background: #dde3e9; }
+#splash .splash-bar span {
+    display: block; height: 100%; width: var(--blazor-load-percentage, 8%);
+    border-radius: 2px; background: #1086c5; transition: width .25s ease;
+}
+#splash .splash-error { max-width: 420px; padding: 0 1.25rem; text-align: center; color: #5f6b76; font-size: .9rem; }
+#splash .splash-error strong { display: block; margin-bottom: .35rem; color: #1f2933; font-size: 1rem; }
+#splash .splash-error button {
+    margin-top: .9rem; padding: .5rem 1.2rem; border: 0; border-radius: 999px;
+    background: #1f2933; color: #fff; font-weight: 700; cursor: pointer;
+}
+#splash.has-error .splash-bar { display: none; }
+@keyframes splash-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { #splash .splash-photo { animation: none; } }

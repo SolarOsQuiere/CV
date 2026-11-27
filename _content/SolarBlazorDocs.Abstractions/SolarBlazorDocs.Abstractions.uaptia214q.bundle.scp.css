@@ -1,0 +1,51 @@
+/* _content/SolarBlazorDocs.Abstractions/Components/DocumentActions.razor.rz.scp.css */
+.sbd-actions[b-50hm7ge2kf] {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.sbd-field[b-50hm7ge2kf] {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: #555;
+}
+
+.sbd-field select[b-50hm7ge2kf] {
+    padding: 7px 10px;
+    border: 1px solid #cdd7e3;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.sbd-btn[b-50hm7ge2kf] {
+    padding: 9px 16px;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background: #fff;
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sbd-btn:hover[b-50hm7ge2kf] {
+    background: #eaf3ff;
+}
+
+.sbd-btn:disabled[b-50hm7ge2kf] {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.sbd-btn-primary[b-50hm7ge2kf] {
+    background: #007bff;
+    color: #fff;
+}
+
+.sbd-btn-primary:hover[b-50hm7ge2kf] {
+    background: #0062cc;
+}
